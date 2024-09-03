@@ -1,0 +1,349 @@
+* {
+  font-family: $regular_font;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--theme_bg);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--main_theme_clr);
+    border: 2px solid var(--theme_bg);
+    border-radius: 15px;
+  }
+
+  &::selection {
+    background-color: var(--soft_main_theme_clr);
+    color: var(--white);
+  }
+
+  line-height: 1.8;
+}
+
+body {
+  overflow: hidden visible;
+}
+
+.primary-btn-style {
+  @include primaryBtnStyle;
+}
+
+.filter-white {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(287deg)
+    brightness(103%) contrast(103%);
+}
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:focus {
+//     transition: background-color 100000000s 0s, color 100000000s 0s;
+// }
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//     -moz-box-shadow: 0 0 0 30px rgba(0,0,0, 0) inset !important;
+//     -o-box-shadow: 0 0 0 30px rgba(0,0,0, 0) inset !important;
+//     -webkit-box-shadow: 0 0 0 30px rgba(0,0,0, 0) inset !important;
+//     box-shadow: 0 0 0 30px rgba(0,0,0, 0) inset !important;
+// }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.iziToast-wrapper {
+  .iziToast-capsule {
+    .iziToast {
+      padding-block: 12px;
+      // background: #ebebeb;
+      // border-color: #ebebeb;
+      border-radius: 12px;
+      overflow: hidden;
+
+      &.custom_error {
+        box-shadow: inset 0 -10px 20px -10px rgb(255 0 0 / 20%),
+          inset 0 0 5px rgb(199 0 0 / 10%);
+      }
+    }
+  }
+}
+
+// Start:: Ant Design Components Global Styling
+.ant-notification {
+  span {
+    .ant-notification-notice {
+      margin-block: 5px;
+      padding: 10px 10px;
+      border-radius: 6px;
+
+      .ant-notification-notice-content {
+        .ant-notification-notice-with-icon {
+          .ant-notification-notice-icon {
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          .ant-notification-notice-message {
+            margin-inline-start: 48px;
+            margin-bottom: 0;
+            font-size: 15px;
+          }
+        }
+      }
+
+      .ant-notification-notice-close {
+        top: 5px;
+        right: 12px;
+      }
+
+      &.error_toast {
+        background: var(--soft_red);
+        border: 1px solid var(--mid_red);
+        box-shadow: 0 0 12px rgba(255, 87, 87, 0.233);
+
+        .ant-notification-notice-content {
+          .ant-notification-notice-with-icon {
+            .ant-notification-notice-icon {
+              color: var(--mid_red);
+            }
+
+            .ant-notification-notice-message {
+              color: var(--mid_red);
+            }
+          }
+        }
+      }
+
+      &.success_toast {
+        background: var(--soft_green);
+        border: 1px solid var(--mid_green);
+        box-shadow: 0 0 12px rgba(87, 255, 137, 0.233);
+
+        .ant-notification-notice-content {
+          .ant-notification-notice-with-icon {
+            .ant-notification-notice-icon {
+              color: var(--mid_green);
+            }
+
+            .ant-notification-notice-message {
+              color: var(--mid_green);
+            }
+          }
+        }
+      }
+
+      &.warning_toast {
+        background: var(--soft_yellow);
+        border: 1px solid var(--mid_yellow);
+        box-shadow: 0 0 12px rgba(255, 244, 87, 0.233);
+
+        .ant-notification-notice-content {
+          .ant-notification-notice-with-icon {
+            .ant-notification-notice-icon {
+              color: var(--mid_yellow);
+            }
+
+            .ant-notification-notice-message {
+              color: var(--mid_yellow);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+// End:: Ant Design Components Global Styling
+
+.text-gray {
+  color: var(--light_gray) !important;
+}
+
+.empty_items {
+  min-height: 300px;
+  @include flex(center, center);
+
+  img {
+    width: 300px;
+  }
+
+  text-align: center;
+
+  h4 {
+    margin-top: 1rem;
+    // color: var(--main_theme_clr);
+  }
+}
+
+.back_home {
+  padding: 1rem;
+  background-color: var(--main_theme_clr);
+
+  color: white !important;
+
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 1rem;
+  border: 2px solid var(--main_theme_clr);
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: white;
+    color: var(--main_theme_clr) !important;
+  }
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.sec_padding {
+  padding-block: 2rem;
+}
+
+.sec_margin {
+  margin-block: 5rem;
+}
+
+// Start:: Dialogs Styles
+.v-dialog {
+  max-width: 500px;
+  border-radius: 12px !important;
+  background-color: var(--white) !important;
+
+  .theme--light {
+    &.v-card {
+      background-color: var(--white) !important;
+      @include flex(center, center);
+      flex-direction: column;
+      border-radius: 12px !important;
+      box-shadow: none;
+
+      img {
+        object-fit: cover;
+      }
+
+      .dialog_desc_text {
+        text-align: center;
+        color: var(--theme_text_clr);
+        line-height: 2;
+        font-size: 18px;
+      }
+
+      .v-card__title {
+        padding-top: 0;
+        color: var(--theme_text_clr);
+        font-size: 22px !important;
+        font-family: $semi_bold_font !important;
+        text-align: center;
+        word-break: break-word;
+        line-height: 1.8;
+      }
+
+      .v-card__actions {
+        .modal_confirm_btn {
+          @include primaryBtnStyle;
+          font-size: 15px;
+          margin-inline: 8px;
+          background-color: transparent !important;
+          height: unset !important;
+          margin-top: 20px;
+          width: 130px;
+          &:disabled {
+            color: var(--white) !important;
+          }
+        }
+
+        .modal_cancel_btn {
+          @include discardButtonStyle;
+          font-size: 15px;
+          margin-inline: 8px;
+          height: unset !important;
+          margin-top: 20px;
+          width: 130px;
+        }
+      }
+    }
+    .modal_content_wrapper {
+      padding: 20px 15px;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    max-width: 95%;
+    .theme--light {
+      &.v-card {
+        .v-card__actions {
+          .modal_confirm_btn,
+          .modal_cancel_btn {
+            min-width: 130px;
+          }
+        }
+      }
+    }
+  }
+}
+// End:: Dialogs Styles
+
+// Start:: Dropdown Styles
+.v-menu__content {
+  border-radius: 8px !important;
+  .v-list {
+    .v-list-item {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+// End:: Dropdown Styles
+
+// Start:: Global Theme Classes
+.section_main_title {
+  margin-bottom: 2.3rem;
+  line-height: 1.8;
+  font-size: 1.7rem;
+  font-family: $semi_bold_font;
+  color: var(--black);
+
+  @include media(md) {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  @include media(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.section_subtitle {
+  font-size: 1rem;
+  font-family: $regular_font;
+  color: rgba(15, 19, 18, 0.8);
+  margin-block-end: 2rem;
+
+  @include media(sm) {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+// End:: Global Theme Classes

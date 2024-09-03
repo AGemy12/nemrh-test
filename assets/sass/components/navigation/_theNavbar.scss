@@ -1,0 +1,241 @@
+// ========== Start:: Main Navbar Styles ========== //
+.header_wrapper {
+  padding-block: 0;
+  width: 100%;
+  z-index: 10;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  &.sticky {
+    animation: fixedAnimation 0.5s forwards;
+    padding-block: 0px;
+    background-color: rgb(205, 198, 221, 0.6);
+    backdrop-filter: blur(5px);
+
+    .wrapper {
+      .navbar_content_wrapper {
+        .routes_list {
+          .navbar_route {
+            & > button,
+            & > a {
+              color: var(--white);
+              &::after,
+              &::before {
+                background-color: var(--secondary_theme_clr);
+              }
+              &.nuxt-link-exact-active,
+              &.nuxt-link-active,
+              &.active,
+              &:hover {
+                color: var(--theme_text_clr);
+              }
+            }
+          }
+        }
+      }
+
+      .navbar_action_btns_wrapper {
+        @include flex(center, center);
+        flex-wrap: wrap;
+        gap: 8px;
+        button {
+          font-family: $semi_bold_font;
+          // font-size: 13px;
+          padding: 8px;
+        }
+      }
+    }
+  }
+
+  &.small_screens_navbar {
+    position: static;
+    padding: 0;
+    overflow: visible;
+    border-bottom: 1px solid var(--border_clr);
+    .logo_wrapper {
+      img {
+        width: 120px;
+        height: 45px;
+      }
+    }
+    .wrapper {
+      .container {
+        padding: 8px 15px;
+        .navbar_content_wrapper {
+          position: absolute;
+          top: 0;
+          @include rtl(right, -100%, auto);
+          @include rtl(left, auto, -100%);
+          display: block;
+          width: 100%;
+          height: 100vh;
+          z-index: 100;
+          padding: 20px;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+          z-index: 10;
+          transition: all 0.5s linear;
+          &.active {
+            @include rtl(right, 0, auto);
+            @include rtl(left, auto, 0);
+          }
+          .drawer_close_btn {
+            margin-bottom: 40px;
+            width: 100%;
+            @include flex(flex-end, center);
+            svg,
+            i {
+              color: var(--mid_red);
+              font-size: 22px;
+            }
+          }
+          .routes_list {
+            @include flex(center, flex-start, column);
+            row-gap: 8px;
+            .navbar_route {
+              & > button,
+              & > a {
+                padding: 8px 10px;
+                font-size: 14px;
+                color: var(--white);
+                transition: all 0.4s linear;
+                &::after {
+                  display: none;
+                }
+                &:hover,
+                &.nuxt-link-exact-active,
+                &.nuxt-link-active {
+                  padding: 8px 10px;
+                  color: var(--white);
+                  background-color: var(--main_theme_clr);
+                  border-radius: 4px;
+                }
+              }
+            }
+          }
+        }
+
+        .navbar_action_btns_wrapper {
+          gap: 13px;
+          .profile_route {
+            @include flex(flex-start, center);
+            column-gap: 8px;
+            span {
+              display: none;
+            }
+            svg {
+              display: block;
+              color: var(--theme_text_clr);
+            }
+          }
+          .auth_route {
+            font-size: 12px;
+          }
+
+          .nav_routes_drawer_btn {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    // overflow-y: hidden;
+    .container {
+      @include flex(space-between, center);
+      column-gap: 35px;
+
+      .navbar_content_wrapper {
+        flex-grow: 1;
+        @include flex(center, center);
+        column-gap: 22px;
+        .drawer_close_btn {
+          display: none;
+        }
+        .routes_list {
+          @include flex(flex-start, center);
+          column-gap: 35px;
+          .navbar_route {
+            @include flex(center, center);
+            & > button,
+            & > a {
+              position: relative;
+              transition: all 0.3s linear;
+              display: inline-block;
+              padding-block: 6px;
+              color: var(--theme_text_clr);
+              font-size: 0.95rem;
+              font-family: $semi_bold_font;
+              overflow: hidden;
+              text-transform: capitalize;
+              &.nuxt-link-exact-active,
+              &.nuxt-link-active,
+              &.active,
+              &:hover {
+                color: var(--main_theme_clr);
+              }
+            }
+          }
+        }
+      }
+
+      .logo_wrapper {
+        flex-grow: 1;
+        img {
+          object-fit: contain;
+          object-position: center;
+        }
+      }
+
+      .navbar_action_btns_wrapper {
+        flex-grow: 1;
+        @include flex(flex-end, center);
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        .auth_route {
+          @include primaryBtnStyle;
+          min-width: max-content;
+          padding: 6px 10px;
+          font-size: 14px;
+        }
+
+        .profile_route {
+          @include flex(flex-start, center);
+          column-gap: 8px;
+          span {
+            color: var(--main_theme_clr);
+            font-family: $bold_font;
+            font-size: 0.95rem;
+            text-transform: capitalize;
+          }
+          svg {
+            display: none;
+          }
+        }
+
+        .nav_routes_drawer_btn {
+          display: none;
+        }
+      }
+    }
+  }
+}
+// ========== End:: Main Navbar Styles ========== //
+
+// ========== Start:: Animation Keyframes ========== //
+@keyframes fixedAnimation {
+  0% {
+    position: fixed;
+    top: -100%;
+    width: 100%;
+  }
+
+  100% {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+}
+// ========== End:: Animation Keyframes ========== //

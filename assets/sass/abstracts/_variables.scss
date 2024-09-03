@@ -1,0 +1,93 @@
+// Start:: Root Element
+:root {
+  // =========== Start:: Theme Colors ===========
+    // ** Color Line ** //
+    --main_theme_clr: #5e17eb;
+    --dark_main_theme_clr: #2a0b68;
+    --soft_main_theme_clr: #ded3f3ea;
+    --opacity_main_theme_clr: rgba(135, 88, 255, 8%);
+    --opacity_main_theme_clr_60: rgba(135, 88, 255, 60%);
+    // --secondary_theme_clr: #E81212;
+    // --dark_secondary_theme_clr: #b11e1e;
+    // --opacity_secondary_theme_clr: rgba(255, 54, 54, 0.6);
+
+    // ** Backgrounds ** //
+    --theme_main_bg: #FFFFFF;
+    --theme_second_bg: rgba(135, 88, 255, 10%);
+    --mid_dark_bg: #303030;
+    --dark_bg: #292929;
+    --gray_overlay_bg: rgba(225, 225, 225, 0.6);
+    --deactive_button_bg: #ECECEC;
+    --theme_inputs_bg: rgba(135, 88, 255, 5%);
+    --footer_bg: #210852;
+
+    // ** Text ** //
+    --theme_text_clr: #000;
+    --mid_theme_text_clr: #303333;
+    --light_theme_text_clr: #5a5a5a;
+    --theme_secondary_text_clr: #ffa17a;
+    --soft_theme_text_clr: rgba(0, 0, 0, 0.6);
+    --gray_theme_clr: #696969;
+
+    // ** Customs ** //
+    --border_clr: rgba(33, 8, 82, 0.24);
+    --light_border_clr: rgba(33, 8, 82, 0.20);
+    --simple_shadow_clr: rgba(46, 7, 75, 0.08);
+    --mid_shadow_clr: #0000002E;
+    --box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.05);
+
+  // =========== Start:: Base Colors ===========
+  --white: #fff;
+  --black: #000;
+  --lighter_gray: #f9fafb;
+  --light_gray: #D7D7DD;
+  --mid_gray: rgba(33, 8, 82, 0.4);
+  --dark_gray: #313131;
+  --mid_blue: #103580;
+  --mid_green: #34bf6c;
+  --soft_green: #cfffe2;
+  --deep_red: #810000;
+  --mid_red: #CF0707;
+  --light_red: #FF3636;
+  --soft_red: #ffd8e2;
+  --mid_yellow: #f5d236;
+  --soft_yellow: #fffde5;
+  --gold: #F4C800;
+
+  // =========== Start:: Brands Colors ===========
+  --facebook: #4267b2;
+  --twitter: #1da1f2;
+  --whatsApp: #25d366;
+  --telegram: #0088cc;
+  --linkedin: #2867b2;
+  --youtube: #ff0000;
+
+  // Start:: Dark Theme Colors
+  // .dark_theme {
+  //   // =========== Theme Colors =========== //
+  //   // ** Color Line ** //
+
+  //   // ** Backgrounds ** //
+
+  //   // ** Text ** //
+
+  //   // ** Shadows ** //
+
+  //   // ** Customs ** //
+  // }
+}
+
+// End:: Root Element
+
+// Start:: Fonts
+$light_font: 'Cairo-Light';
+$regular_font: 'Cairo-Regular';
+$medium_font: 'Cairo-Medium';
+$semi_bold_font: 'Cairo-SemiBold';
+$bold_font: 'Cairo-Bold';
+// End:: Fonts
+
+// Start:: General Varibles
+$section_block_margin: 120px;
+$section_block_padding: 90px;
+// End:: General Varibles

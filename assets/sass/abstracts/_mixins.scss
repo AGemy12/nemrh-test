@@ -1,0 +1,495 @@
+@mixin transitioning($t) {
+  -moz-transition: all $t ease-in-out;
+  -webkit-transition: all $t ease-in-out;
+  -o-transition: all $t ease-in-out;
+  transition: all $t ease-in-out;
+}
+
+@mixin colorTransitioning($ct) {
+  -moz-transition: background $ct linear, color $ct linear;
+  -webkit-transition: background $ct linear, color $ct linear;
+  -o-transition: background $ct linear, color $ct linear;
+  transition: background $ct linear, color $ct linear;
+}
+
+@mixin borderRadius($br) {
+  -moz-border-radius: $br;
+  -webkit-border-radius: $br;
+  -o-border-radius: $br;
+  border-radius: $br;
+}
+
+@mixin customBorderRadius($tl, $tr, $br, $bl) {
+  -moz-border-radius: $tl $tr $br $bl;
+  -o-border-radius: $tl $tr $br $bl;
+  -webkit-border-radius: $tl $tr $br $bl;
+  border-radius: $tl $tr $br $bl;
+}
+
+@mixin menuHoverEffect {
+  overflow: hidden;
+  margin: 0 10px;
+  position: relative;
+  font-size: 15px;
+
+  button,
+  a {
+    text-decoration: none;
+    color: var(--dark_gray);
+    @include transitioning(0.2s);
+    font-family: $bold_font;
+
+    &.router-link-exact-active {
+      color: var(--secondary_theme_clr);
+    }
+  }
+
+  &:hover {
+    button,
+    a {
+      color: var(--secondary_theme_clr);
+    }
+  }
+}
+
+@mixin primaryBtnStyle {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  min-width: 170px;
+  text-align: center;
+  padding: 6px 20px;
+  font-size: 15px;
+  color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--main_theme_clr);
+  background-image: linear-gradient(
+    90deg,
+    transparent 50%,
+    var(--main_theme_clr) 50%
+  );
+  background-position: 100%;
+  background-size: 400%;
+  @include transitioning(0.6s);
+
+  .btn_loader {
+    position: absolute;
+    left: 10px;
+    top: 30%;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border: 3px dotted var(--white);
+    border-style: solid solid dotted dotted;
+    @include borderRadius(50%);
+    @include transitioning(0.4s);
+    display: inline-block;
+    animation: rotation 2s linear infinite;
+  }
+
+  &:hover {
+    background-position: 0;
+    color: var(--main_theme_clr);
+    border: 1px solid var(--main_theme_clr);
+    background-color: transparent;
+    .btn_loader {
+      border: 3px dotted var(--main_theme_clr);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+
+    &:hover {
+      background-position: 100%;
+      color: var(--white);
+    }
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin discardButtonStyle {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  min-width: 170px;
+  text-align: center;
+  padding: 6px 20px;
+  font-size: 15px;
+  color: var(--white);
+  border-radius: 8px;
+  border: 1px solid #a8a8a8;
+  background-image: linear-gradient(90deg, transparent 50%, #a8a8a8 50%);
+  background-position: 100%;
+  background-size: 400%;
+  @include transitioning(0.6s);
+
+  .btn_loader {
+    position: absolute;
+    left: 10px;
+    top: 30%;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border: 3px dotted var(--white);
+    border-style: solid solid dotted dotted;
+    @include borderRadius(50%);
+    @include transitioning(0.4s);
+    display: inline-block;
+    animation: rotation 2s linear infinite;
+  }
+
+  &:hover {
+    background-position: 0;
+    color: #a8a8a8;
+    border: 1px solid #a8a8a8;
+    background-color: transparent;
+    .btn_loader {
+      border: 3px dotted #a8a8a8;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin secondaryBtnStyle {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  min-width: 130px;
+  text-align: center;
+  padding: 6px 20px;
+  font-size: 15px;
+  color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--mid_dark_bg);
+  background-image: linear-gradient(
+    90deg,
+    transparent 50%,
+    var(--mid_dark_bg) 50%
+  );
+  background-position: 100%;
+  background-size: 400%;
+  @include transitioning(0.6s);
+
+  .btn_loader {
+    position: absolute;
+    left: 15px;
+    top: 30%;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border: 3px dotted var(--white);
+    border-style: solid solid dotted dotted;
+    @include borderRadius(50%);
+    @include transitioning(0.4s);
+    display: inline-block;
+    animation: rotation 2s linear infinite;
+  }
+
+  &:hover {
+    background-position: 0;
+    color: var(--mid_dark_bg);
+    border-color: var(--mid_dark_bg);
+    background-color: transparent;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin solidBtnStyle {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 130px;
+  text-align: center;
+  padding: 6px 20px;
+  font-size: 15px;
+  color: var(--theme_text_clr);
+  border-radius: 8px;
+  overflow: hidden;
+  @include transitioning(0.6s);
+
+  .btn_loader {
+    position: absolute;
+    top: 22%;
+    left: 45%;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    border: 3px dotted var(--main_theme_clr);
+    border-style: solid solid dotted dotted;
+    @include borderRadius(50%);
+    @include transitioning(0.4s);
+    display: inline-block;
+    animation: rotation 2s linear infinite;
+    z-index: 2;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: var(--opacity_main_theme_clr);
+    z-index: 1;
+  }
+
+  &.loading {
+    border-color: var(--light_border_clr);
+    &::after {
+      display: block;
+    }
+  }
+
+  &:hover {
+    color: var(--main_theme_clr);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin borderedBtnStyle {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 130px;
+  text-align: center;
+  padding: 6px 20px;
+  font-size: 15px;
+  color: var(--theme_text_clr);
+  border-radius: 8px;
+  border: 1px solid var(--border_clr);
+  overflow: hidden;
+  transition: all 0.6s linear;
+
+  .btn_loader {
+    position: absolute;
+    top: 22%;
+    left: 45%;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    border: 3px dotted var(--main_theme_clr);
+    border-style: solid solid dotted dotted;
+    @include borderRadius(50%);
+    @include transitioning(0.4s);
+    display: inline-block;
+    animation: rotation 2s linear infinite;
+    z-index: 2;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: var(--opacity_main_theme_clr);
+    z-index: 1;
+  }
+
+  &.loading {
+    border-color: var(--light_border_clr);
+    &::after {
+      display: block;
+    }
+  }
+
+  &:hover {
+    color: var(--main_theme_clr);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin softBtnStyle($s_bg) {
+  width: 40px;
+  height: 40px;
+  @include flex(center, center);
+  background-color: $s_bg;
+  color: var(--main_theme_clr);
+  @include borderRadius(10px);
+
+  i,
+  svg {
+    font-size: 20px;
+  }
+}
+
+@mixin wishlistBtnStyle() {
+  width: 45px;
+  height: 45px;
+  border: 1px solid var(--main_theme_clr);
+  border-radius: 4px;
+  @include flex(center, center);
+  i,
+  svg {
+    color: var(--main_theme_clr);
+    font-size: 22px;
+  }
+}
+
+@mixin mainTitleStyle {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: $bold_font;
+  color: var(--theme_text_clr);
+  text-transform: capitalize;
+}
+
+@mixin textWrapper {
+  word-break: break-word;
+  word-spacing: 2px;
+  font-size: 15px;
+  color: var(--mid_gray);
+  line-height: 1.8;
+  text-align: start;
+}
+
+@mixin textEllipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin simpleShadow {
+  box-shadow: 0 0 10px 2px var(--simple_shadow_clr);
+}
+
+@mixin midShadow {
+  box-shadow: 0 0 6px 0 var(--mid_shadow_clr);
+}
+
+@mixin heighShadow {
+  box-shadow: 0 0 10px 0 rgba(180, 180, 180, 0.6);
+}
+
+// Property In RTL
+@mixin rtl($property, $ltr-value, $rtl-value) {
+  #{$property}: $ltr-value;
+
+  body[dir='rtl'] & {
+    #{$property}: $rtl-value;
+  }
+}
+
+// Flex
+@mixin flex($justify, $align, $direction: row, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+// Font
+@mixin font($family, $size, $color: var(--theme_text_clr)) {
+  font-family: $family;
+  font-size: $size;
+  color: $color;
+}
+
+// Size
+@mixin size($width, $height: auto) {
+  inline-size: $width;
+  block-size: $height;
+}
+
+// Lines
+@mixin lines($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Media Queries
+@mixin media($point) {
+  @if $point==xs {
+    @media (max-width: 575px) {
+      @content;
+    }
+  } @else if $point==sm {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $point==main {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $point==md {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $point==lg {
+    @media (min-width: 992px) and (max-width: 1199px) {
+      @content;
+    }
+  } @else if $point==xl {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}

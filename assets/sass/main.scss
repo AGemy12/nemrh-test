@@ -1,0 +1,31 @@
+// Start:: Importing Abstracts
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+// End:: Importing Abstracts
+
+// Start:: Importing Base Style Files
+@import "./base/reset";
+@import "./base/global";
+@import "./base/typography";
+@import "./base/animation";
+@import "./base/mainRtl";
+// End:: Importing Base Style Files
+
+// Start:: Importing Components Style Files
+// ********** Start:: Importing Structure Components Styles ********** //
+@import "./components/navigation/theNavbar";
+@import "./components/navigation/theFooter";
+@import "./components/formInputs/inputWrapper";
+// ********** End:: Importing Structure Components Styles ********** //
+// End:: Importing Components Style Files
+
+// Start:: Importing Layouts Style Files
+// End:: Importing Layouts Style Files
+
+// Start:: Importing Pages Style Files
+@import "./pages/staticContentPages";
+@import "./pages/auth";
+// End:: Importing Pages Style Files
+
+// Start:: Importing Themes Style Files
+// End:: Importing Themes Style Files

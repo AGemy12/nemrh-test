@@ -1,0 +1,126 @@
+.footer_content_wrapper {
+  padding-block: 0.8rem;
+  position: relative;
+  background-color: var(--dark_main_theme_clr);
+  color: var(--white_clr) !important;
+
+  .logo_wrapper {
+    img {
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .routes_list_wrapper {
+    @include flex(center, center);
+    gap: 20px;
+    flex-wrap: wrap;
+    li {
+      @include flex(center, center);
+      a {
+        position: relative;
+        transition: all 0.3s linear;
+        display: inline-block;
+        padding: 6px;
+        color: var(--white);
+        font-size: 13px;
+        font-family: $semi_bold_font;
+        overflow: hidden;
+        border-radius: 8px;
+        &.nuxt-link-exact-active,
+        &.nuxt-link-active,
+        &.active,
+        &:hover {
+          background-color: var(--white);
+          color: var(--main_theme_clr);
+        }
+      }
+    }
+  }
+
+  .social_links {
+    @include flex(center, center);
+    gap: 5px;
+    .social_item {
+      padding: 5px;
+      a {
+        inline-size: 1.8rem;
+        block-size: 1.8rem;
+        padding: 5px;
+        border-radius: 50%;
+        @include flex(center, center);
+        transition: all 0.3s linear;
+        i,
+        svg {
+          font-size: 1.2rem;
+          color: var(--white);
+          fill: var(--white);
+          transition: all 0.3s linear;
+          font-size: 20px;
+        }
+        &:hover {
+          background-color: var(--white);
+          i,
+          svg {
+            color: var(--main_theme_clr);
+            fill: var(--main_theme_clr);
+          }
+        }
+      }
+    }
+  }
+
+  .copyrights_wrapper {
+    margin-block-start: 1rem;
+    padding-block-start: 1rem;
+    font-size: 12px;
+    color: var(--white);
+    border-top: 1px solid rgba(225, 252, 225, 0.16);
+
+    .row {
+      @include media(md) {
+        flex-direction: column-reverse;
+      }
+    }
+
+    p {
+      color: var(--white);
+      font-family: $semi_bold_font;
+      .website_name {
+        color: var(--white);
+        text-decoration: underline;
+        transition: all 0.3s linear;
+        text-underline-offset: 6px;
+
+        &:hover {
+          color: var(--main_theme_clr);
+        }
+      }
+    }
+
+    .img_box {
+      @include size(2.5rem, 1.5rem);
+
+      @include media(sm) {
+        @include size(2rem, 1rem);
+      }
+
+      img {
+        max-inline-size: 100%;
+        max-block-size: 100%;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .footer_content_wrapper {
+    border-top: 1px solid var(--border_clr);
+
+    .copyrights_wrapper {
+      margin-top: 15px !important;
+    }
+  }
+}

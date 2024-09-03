@@ -1,0 +1,40 @@
+// body[dir="rtl"] {
+//   * {
+//     // font-family: $arabic_regular_font;
+//   }
+//   // Start Overwrite on fonts Checkout Page
+//   .order_details_content_wrapper{
+//     p,span,h3,a{
+//       // font-family: $arabic_regular_font !important;
+//     }
+//   }
+//   .order_checkout_page{
+//     .checkout_steps_content_wrapper{
+//       h4{
+//         // font-family: $arabic_bold_font ;
+//       }
+//       label,p{
+//         // font-family: $arabic_bold_font !important;
+//       }
+//       input[type="submit"],button{
+//         // font-family: $arabic_medium_font !important;
+//       }
+//     }
+//     p{
+//       // font-family: $arabic_medium_font !important;
+//     }
+//   }
+//   .navbar_checkout_content_wrapper{
+//     a,span{
+//       // font-family: $arabic_medium_font !important;
+//     }
+//   }
+
+//   // End Overwrite on fonts Checkout Page
+//   // Start Custom inputs label  when rtl
+//   .v-input .v-input__control .v-input__slot .v-text-field__slot .v-label {
+//     left:unset !important;
+//     right: 0 !important;
+//   }
+//   // End Custom inputs label  when rtl
+// }

@@ -1,0 +1,128 @@
+.auth_page_content_wrapper {
+  min-height: 100vh;
+  max-height: 100vh;
+  width: 80%;
+  .auth_route_wrapper {
+    width: 100%;
+    text-align: center;
+    a {
+      color: var(--theme_text_clr);
+      span {
+        color: var(--main_theme_clr);
+      }
+    }
+  }
+}
+
+.auth_form_wrapper {
+  min-height: 100vh;
+  max-height: 100vh;
+  @include flex(center, flex-start, column);
+  row-gap: 2.5rem;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .form_title {
+    margin-block-end: 0.5rem;
+    font-size: 1.6rem;
+    font-family: $bold_font;
+    line-height: 1.5;
+  }
+
+  .form_subtitle {
+    font-size: 1rem;
+    font-family: $medium_font;
+    line-height: 1.7;
+    color: var(--light_theme_text_clr);
+    span {
+      color: var(--main_theme_clr);
+    }
+  }
+
+  .edit_contact_method_route_wrapper {
+    a {
+      font-size: 1rem;
+      color: var(--main_theme_clr);
+      text-decoration: underline;
+    }
+  }
+
+  .v-form {
+    width: 100%;
+  }
+
+  .timer_wrapper {
+    margin-bottom: 25px;
+    width: 100%;
+    @include flex(space-between, center);
+    p {
+      @include flex(flex-start, center);
+      column-gap: 8px;
+      span {
+        color: var(--light_theme_text_clr);
+      }
+      button {
+        width: max-content;
+        color: var(--main_theme_clr);
+        transition: all 0.3s linear;
+        text-decoration: underline;
+        &[disabled="disabled"] {
+          color: var(--light_gray);
+        }
+      }
+    }
+    .timer {
+      margin: 0;
+      color: var(--light_theme_text_clr);
+      font-size: 1.1rem;
+    }
+  }
+
+  button {
+    width: 100%;
+    &.google_auth_btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: var(--theme_text_clr);
+      border-radius: 5px;
+      border: none;
+      background-color: var(--theme_main_bg);
+      @include flex(center, center);
+      column-gap: 10px;
+    }
+  }
+
+  .forget_password_route {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--main_theme_clr);
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .auth_page_content_wrapper {
+    width: 100%;
+  }
+
+  .auth_form_wrapper {
+    padding: 15px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .auth_page_content_wrapper {
+    min-height: unset;
+    max-height: unset;
+    // .small_screens_auth_route_wrapper {
+    //   display: block;
+    //   a {
+    //     color: var(--light_theme_text_clr);
+    //   }
+    // }
+  }
+}
