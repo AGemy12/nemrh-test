@@ -11,7 +11,6 @@
         v-for="item of advFirstStepItems"
         :key="item.id"
         :advertisement-item-title="item.title"
-        :advertisement-item-image-scr="item.src"
       />
     </div>
   </div>
@@ -31,28 +30,24 @@ export default {
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementBelowSearchEngine'
           )}`,
-          src: `/_nuxt/assets/media/images/hero.png`,
         },
         {
           id: 2,
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementRectangulars'
           )}`,
-          src: `/_nuxt/assets/media/images/hero.png`,
         },
         {
           id: 3,
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementMidPageSquare'
           )}`,
-          src: `/_nuxt/assets/media/images/hero.png`,
         },
         {
           id: 4,
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementbottPageRectangular'
           )}`,
-          src: `/_nuxt/assets/media/images/hero.png`,
         },
       ]
       return items

@@ -4,7 +4,10 @@
       {{ advertisementItemTitle }}
     </h5>
     <div class="advertisement_item_image">
-      <img :src="`${advertisementItemImageScr}`" alt="advertisement Option" />
+      <img
+        src="../../../../assets/media/images/hero.png"
+        alt="advertisement Option"
+      />
     </div>
   </div>
 </template>
@@ -16,10 +19,7 @@ export default {
       type: String,
       require: true,
     },
-    advertisementItemImageScr: {
-      type: String,
-      require: true,
-    },
+
     // clickToActiveOption: {
     //   type: Function,
     // },
