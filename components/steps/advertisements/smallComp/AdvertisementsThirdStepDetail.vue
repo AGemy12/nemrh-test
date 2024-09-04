@@ -30,6 +30,11 @@ export default {
   border-radius: 8px;
   @include flex(space-between, center);
   margin-bottom: 15px;
+  .advertisement_detail_key {
+    @media (max-width: 450px) {
+      font-size: 15px;
+    }
+  }
   .advertisement_detail_value {
     font-weight: 600;
     font-size: 15px;

@@ -330,7 +330,7 @@
       "advertisementStart": "بداية الإعلان",
       "advertisementEnd": "نهاية الإعلان",
       "advertisementPeriod": " مدة الإعلان بالأيام",
-      "advertisementLink": "رابط الإعلان",
+      "advertisementLink": " رابطً موقعك او رقم الواتساب",
       "advertisementImage": "صورة الإعلان"
     },
     "Validation": {
@@ -427,7 +427,7 @@
     "stepThreeTitle": "ارسل رسالتك على الواتس ",
     "stepThreeDesc": "كل ما عليك هو كتابة النص الذي تريد او اختر من النماذج النصوص المعدة للارسال … وانطلق",
     "Advertisements": {
-      "AdvertisementsStepOneTitle": "اشتراكات الإعلانات",
+      "AdvertisementsStepOneTitle": " إعلانات نمرة",
       "AdvertisementsStepOneSubTitle": "اختيار موضع الإعلان ",
       "AdvertisementsStepTwoSubTitle": "تفاصيل الإشتراك",
       "AdvertisementsStepThreeSubTitle": "تأكيد و معاينة الإعلان",
@@ -452,7 +452,7 @@
   },
   "OTHERS": {
     "Ryal": "ريال",
-    "AdvertisementDetails": "تفاصيل الإعلان ",
+    "AdvertisementDetails": "تأكيد تفاصيل الإعلان",
     "AdvertisementPreview": "معاينة الإعلان"
   }
 }

@@ -328,7 +328,7 @@
       "advertisementStart": "Beginning of the advertisement",
       "advertisementEnd": "End of advertisement",
       "advertisementPeriod": " Duration of advertisement in days ",
-      "advertisementLink": "Advertisement Link",
+      "advertisementLink": "Your website link or WhatsApp number",
       "advertisementImage": " Advertisement Image "
     },
     "Validation": {
@@ -426,7 +426,7 @@
     "stepThreeTitle": "Send your message on WhatsApp",
     "stepThreeDesc": "All you have to do is write the text you want or choose from the text templates prepared for sending...and go",
     "Advertisements": {
-      "AdvertisementsStepOneTitle": "advertises subscriptions",
+      "AdvertisementsStepOneTitle": "nemrh advertises",
       "AdvertisementsStepOneSubTitle": "Choose the ad placement",
       "AdvertisementsStepTwoSubTitle": "subscription details",
       "AdvertisementsStepThreeSubTitle": "Confirm ad preview",
@@ -452,7 +452,7 @@
   },
   "OTHERS": {
     "Ryal": "Ryal",
-    "AdvertisementDetails": "Advertisement Details",
+    "AdvertisementDetails": "Confirm  the advertisement details",
     "AdvertisementPreview": "Advertisement Preview"
   }
 }

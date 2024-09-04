@@ -46,7 +46,7 @@
       <!-- ========= End::  Packages Section ========= -->
 
       <!-- ========= Start:: Site Cycle Steps Section ========= -->
-      <SiteCycleStepsSection />
+      <!-- <SiteCycleStepsSection /> -->
       <!-- ========= End:: Site Cycle Steps Section ========= -->
 
       <!-- ========= Start:: Banner ========= -->

@@ -12,7 +12,7 @@
         id="advertisementsOption"
       />
       <PackageOption
-        href="/subscriptions"
+        href="/messages-subscriptions"
         :packageOptionTitle="
           $t('Packages.PackagesOptions.MessagesOption.MessagesOptionTitle')
         "

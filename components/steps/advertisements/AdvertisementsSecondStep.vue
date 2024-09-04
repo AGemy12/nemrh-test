@@ -30,7 +30,7 @@
           <!-- End:: Advertisement Name And Price Input -->
 
           <!-- Start:: Advertisement Period Input -->
-          <base-input
+          <!-- <base-input
             col="6"
             type="text"
             :placeholder="$t('FORMS.Placeholders.advertisementPeriod') + '*'"
@@ -39,7 +39,19 @@
             @clearServerSideErrorMessage="data.period.error = null"
             v-model.trim="data.period.value"
             required
+          /> -->
+          <base-select-input
+            col="6"
+            static
+            :staticItems="categories"
+            :placeholder="$t('FORMS.Placeholders.advertisementPeriod') + '*'"
+            :validationRules="validationSchema.periodRules"
+            :serverSideErrorMessage="data.period.error"
+            @clearServerSideErrorMessage="data.period.error = null"
+            v-model="data.period.value"
+            required
           />
+
           <!-- Start:: Advertisement Period Input -->
 
           <!-- Start:: Advertisement Date Input -->
@@ -115,10 +127,18 @@ export default {
       categories: [],
       // End::Categories Data
 
+      // Start Ads Duration Data
+      categories: [30, 60, 90, 120, 150, 180],
+      // End Ads Duration Data
+
       // Start:: Company Details Data
       data: {
         advertisementName: {
           value: this.companyDetails?.title_en || null,
+          error: null,
+        },
+        period: {
+          value: null,
           error: null,
         },
         startDate: {
@@ -156,10 +176,13 @@ export default {
         ],
         periodRules: [
           (val) => !!val || this.$t('FORMS.Validation.advertisementPeriod'),
-          (val) =>
-            /^\d+$/.test(val) ||
-            this.$t('FORMS.Validation.advertisementPeriodNums'),
         ],
+        // periodRules: [
+        //   (val) => !!val || this.$t('FORMS.Validation.advertisementPeriod'),
+        //   (val) =>
+        //     /^\d+$/.test(val) ||
+        //     this.$t('FORMS.Validation.advertisementPeriodNums'),
+        // ],
         dateRules: [(val) => !!val || this.$t('FORMS.Validation.date')],
         websiteRules: [
           (val) => !!val || this.$t('FORMS.Validation.advertisementLink'),
@@ -334,7 +357,7 @@ export default {
   }
   .advertisement_price_container {
     width: fit-content;
-    margin: 0 auto !important;
+    margin: 30px auto !important;
     text-align: center;
     font-size: 16px;
     font-weight: bold;

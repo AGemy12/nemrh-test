@@ -3,9 +3,7 @@
     <h3 class="advertisements_first_step_head">
       {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }}
     </h3>
-    <h4>
-      {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepThreeSubTitle') }}
-    </h4>
+
     <div class="advertisements_third_step">
       <div class="advertisements_third_step_details">
         <h6>{{ $t('OTHERS.AdvertisementDetails') }}</h6>
@@ -59,36 +57,35 @@ export default {
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementTitle'
           )} : `,
-          advertisementDetailValue:
-            this.details.advertisementName || 'غير متوفر',
+          advertisementDetailValue: this.details.advertisementName,
         },
         {
           id: 3,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementPeriod'
           )} : `,
-          advertisementDetailValue: this.details.period || 'غير متوفر',
+          advertisementDetailValue: this.details.period,
         },
         {
           id: 4,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementStart'
           )} : `,
-          advertisementDetailValue: this.details.startDate || 'غير متوفر',
+          advertisementDetailValue: this.details.startDate,
         },
         {
           id: 5,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementEnd'
           )} : `,
-          advertisementDetailValue: this.details.endDate || 'غير متوفر',
+          advertisementDetailValue: this.details.endDate,
         },
         {
           id: 6,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementLink'
           )} : `,
-          advertisementDetailValue: this.details.website || 'غير متوفر',
+          advertisementDetailValue: this.details.website,
         },
       ]
     },
@@ -133,7 +130,7 @@ export default {
       h6 {
         margin-top: 0;
         width: fit-content;
-        margin: 10px auto;
+        margin: 30px auto;
         padding: 10px 20px;
         color: var(--white);
         background-color: var(--main_theme_clr);
@@ -152,7 +149,7 @@ export default {
       h6 {
         margin-top: 0;
         width: fit-content;
-        margin: 10px auto;
+        margin: 30px auto;
         padding: 10px 20px;
         color: var(--white);
         background-color: var(--main_theme_clr);
