@@ -4,10 +4,7 @@
       {{ advertisementItemTitle }}
     </h5>
     <div class="advertisement_item_image">
-      <img
-        src="../../../../assets/media/images/hero.png"
-        alt="advertisement Option"
-      />
+      <img :src="srcImage" />
     </div>
   </div>
 </template>
@@ -16,6 +13,10 @@
 export default {
   props: {
     advertisementItemTitle: {
+      type: String,
+      require: true,
+    },
+    srcImage: {
       type: String,
       require: true,
     },

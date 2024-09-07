@@ -11,6 +11,7 @@
         v-for="item of advFirstStepItems"
         :key="item.id"
         :advertisement-item-title="item.title"
+        :src-image="item.srcImage"
       />
     </div>
   </div>
@@ -30,24 +31,28 @@ export default {
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementBelowSearchEngine'
           )}`,
+          srcImage: require('@/assets/media/advestement-below-search-engine.png'),
         },
         {
           id: 2,
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementRectangulars'
           )}`,
+          srcImage: require('@/assets/media/advestement-square-rec.png'),
         },
         {
           id: 3,
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementMidPageSquare'
           )}`,
+          srcImage: require('@/assets/media/advestement-middel-page.png'),
         },
         {
           id: 4,
           title: `${this.$t(
             'CYCLESTEPS.Advertisements.AdvertisementbottPageRectangular'
           )}`,
+          srcImage: require('@/assets/media/advestement-below-page.png'),
         },
       ]
       return items

@@ -1,6 +1,9 @@
 <template>
   <div :class="col ? `col-md-${col}` : ''">
-    <div class="single_document_input_wrapper" :class="{disabled: disabled, has_error: errorMessage}">
+    <div
+      class="single_document_input_wrapper"
+      :class="{ disabled: disabled, has_error: errorMessage }"
+    >
       <input
         class="form-control"
         type="file"
@@ -10,7 +13,10 @@
         :disabled="disabled"
       />
       <label :for="identifier">
-        <span class="input_placeholder" v-if="placeholder && (!preSelectedDocument && !document.name)">
+        <span
+          class="input_placeholder"
+          v-if="placeholder && !preSelectedDocument && !document.name"
+        >
           {{ placeholder }}
         </span>
         <span class="document_name" v-else-if="document.name">
@@ -27,17 +33,15 @@
     <span class="error_message" v-if="errorMessage"> {{ errorMessage }} </span>
   </div>
 </template>
-
 <script>
-import predictFileType from "@/utils/predictFileType.js";
+import predictFileType from '@/utils/predictFileType.js'
 
 export default {
-  name: "BaseDocumentUploadInput",
+  name: 'BaseDocumentUploadInput',
 
-  emits: ["selectDocument", "clearErrors"],
+  emits: ['selectDocument', 'clearErrors'],
 
   props: {
-    // ====== Start:: General Inputs Props ====== //
     col: {
       required: false,
       type: String,
@@ -61,7 +65,7 @@ export default {
     accept: {
       type: String,
       required: false,
-      default: ".pdf"
+      default: '.pdf',
     },
     required: {
       required: false,
@@ -73,7 +77,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    // ====== End:: General Inputs Props ====== //
   },
 
   data() {
@@ -83,35 +86,56 @@ export default {
         file: null,
         name: null,
       },
-    };
+    }
   },
 
   methods: {
-    // Start:: Select Document
     selectDocumentToUpload(e) {
-      if (this.accept.includes("pdf") && predictFileType(e.target.files[0].name) !== "pdf_file") {
-        this.$izitoast.error({
-          message: this.$t('FORMS.Validation.selectedFileMustBePdf'),
-        });
-        return;
-      } else if (this.accept.includes("image") && predictFileType(e.target.files[0].name) !== "image_file") {
-        this.$izitoast.error({
-          message: this.$t('FORMS.Validation.selectedFileMustBeImage'),
-        });
-        return;
-      } else {
-        this.document.path = URL.createObjectURL(e.target.files[0]);
-        this.document.file = e.target.files[0];
-        this.document.name = e.target.files[0].name;
-        this.$emit("selectDocument", {
+      const file = e.target.files[0]
+      const fileType = predictFileType(file.name)
+      const acceptedTypes = this.accept.split(',').map((type) => type.trim())
+
+      // Verify file type against accepted types
+      if (
+        (acceptedTypes.includes('.pdf') && fileType === 'pdf_file') ||
+        (acceptedTypes.includes('.png') && fileType === 'image_file') ||
+        (acceptedTypes.includes('.jpg') && fileType === 'image_file') ||
+        (acceptedTypes.includes('.jpeg') && fileType === 'image_file') ||
+        (acceptedTypes.includes('.csv') && fileType === 'csv_file')
+      ) {
+        this.document.path = URL.createObjectURL(file)
+        this.document.file = file
+        this.document.name = file.name
+
+        this.$emit('selectDocument', {
           identifier: this.identifier,
           ...this.document,
-        });
-        this.$emit("clearErrors")
-        // console.log("SELECTED =>", this.document);
+        })
+        this.$emit('clearErrors')
+      } else {
+        // Error handling based on file type
+        if (acceptedTypes.includes('.pdf') && fileType !== 'pdf_file') {
+          this.$izitoast.error({
+            message: this.$t('FORMS.Validation.selectedFileMustBePdf'),
+          })
+        } else if (
+          acceptedTypes.includes('image') &&
+          fileType !== 'image_file'
+        ) {
+          this.$izitoast.error({
+            message: this.$t('FORMS.Validation.selectedFileMustBeImage'),
+          })
+        } else if (acceptedTypes.includes('.csv') && fileType !== 'csv_file') {
+          this.$izitoast.error({
+            message: this.$t('FORMS.Validation.selectedFileMustBeCsv'),
+          })
+        } else {
+          this.$izitoast.error({
+            message: this.$t('FORMS.Validation.invalidFileType'),
+          })
+        }
       }
     },
-    // End:: Select Document
   },
-};
+}
 </script>

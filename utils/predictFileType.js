@@ -1,34 +1,36 @@
 let predictFileType = (fileName) => {
-  let lastDot = fileName.lastIndexOf('.');
-  let extension = fileName.substring(lastDot + 1);
+  let lastDot = fileName.lastIndexOf('.')
+  let extension = fileName.substring(lastDot + 1).toLowerCase()
 
-  if (
-    extension === "png" ||
-    extension === "jpg" ||
-    extension === "jpeg"
-  ) {
-    return "image_file";
-  } else if (extension === "pdf") {
-    return "pdf_file";
+  // Group common file types
+  const imageExtensions = ['png', 'jpg', 'jpeg', 'svg']
+  const pdfExtensions = ['pdf']
+  const excelExtensions = ['xlsx', 'xlsm', 'xlsb', 'xltx']
+  const wordExtensions = ['docx', 'dot', 'dotx']
+  const textExtensions = ['txt']
+  const csvExtensions = ['csv']
+
+  // Predict file type based on extension
+  if (imageExtensions.includes(extension)) {
+    return 'image_file'
+  } else if (pdfExtensions.includes(extension)) {
+    return 'pdf_file'
   } else if (
-    extension === "xlsx" ||
-    extension === "xlsm" ||
-    extension === "xlsb" ||
-    extension === "xltx"
+    pdfExtensions.includes(extension) ||
+    imageExtensions.includes(extension)
   ) {
-    return "excel_file";
-  } else if (
-    extension === "docx" ||
-    extension === "dot" ||
-    extension === "dotx"
-  ) {
-    return "word_file";
-  } else if (extension === "txt") {
-    return "text_file";
+    return 'pdf_img_file'
+  } else if (excelExtensions.includes(extension)) {
+    return 'excel_file'
+  } else if (wordExtensions.includes(extension)) {
+    return 'word_file'
+  } else if (textExtensions.includes(extension)) {
+    return 'text_file'
+  } else if (csvExtensions.includes(extension)) {
+    return 'csv_file'
   } else {
-    return "other_file_type";
+    return 'other_file_type'
   }
-};
+}
 
-export default predictFileType;
-
+export default predictFileType

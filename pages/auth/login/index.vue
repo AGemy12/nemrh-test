@@ -243,8 +243,8 @@ export default {
                 err.response.data.additional_data.has_verified_phone,
             })
             this.setAuthedUserData({
-              // email: this.data.email.value,
-              phone: this.data.phone.value,
+              email: this.data.email.value,
+              // phone: this.data.phone.value,
             })
           }
           // ********** End:: Redirect To Verify Account ********** //

@@ -18,7 +18,7 @@
         class="mb-8"
         identifier="company_logo"
         :placeholder="$t('FORMS.Placeholders.companyLogo') + '*'"
-        accept="image/*"
+        accept=".jpg, .png, .svg, .bmp, .webp, .jpeg"
         @selectDocument="selectDocument"
         @clearErrors="data.logo.error = null"
         :errorMessage="data.logo.error"

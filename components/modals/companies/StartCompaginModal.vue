@@ -62,6 +62,36 @@
             />
             <!-- End:: Message Input -->
 
+            <!-- Start:: Message PDF File Input -->
+            <h5 class="mb-2">{{ $t('TITLES.Modals.uploadPdfFile') }}</h5>
+            <p
+              class="details"
+              v-html="$t('TITLES.Modals.theLargestPdfSize')"
+            ></p>
+            <base-document-upload-input
+              class="my-6"
+              identifier="file"
+              :placeholder="$t('FORMS.Placeholders.AttachPdfFile')"
+              @selectDocument="selectDocument"
+              accept=".pdf, .png, .jpg, .jpeg"
+            />
+            <!-- End:: Message PDF File Input -->
+
+            <!-- Start:: Message CSV File Input -->
+            <h5 class="mb-2">{{ $t('TITLES.Modals.uploadCsvFile') }}</h5>
+            <p
+              class="details"
+              v-html="$t('TITLES.Modals.theLargestCsvSize')"
+            ></p>
+            <base-document-upload-input
+              class="my-6"
+              identifier="csv_file"
+              :placeholder="$t('FORMS.Placeholders.AttachCsvFile')"
+              @selectDocument="selectDocument"
+              accept=".csv"
+            />
+            <!-- End:: Message CSV File Input -->
+
             <div class="form_btns_wrapper">
               <base-button
                 class="w-100"
@@ -131,6 +161,14 @@ export default {
           value: null,
           error: null,
         },
+        campaignFile: {
+          value: null,
+          error: null,
+        },
+        campaignCsvFile: {
+          value: null,
+          error: null,
+        },
       },
       // End:: Data Collection To Send
 
@@ -152,6 +190,17 @@ export default {
   },
 
   methods: {
+    // Start:: Select Upload Documents
+    selectDocument(selectedDocument) {
+      if (selectedDocument.identifier === 'file') {
+        this.data.campaignFile.value = selectedDocument.file
+      }
+      if (selectedDocument.identifier === 'csv_file') {
+        this.data.campaignCsvFile.value = selectedDocument.file
+      }
+    },
+    // End:: Select Upload Documents
+
     // Start:: Control Modal Apperance
     toggleModal() {
       this.$emit('toggleModal')
@@ -184,46 +233,50 @@ export default {
         } else {
           REQUEST_DATA.append('category_id', this.selectedCategorieId)
         }
+
         REQUEST_DATA.append('message', this.data.message.value)
         REQUEST_DATA.append('waiting_time', this.data.messageTime.value)
-        // Start:: Append Request Data
+
+        // Add pdf file to data
+        if (this.data.campaignFile.value) {
+          REQUEST_DATA.append('file', this.data.campaignFile.value)
+        }
+        // Add csv file to data
+        if (this.data.campaignCsvFile.value) {
+          REQUEST_DATA.append('csv_file', this.data.campaignCsvFile.value)
+        }
 
         try {
-          // ********** Start:: Implement Request ********** //
           let res = await this.$axiosRequest({
             method: 'POST',
             url: 'send-messages',
             data: REQUEST_DATA,
           })
-          // ********** End:: Implement Request ********** //
+          console.log([...REQUEST_DATA.entries()])
+
           this.isWaitingApiResponse = false
-          // End:: Cache Authed User Data
 
           // Start:: Clear Form Inputs Data
           this.$refs.sendMessageForm.resetValidation()
           this.data.message.value = null
-          this.data.message.error = null
           this.data.messageTime.value = null
-          this.data.messageTime.error = null
-          // End:: Clear Form Inputs Data
+          this.data.campaignFile.value = null
+          this.data.campaignCsvFile.value = null
 
           this.$izitoast.success({
             message: res.data.message,
           })
 
           this.$emit('onResponseSuccess')
-
           this.toggleModal()
         } catch (err) {
           this.isWaitingApiResponse = false
-
           this.$izitoast.error({
             message: err.response.data.message,
           })
 
-          if (err.response.data.errors?.waiting_time[0]) {
-            this.data.messageTime.error =
-              err.response.data.errors.waiting_time[0]
+          if (err.response.data.errors?.waiting_time) {
+            this.data.messageTime.error = err.response.data.errors.waiting_time
           }
         }
       }

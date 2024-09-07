@@ -54,7 +54,11 @@
       "add_whatsapp_number": "اختر رقم الواتساب او قم بأضافة رقم اخر",
       "add_new_whatsapp_number": "اضافة رقم واتساب اخر",
       "chooseWhatsappNumber": "اختر رقم الواتساب",
-      "timeOfSend": "حدد الوقت بين كل رسالة و الاخرى"
+      "timeOfSend": "حدد الوقت بين كل رسالة و الاخرى",
+      "uploadPdfFile": "يمكنك ارفاق ملف pdf او صورة",
+      "uploadCsvFile": "يمكنك ارفاق ملف csv",
+      "theLargestPdfSize": "اكبر حجم مسموح للملف  3 ميجابايت",
+      "theLargestCsvSize": "اكبر حجم مسموح للملف 2 ميجابايت"
     },
     "Auth": {
       "nemrhSlogan": "اكثر من 60 الف رقم واتساب في انتظارك ! والقائمة تتوسع",
@@ -293,6 +297,8 @@
       "swiftCode": "سويفت بنك",
       "leaveYourMessage": "إترك رسالتك هنا",
       "leaveYourComment": "إترك تعليقك هنا",
+      "AttachPdfFile": " قم بإرفاق الملف",
+      "AttachCsvFile": " إرفق ملف csv",
       "withdrawAmount": "المبلغ المراد سحبه",
       "active": "مفعل",
       "notActive": "غير مفعل",
@@ -382,7 +388,10 @@
       "advertisementName": "حقل إسم الإعلان لايمكن ان يكون فارغ",
       "advertisementPeriodNums": " مدة الإعلان يجب ان تكون بالأرقام",
       "advertisementLink": "حقل رابط الإعلان لا يمكن ان يكون فارغا",
-      "advertisementImage": "حقل صورة الإعلان لا يمكن ان يكون فارغا"
+      "advertisementImage": "حقل صورة الإعلان لا يمكن ان يكون فارغا",
+      "selectedFileMustBePdf": "يجب ان يكون اللف بصيغة PDF .",
+      "selectedFileMustBeCsv": "يجب ان يكون اللف بصيغة csv .",
+      "selectedFileMustPdfImg": "يجب ان يكون اللف pdf او صورة ."
     }
   },
   "TABLES": {

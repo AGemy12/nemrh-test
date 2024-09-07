@@ -96,7 +96,7 @@
             class="mb-8"
             identifier="company_logo"
             :placeholder="$t('FORMS.Placeholders.advertisementImage') + '*'"
-            accept="image/*"
+            accept=".jpg, .jpeg, .png, .svg, .webp"
             @selectDocument="selectDocument"
             @clearErrors="data.advertisementImage.error = null"
             :errorMessage="data.advertisementImage.error"

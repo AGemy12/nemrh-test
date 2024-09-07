@@ -9,7 +9,7 @@
     <div class="wrapper">
       <h1 class="section_title">
         <p v-html="$t('TITLES.SearchSec.title')"></p>
-        <a href="#pricing" @click.prevent="goToSection">
+        <a href="advertisements-subscriptions">
           {{ $t('BUTTONS.buttonClick') }}
         </a>
       </h1>
@@ -86,10 +86,7 @@ export default {
       // Start:: Search Keyword Data
       searchKeyword: this.$route.query.search || null,
       isHeroPath:
-        this.$route.fullPath === '/ar' ||
-        this.$route.fullPath === '/en' ||
-        this.$route.fullPath === '/en#pricing' ||
-        this.$route.fullPath === '/ar#pricing',
+        this.$route.fullPath === '/ar' || this.$route.fullPath === '/en',
 
       // End:: Search Keyword Data
     }
@@ -146,23 +143,6 @@ export default {
       this.searchKeyword = null
     },
     // End:: Clear Search Input Value
-
-    goToSection() {
-      const targetSectionId = '#pricing'
-
-      if (window.location.hash === targetSectionId) {
-        // إذا كان `hash` هو بالفعل `#pricing`
-        window.location.hash = '' // إزالة `hash`
-
-        // تأخير صغير لضمان إزالة `hash` قبل إعادة تعيينه
-        setTimeout(() => {
-          this.$router.push(targetSectionId)
-        }, 10) // يمكنك تعديل هذا التأخير إذا كان لازماً
-      } else {
-        // إذا لم يكن `hash` هو `#pricing`
-        this.$router.push(targetSectionId)
-      }
-    },
   },
 }
 </script>

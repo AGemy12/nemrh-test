@@ -54,7 +54,11 @@
       "add_whatsapp_number": "Choose your WhatsApp number or add another number",
       "add_new_whatsapp_number": "Add New Whatsapp Number",
       "chooseWhatsappNumber": "Choose Whatsapp Number",
-      "timeOfSend": "Specify the time between each message"
+      "timeOfSend": "Specify the time between each message",
+      "uploadPdfFile": "You can attach a pdf file or image",
+      "uploadCsvFile": "You can attach a csv file",
+      "theLargestPdfSize": "The largest file size allowed is 3 MB",
+      "theLargestCsvSize": "The largest file size allowed is 3 MB"
     },
     "Auth": {
       "nemrhSlogan": "More Than 60K whatsapp number Waiting For You ! And the list Is Growing",
@@ -291,6 +295,8 @@
       "swiftCode": "Swift Code",
       "leaveYourMessage": "Leave Your Message Here",
       "leaveYourComment": "Leave Your Comment Here",
+      "AttachPdfFile": "attach the file",
+      "AttachCsvFile": "attach the csv file",
       "withdrawAmount": "Withdraw Amount",
       "active": "Active",
       "notActive": "Not Active",
@@ -380,7 +386,10 @@
       "advertisementPeriod": "You Must Enter a advertisement period",
       "advertisementPeriodNums": "the period must be only numbers",
       "advertisementLink": "advertisement link Input Is Required",
-      "advertisementImage": "advertisement image Input Is Required"
+      "advertisementImage": "advertisement image Input Is Required",
+      "selectedFileMustBePdf": "The file must be in PDF format.",
+      "selectedFileMustPdfImg": "The file must be PDF or Image",
+      "selectedFileMustBeCsv": "The file must be in CSV format."
     }
   },
   "TABLES": {
