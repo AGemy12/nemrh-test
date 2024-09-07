@@ -28,7 +28,38 @@
               v-model.trim="data.message.value"
               required
             />
+
             <!-- End:: Message Input -->
+
+            <!-- Start:: Message PDF File Input -->
+            <h5 class="mb-2">{{ $t('TITLES.Modals.uploadPdfFile') }}</h5>
+            <p
+              class="details"
+              v-html="$t('TITLES.Modals.theLargestPdfSize')"
+            ></p>
+            <base-document-upload-input
+              class="my-6"
+              identifier="file"
+              :placeholder="$t('FORMS.Placeholders.AttachPdfFile')"
+              @selectDocument="selectDocument"
+              accept=".pdf, .png, .jpg, .jpeg"
+            />
+            <!-- End:: Message PDF File Input -->
+
+            <!-- Start:: Message CSV File Input -->
+            <h5 class="mb-2">{{ $t('TITLES.Modals.uploadCsvFile') }}</h5>
+            <p
+              class="details"
+              v-html="$t('TITLES.Modals.theLargestCsvSize')"
+            ></p>
+            <base-document-upload-input
+              class="my-6"
+              identifier="csv_file"
+              :placeholder="$t('FORMS.Placeholders.AttachCsvFile')"
+              @selectDocument="selectDocument"
+              accept=".csv"
+            />
+            <!-- End:: Message CSV File Input -->
 
             <div class="form_btns_wrapper">
               <base-button
@@ -61,36 +92,6 @@
               required
             />
             <!-- End:: Message Input -->
-
-            <!-- Start:: Message PDF File Input -->
-            <h5 class="mb-2">{{ $t('TITLES.Modals.uploadPdfFile') }}</h5>
-            <p
-              class="details"
-              v-html="$t('TITLES.Modals.theLargestPdfSize')"
-            ></p>
-            <base-document-upload-input
-              class="my-6"
-              identifier="file"
-              :placeholder="$t('FORMS.Placeholders.AttachPdfFile')"
-              @selectDocument="selectDocument"
-              accept=".pdf, .png, .jpg, .jpeg"
-            />
-            <!-- End:: Message PDF File Input -->
-
-            <!-- Start:: Message CSV File Input -->
-            <h5 class="mb-2">{{ $t('TITLES.Modals.uploadCsvFile') }}</h5>
-            <p
-              class="details"
-              v-html="$t('TITLES.Modals.theLargestCsvSize')"
-            ></p>
-            <base-document-upload-input
-              class="my-6"
-              identifier="csv_file"
-              :placeholder="$t('FORMS.Placeholders.AttachCsvFile')"
-              @selectDocument="selectDocument"
-              accept=".csv"
-            />
-            <!-- End:: Message CSV File Input -->
 
             <div class="form_btns_wrapper">
               <base-button
