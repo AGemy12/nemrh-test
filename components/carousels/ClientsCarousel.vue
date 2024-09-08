@@ -11,9 +11,9 @@
           class="slide_wrapper"
           v-for="(item, index) in carouselItems"
           :key="item.id"
-          data-aos="fade-up" 
+          data-aos="fade-up"
           data-aos-duration="400"
-          :data-aos-delay="index * 400" 
+          :data-aos-delay="index * 400"
         >
           <div class="client_image_card">
             <img
@@ -74,11 +74,11 @@ export default {
 .clients_carousel_wrapper {
   .clients_carousel {
     .slide_wrapper {
-    .client_image_card {
+      .client_image_card {
         inline-size: 100%;
         block-size: 5rem;
         img {
-          inline-size: 100%;
+          inline-size: 213.25px;
           block-size: 100%;
           aspect-ratio: 3/2;
           object-fit: contain;

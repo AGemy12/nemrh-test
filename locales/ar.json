@@ -56,9 +56,9 @@
       "chooseWhatsappNumber": "اختر رقم الواتساب",
       "timeOfSend": "حدد الوقت بين كل رسالة و الاخرى",
       "uploadPdfFile": "يمكنك ارفاق ملف pdf او صورة",
-      "uploadCsvFile": "يمكنك ارفاق ملف csv",
+      "uploadCsvFile": "يمكنك استخدام ارقامك عن طريق ملف csv",
       "theLargestPdfSize": "اكبر حجم مسموح للملف  3 ميجابايت",
-      "theLargestCsvSize": "اكبر حجم مسموح للملف 2 ميجابايت"
+      "theLargestCsvSize": "اكبر حجم مسموح للملف 2 ميجابايت <a style='color:#5e17eb;' href='https://docs.google.com/spreadsheets/d/1u3C3sinEUfh36IM9K_1eVhDb3NNFvpDbHYxYh4vz9JA/edit?pli=1&gid=0#gid=0' target='__blank' >(مثال لطريقة تنسيق ملف csv)</a>  "
     },
     "Auth": {
       "nemrhSlogan": "اكثر من 60 الف رقم واتساب في انتظارك ! والقائمة تتوسع",
@@ -342,7 +342,8 @@
     "Validation": {
       "name": "حقل الإسم لايمكن ان يكون فارغ",
       "email": "حقل البريد الإلكتروني لايمكن ان يكون فارغ",
-      "invalidEmail": "يرجي إدخال صيغة صحيحة للبريد الإلكتروني",
+      "invalidEmail": "يرجى إدخال صيغة صحيحة للبريد الإلكتروني",
+      "invalidFileType": "يرجى ادخال ملف صالح",
       "phone": "حقل رقم الجوال لايمكن ان يكون فارغ",
       "phoneStartWith966": "رقم الجوال يجب ان يبدأ ب 966 ",
       "phoneLength": "رقم الجوال يجب ان يكون 12 رقم",
@@ -391,7 +392,10 @@
       "advertisementImage": "حقل صورة الإعلان لا يمكن ان يكون فارغا",
       "selectedFileMustBePdf": "يجب ان يكون اللف بصيغة PDF .",
       "selectedFileMustBeCsv": "يجب ان يكون اللف بصيغة csv .",
-      "selectedFileMustPdfImg": "يجب ان يكون اللف pdf او صورة ."
+      "selectedFileMustPdfImg": "يجب ان يكون اللف pdf او صورة .",
+      "fileTooLarge": "الحد الاقصى لحجم الملف هو 3 ميجابايت",
+      "CSVfileTooLarge": "الحد الاقصى لحجم ملف csv هو 2 ميجابايت",
+      "fixErrorsBeforeContinue": "تأكد من أن حجم الملفات لا يتجاوز الحجم المسموح به"
     }
   },
   "TABLES": {

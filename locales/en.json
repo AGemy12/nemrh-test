@@ -56,9 +56,9 @@
       "chooseWhatsappNumber": "Choose Whatsapp Number",
       "timeOfSend": "Specify the time between each message",
       "uploadPdfFile": "You can attach a pdf file or image",
-      "uploadCsvFile": "You can attach a csv file",
+      "uploadCsvFile": "You can use your numbers via a csv file",
       "theLargestPdfSize": "The largest file size allowed is 3 MB",
-      "theLargestCsvSize": "The largest file size allowed is 3 MB"
+      "theLargestCsvSize": "The largest file size allowed is 3 MB <span> Hello </span> "
     },
     "Auth": {
       "nemrhSlogan": "More Than 60K whatsapp number Waiting For You ! And the list Is Growing",
@@ -341,6 +341,7 @@
       "name": "Name Field Can't Be Empty",
       "email": "Email Field Can't Be Empty",
       "invalidEmail": "Please Enter Valid Email Format",
+      "invalidFileType": "Please Select Valid file",
       "phone": "Phone Number Field Can't Be Empty",
       "phoneStartWith966": "Phone Number Must Start With 966",
       "phoneLength": "Phone Number Must Be 12 Digits",
@@ -389,7 +390,10 @@
       "advertisementImage": "advertisement image Input Is Required",
       "selectedFileMustBePdf": "The file must be in PDF format.",
       "selectedFileMustPdfImg": "The file must be PDF or Image",
-      "selectedFileMustBeCsv": "The file must be in CSV format."
+      "selectedFileMustBeCsv": "The file must be in CSV format.",
+      "fileTooLarge": "Max size for file is 3 MB",
+      "CSVfileTooLarge": "Max size for CSV file is 2 MB",
+      "fixErrorsBeforeContinue": "Make sure that the files do not exceed the allowed size"
     }
   },
   "TABLES": {

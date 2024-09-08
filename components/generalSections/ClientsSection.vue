@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ClientsCarousel from '@/components/carousels/ClientsCarousel.vue';
+import ClientsCarousel from '@/components/carousels/ClientsCarousel.vue'
 
 export default {
   name: 'ClientsSection',

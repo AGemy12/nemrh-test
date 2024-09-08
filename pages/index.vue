@@ -34,11 +34,11 @@
         <!-- ========= End:: About Us Section ========= -->
 
         <!-- ========= Start:: Messages Packages Section ========= -->
-        <MessagingPackagesSection
+        <!-- <MessagingPackagesSection
           v-if="homePageData.message_bundles"
           :sectionTitle="$t('TITLES.MessagingPackagesSec.title')"
           :sectionData="homePageData.message_bundles"
-        />
+        /> -->
         <!-- ========= End:: Messages Packages Section ========= -->
 
         <!-- ========= Start:: Clients Section ========= -->
@@ -107,7 +107,6 @@ export default {
     PremiumCampaignSection,
     SilverCampaignSection,
     AboutSection,
-    MessagingPackagesSection,
     ClientsSection,
     SpiderModel,
   },

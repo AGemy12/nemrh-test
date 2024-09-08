@@ -15,7 +15,8 @@
           @submit.prevent="submitForm"
           lazy-validation
         >
-          <div v-if="showMessageInput">
+          <!-- Add time between messages -->
+          <div>
             <h5>{{ $t('TITLES.Modals.writeTheTextToSend') }}</h5>
             <!-- Start:: Message Input -->
             <base-input
@@ -58,25 +59,10 @@
               :placeholder="$t('FORMS.Placeholders.AttachCsvFile')"
               @selectDocument="selectDocument"
               accept=".csv"
+              @clearErrors="data.CSVFile.error"
+              :errorMessage="data.CSVFile.error"
             />
-            <!-- End:: Message CSV File Input -->
 
-            <div class="form_btns_wrapper">
-              <base-button
-                type="button"
-                class="w-100"
-                :btnText="$t('BUTTONS.continue')"
-                styleType="primary_btn"
-                @fireClick="showDivOfMessageTime"
-                :disabled="
-                  data.message.value == null || data.message.error != null
-                "
-              />
-            </div>
-          </div>
-
-          <!-- Add time between messages -->
-          <div v-if="showMessageTimeInput">
             <h5 class="mb-2">{{ $t('TITLES.Modals.timeOfSend') }}</h5>
             <p
               class="details"
@@ -103,7 +89,9 @@
                   !formIsValid ||
                   isWaitingApiResponse ||
                   data.messageTime.value == null ||
-                  data.messageTime.error != null
+                  data.messageTime.error != null ||
+                  data.message.value == null ||
+                  data.message.error != null
                 "
               />
             </div>
@@ -149,7 +137,6 @@ export default {
 
       // Start:: Control Modal Apperance
       showMessageInput: true,
-      showMessageTimeInput: false,
       // End:: Control Modal Apperance
 
       // Start:: Data Collection To Send
@@ -167,6 +154,10 @@ export default {
           error: null,
         },
         campaignCsvFile: {
+          value: null,
+          error: null,
+        },
+        CSVFile: {
           value: null,
           error: null,
         },
@@ -193,14 +184,39 @@ export default {
   methods: {
     // Start:: Select Upload Documents
     selectDocument(selectedDocument) {
+      const MAX_PDF_FILE_SIZE = 3 * 1024 * 1024
+      const MAX_CSV_FILE_SIZE = 2 * 1024 * 1024
+
       if (selectedDocument.identifier === 'file') {
-        this.data.campaignFile.value = selectedDocument.file
+        if (selectedDocument.file.size > MAX_PDF_FILE_SIZE) {
+          this.data.campaignFile.error = this.$t(
+            'FORMS.Validation.fileTooLarge'
+          )
+          this.$izitoast.error({
+            message: this.$t('FORMS.Validation.fileTooLarge'),
+          })
+          this.data.campaignFile.value = null
+        } else {
+          this.data.campaignFile.error = null
+          this.data.campaignFile.value = selectedDocument.file
+        }
       }
+
       if (selectedDocument.identifier === 'csv_file') {
-        this.data.campaignCsvFile.value = selectedDocument.file
+        if (selectedDocument.file.size > MAX_CSV_FILE_SIZE) {
+          this.data.campaignCsvFile.error = this.$t(
+            'FORMS.Validation.CSVfileTooLarge'
+          )
+          this.$izitoast.error({
+            message: this.$t('FORMS.Validation.CSVfileTooLarge'),
+          })
+          this.data.campaignCsvFile.value = null
+        } else {
+          this.data.campaignCsvFile.error = null
+          this.data.campaignCsvFile.value = selectedDocument.file
+        }
       }
     },
-    // End:: Select Upload Documents
 
     // Start:: Control Modal Apperance
     toggleModal() {
@@ -208,14 +224,22 @@ export default {
     },
     // End:: Control Modal Apperance
 
-    // Start:: Control div Apperance
+    // Start:: Control div Appearance
     showDivOfMessageTime() {
-      if (this.data.message.value) {
+      if (
+        this.data.message.value &&
+        !this.data.campaignFile.error &&
+        !this.data.campaignCsvFile.error
+      ) {
         this.showMessageInput = false
         this.showMessageTimeInput = true
+      } else {
+        this.$izitoast.error({
+          message: this.$t('FORMS.Validation.fixErrorsBeforeContinue'),
+        })
       }
     },
-    // End:: Control div Apperance
+    // End:: Control div Appearance
 
     // Start:: Submit Form
     async submitForm() {
@@ -279,6 +303,9 @@ export default {
           if (err.response.data.errors?.waiting_time) {
             this.data.messageTime.error = err.response.data.errors.waiting_time
           }
+          if (err.response.data.errors?.csv_file) {
+            this.data.CSVFile.error = err.response.data.errors.csv_file[0]
+          }
         }
       }
     },
@@ -294,7 +321,7 @@ export default {
   h5 {
     width: 100%;
     margin-bottom: 2rem;
-    @include font($bold_font, 1.1rem);
+    @include font($bold_font, 1rem);
     @include rtl(text-align, left, right);
   }
 

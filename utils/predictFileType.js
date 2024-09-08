@@ -3,7 +3,24 @@ let predictFileType = (fileName) => {
   let extension = fileName.substring(lastDot + 1).toLowerCase()
 
   // Group common file types
-  const imageExtensions = ['png', 'jpg', 'jpeg', 'svg']
+  const imageExtensions = [
+    'png',
+    'jpg',
+    'jpeg',
+    'svg',
+    'bmp',
+    'wepb',
+    'ico',
+    'xbm',
+    'jfif',
+    'tif',
+    'gif',
+    'svgz',
+    'pjpeg',
+    'apng',
+    'pjp',
+    'svgz',
+  ]
   const pdfExtensions = ['pdf']
   const excelExtensions = ['xlsx', 'xlsm', 'xlsb', 'xltx']
   const wordExtensions = ['docx', 'dot', 'dotx']

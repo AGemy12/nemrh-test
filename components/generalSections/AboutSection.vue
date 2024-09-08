@@ -38,7 +38,7 @@
         >
           <img
             class="section_image w-100 h-auto"
-            v-lazy="sectionData.image"
+            src="../../assets/media/logo/logo.svg"
             :alt="$t('TITLES.AboutUs.title')"
             width="200"
             height="200"

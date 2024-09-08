@@ -92,8 +92,27 @@ export default {
   methods: {
     selectDocumentToUpload(e) {
       const file = e.target.files[0]
+
+      if (!file) {
+        this.document = {
+          path: null,
+          file: null,
+          name: null,
+        }
+        return
+      }
+
       const fileType = predictFileType(file.name)
       const acceptedTypes = this.accept.split(',').map((type) => type.trim())
+
+      if (!file) {
+        this.document = {
+          path: null,
+          file: null,
+          name: null,
+        }
+        return
+      }
 
       // Verify file type against accepted types
       if (

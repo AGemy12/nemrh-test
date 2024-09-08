@@ -9,7 +9,7 @@
     <div class="wrapper">
       <h1 class="section_title">
         <p v-html="$t('TITLES.SearchSec.title')"></p>
-        <a href="advertisements-subscriptions">
+        <a href="subscriptions">
           {{ $t('BUTTONS.buttonClick') }}
         </a>
       </h1>
@@ -52,10 +52,7 @@
         </button>
       </form>
       <div class="below_search_engine_banner">
-        <img
-          src="https://blue-page-photo.s3.amazonaws.com/1723378805162%C3%98%C2%B4%C3%98%C2%B1%C3%99%C2%8A%C3%98%C2%B7%20%C3%98%C2%A7%C3%99%C2%84%C3%99%C2%85%C3%98%C2%AE%C3%98%C2%A7%C3%98%C2%B2%C3%99%C2%86.jpg"
-          alt=""
-        />
+        <img src="../../assets/media/diyarsco-banner.jpg" alt="" />
       </div>
     </div>
   </section>
@@ -262,10 +259,10 @@ export default {
       }
     }
     .below_search_engine_banner {
-      margin: 50px auto 0 auto;
+      margin: 30px auto 0 auto;
       max-width: 700px;
       @media (max-width: 450px) {
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 10px;
       }
       img {
