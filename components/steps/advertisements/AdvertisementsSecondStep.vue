@@ -8,7 +8,9 @@
     </h4>
     <div class="advertisement_price_container">
       <span v-html="$t('FORMS.Placeholders.advertisementPrice')"> </span>
-      <span class="advertisement_price"> 1000 {{ $t('OTHERS.Ryal') }} </span>
+      <span class="advertisement_price">
+        {{ discountedPrice }} {{ $t('OTHERS.Ryal') }}
+      </span>
     </div>
     <div class="advertisements_second_step_content">
       <v-form
@@ -127,16 +129,18 @@ export default {
       categories: [],
       // End::Categories Data
 
-      // Start Ads Duration Data
-      categories: [30, 60, 90, 120, 150, 180],
-      // End Ads Duration Data
-
+      // Start Ad Duration Data
+      categories: [30, 90, 180, 365],
+      // End Ad Duration Data
+      originalPrice: 1000,
+      discountedPrice: 1000,
       // Start:: Company Details Data
       data: {
         advertisementName: {
           value: this.companyDetails?.title_en || null,
           error: null,
         },
+
         period: {
           value: null,
           error: null,
@@ -204,6 +208,7 @@ export default {
     },
     'data.period.value'(newVal) {
       this.calculateEndDate()
+      this.applyDiscount()
     },
     // End:: Watchers to calculate endDate based on startDate and period
   },
@@ -225,6 +230,21 @@ export default {
           startDate.getDate() + parseInt(this.data.period.value)
         )
         this.data.endDate.value = startDate.toISOString().split('T')[0]
+      }
+    },
+
+    applyDiscount() {
+      const period = this.data.period.value
+      const originalPrice = this.originalPrice
+
+      if (period === 90) {
+        this.discountedPrice = originalPrice - originalPrice * 0.15
+      } else if (period === 180) {
+        this.discountedPrice = originalPrice - originalPrice * 0.2
+      } else if (period === 365) {
+        this.discountedPrice = originalPrice - originalPrice * 0.3
+      } else {
+        this.discountedPrice = originalPrice
       }
     },
 

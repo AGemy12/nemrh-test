@@ -79,14 +79,4 @@ export default {
     }
   }
 }
-@media (min-width: 1024px) {
-  .swiper-container {
-    .swiper-wrapper {
-      gap: 20px;
-      .slide_wrapper {
-        flex-shrink: 1;
-      }
-    }
-  }
-}
 </style>

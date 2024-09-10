@@ -23,6 +23,7 @@
           ref="thirdStepComponent"
           style="display: none"
           :details="formData"
+          :handelcheck-box="adPayStepCheckbox"
         />
         <!-- ========= Start:: Advertisements Packages Section ========= -->
         <div class="packages_options_button">
@@ -40,6 +41,9 @@
             disabled="true"
             @click="advertisementsForwardCycleSteps"
           ></button>
+        </div>
+        <div class="correct_data_checkbox_validation" v-if="checkedIsTrue">
+          <p style="">يجب الإقرار على صحة البيانات اولا</p>
         </div>
       </div>
 
@@ -138,7 +142,13 @@ export default {
         thirdStep = document.getElementById('advertisementsThirdStep'),
         prevBtn = document.querySelector('.advertisements_prev_btn'),
         nextBtn = document.querySelector('.advertisements_next_btn'),
+        termsCheckbox = document.getElementById('termsCheckbox'),
         secondStepComponent = this.$refs.secondStepComponent
+      if (termsCheckbox.checked) {
+        console.log('true')
+      } else {
+        console.log('false')
+      }
 
       if (secondtStep.style.display !== 'none') {
         const isFormValid = secondStepComponent.validateForm()
@@ -152,6 +162,7 @@ export default {
             endDate: secondStepComponent.$data.data.endDate.value,
             period: secondStepComponent.$data.data.period.value,
             website: secondStepComponent.$data.data.website.value,
+            advertisementPrice: secondStepComponent.discountedPrice,
           }
           secondtStep.style.display = 'none'
           thirdStep.style.display = 'block'
@@ -164,9 +175,13 @@ export default {
         prevBtn.style.display = 'block'
         nextBtn.removeAttribute('disabled')
       } else if (thirdStep.style.display !== 'none') {
-        window.location.replace(
-          'https://demo.myfatoorah.com/En/KWT/PayInvoice/Details/01072435239241-483ab996'
-        )
+        if (termsCheckbox.checked) {
+          window.location.replace(
+            'https://demo.myfatoorah.com/En/KWT/PayInvoice/Details/01072435239241-483ab996'
+          )
+        } else {
+          this.checkedIsTrue = true
+        }
       }
     },
 
@@ -189,6 +204,15 @@ export default {
         prevBtn.style.display = 'none'
       }
     },
+    adPayStepCheckbox() {
+      let termsCheckbox = document.getElementById('termsCheckbox')
+
+      if (termsCheckbox.checked) {
+        this.checkedIsTrue = false
+      } else {
+        this.checkedIsTrue = true
+      }
+    },
   },
 
   data() {
@@ -196,6 +220,10 @@ export default {
       // Start:: Loaders Controlling Data
       pageIsLoading: true,
       // End:: Loaders Controlling Data
+
+      // Start::
+      checkedIsTrue: false,
+      // End::
 
       // Start:: Form Data Save
       formData: {
@@ -249,6 +277,15 @@ export default {
       column-gap: 8px;
       border: none;
       color: var(--main_theme_clr);
+    }
+  }
+  .correct_data_checkbox_validation {
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    p {
+      color: red;
+      font-size: 14px;
+      font-weight: bold;
     }
   }
   .hero_banner_wrapper {

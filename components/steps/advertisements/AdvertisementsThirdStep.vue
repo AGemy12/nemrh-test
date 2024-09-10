@@ -19,6 +19,10 @@
         <img src="../../../assets/media/images/hero.png" alt="" />
       </div>
     </div>
+    <div class="advertisements_third_step_checkbox_ok">
+      <input type="checkbox" id="termsCheckbox" @click="handelcheckBox" />
+      <label for="">اقر على صحة المعلومات واوافق على الشروط والأحكام</label>
+    </div>
   </div>
 </template>
 
@@ -31,11 +35,16 @@ export default {
       type: Object,
       default: () => ({
         advertisementName: '',
+        advertisementPrice: '',
         startDate: '',
         endDate: '',
         period: '',
         website: '',
       }),
+    },
+    handelcheckBox: {
+      type: Function,
+      require: true,
     },
   },
 
@@ -50,7 +59,8 @@ export default {
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementPrice'
           )} : `,
-          advertisementDetailValue: `1000 ${this.$t('OTHERS.Ryal')}`,
+          advertisementDetailValue:
+            this.details.advertisementPrice + ` ${this.$t('OTHERS.Ryal')}`,
         },
         {
           id: 2,
@@ -95,9 +105,8 @@ export default {
 
 <style lang="scss" scoped>
 .advertisements_third_step_container {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
+  @include flex(center, center, column, 20px);
+
   h3 {
     color: var(--white);
     width: fit-content;
@@ -159,6 +168,20 @@ export default {
         max-width: 100%;
         border-radius: 10px;
       }
+    }
+  }
+  .advertisements_third_step_checkbox_ok {
+    @include flex(center, center, row, 10px);
+    width: fit-content;
+    margin: 20px auto;
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--black);
+    }
+    input {
+      width: 20px;
+      height: 20px;
     }
   }
 }

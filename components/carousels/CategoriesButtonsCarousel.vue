@@ -136,6 +136,7 @@ export default {
     .slide_wrapper {
       @include flex(center, center);
       width: fit-content;
+
       button {
         width: 100%;
         font-size: 0.85rem;

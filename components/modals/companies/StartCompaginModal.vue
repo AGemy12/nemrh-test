@@ -43,7 +43,7 @@
               identifier="file"
               :placeholder="$t('FORMS.Placeholders.AttachPdfFile')"
               @selectDocument="selectDocument"
-              accept=".pdf, .png, .jpg, .jpeg"
+              accept=".pdf, .png, .jpg, .jpeg, .gif, .webp"
             />
             <!-- End:: Message PDF File Input -->
 
