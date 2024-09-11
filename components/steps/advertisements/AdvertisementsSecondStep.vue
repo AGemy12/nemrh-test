@@ -7,10 +7,18 @@
       {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepTwoSubTitle') }}
     </h4>
     <div class="advertisement_price_container">
-      <span v-html="$t('FORMS.Placeholders.advertisementPrice')"> </span>
-      <span class="advertisement_price">
-        {{ discountedPrice }} {{ $t('OTHERS.Ryal') }}
-      </span>
+      <div class="advertisement_price">
+        <span v-html="$t('FORMS.Placeholders.advertisementPrice')"> </span>
+        <span class="advertisement_price_value">
+          {{ discountedPrice }} {{ $t('OTHERS.Ryal') }}
+        </span>
+      </div>
+      <div class="advertisement_disc">
+        <span v-html="$t('FORMS.Placeholders.advertisementPrecDisc')"> </span>
+        <span class="advertisement_discount_prec">
+          {{ discountPercentage }}%
+        </span>
+      </div>
     </div>
     <div class="advertisements_second_step_content">
       <v-form
@@ -140,7 +148,6 @@ export default {
           value: this.companyDetails?.title_en || null,
           error: null,
         },
-
         period: {
           value: null,
           error: null,
@@ -236,16 +243,26 @@ export default {
     applyDiscount() {
       const period = this.data.period.value
       const originalPrice = this.originalPrice
+      let discountRate = 0
 
       if (period === 90) {
-        this.discountedPrice = originalPrice - originalPrice * 0.15
+        discountRate = 0.15
+        this.discountedPrice =
+          3 * originalPrice - originalPrice * discountRate * 3
       } else if (period === 180) {
-        this.discountedPrice = originalPrice - originalPrice * 0.2
+        discountRate = 0.2
+
+        this.discountedPrice =
+          6 * originalPrice - originalPrice * discountRate * 6
       } else if (period === 365) {
-        this.discountedPrice = originalPrice - originalPrice * 0.3
+        discountRate = 0.3
+
+        this.discountedPrice =
+          12 * originalPrice - originalPrice * discountRate * 12
       } else {
         this.discountedPrice = originalPrice
       }
+      this.discountPercentage = discountRate * 100
     },
 
     // Start:: Get Categories
@@ -377,19 +394,28 @@ export default {
   }
   .advertisement_price_container {
     width: fit-content;
-    margin: 30px auto !important;
+    margin: 50px auto !important;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
-    @include flex(center, center, row, 10px);
+    @include flex(center, center, row, 20px);
     text-transform: capitalize;
+    @media (max-width: 450px) {
+      margin: 30px auto !important;
+    }
     .advertisement_price {
+      @include flex(center, center, row, 10px);
+    }
+    .advertisement_price_value {
       padding: 5px 8px !important;
       border: 2px solid var(--main_theme_clr);
       background-color: var(--main_theme_clr);
       border-radius: 5px;
       color: var(--white);
     }
+  }
+  .advertisement_disc {
+    @include flex(center, center, row, 10px);
   }
 }
 </style>

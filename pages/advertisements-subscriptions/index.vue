@@ -43,7 +43,7 @@
           ></button>
         </div>
         <div class="correct_data_checkbox_validation" v-if="checkedIsTrue">
-          <p style="">يجب الإقرار على صحة البيانات اولا</p>
+          <p style="">يجب الإقرار على صحة البيانات</p>
         </div>
       </div>
 
@@ -163,6 +163,7 @@ export default {
             period: secondStepComponent.$data.data.period.value,
             website: secondStepComponent.$data.data.website.value,
             advertisementPrice: secondStepComponent.discountedPrice,
+            discountPercentage: secondStepComponent.discountPercentage,
           }
           secondtStep.style.display = 'none'
           thirdStep.style.display = 'block'

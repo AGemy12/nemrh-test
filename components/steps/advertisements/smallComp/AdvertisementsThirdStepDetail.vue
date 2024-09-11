@@ -12,11 +12,11 @@ export default {
   props: {
     advertisementDetailKey: {
       type: String,
-      require: true,
+      required: true,
     },
     advertisementDetailValue: {
-      type: String,
-      require: true,
+      type: [String, Number],
+      required: true,
     },
   },
 }
