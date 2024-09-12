@@ -163,6 +163,7 @@ export default {
             period: secondStepComponent.$data.data.period.value,
             website: secondStepComponent.$data.data.website.value,
             advertisementPrice: secondStepComponent.discountedPrice,
+            advertisementPosition: secondStepComponent.advertisementPosition,
             discountPercentage: secondStepComponent.discountPercentage,
           }
           secondtStep.style.display = 'none'
@@ -199,6 +200,7 @@ export default {
         prevBtn.style.display = 'block'
         nextBtn.removeAttribute('disabled')
         nextBtn.innerHTML = `${this.$t('Packages.PackagesOptionBtnTitle')}`
+        this.checkedIsTrue = false
       } else if (secondtStep.style.display !== 'none') {
         secondtStep.style.display = 'none'
         firstStep.style.display = 'block'

@@ -331,13 +331,14 @@
       "madaPayment": "الدفع عن طريق",
       "sendTime": "حدد لمدة المنتظرة لارسال كل رسالة بالثوانى",
       "changeWhatsappNumber": "تغيير رقم الواتساب السابق",
+      "advertisementPosition": "موضع الإعلان",
       "advertisementPrice": " سعر الإعلان ",
       "advertisementPrecDisc": "نسبة الخصم",
       "advertisementTitle": "إسم الإعلان",
       "advertisementStart": "بداية الإعلان",
       "advertisementEnd": "نهاية الإعلان",
       "advertisementPeriod": " مدة الإعلان بالأيام",
-      "advertisementLink": " رابطً موقعك او رقم الواتساب",
+      "advertisementLink": " رابط موقعك او رابط الواتساب",
       "advertisementImage": "صورة الإعلان"
     },
     "Validation": {

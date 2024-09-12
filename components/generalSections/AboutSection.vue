@@ -9,9 +9,16 @@
         >
           <div class="section_text_content_wrapper">
             <h2 class="section_title" v-html="sectionData.title"></h2>
-            <p class="section_desc">
-              {{ sectionData.description }}
-            </p>
+            <div class="section_desc">
+              <p
+                class="section_desc_paragraph"
+                v-for="(paragraph, index) in splitDescription"
+                :key="index"
+              >
+                <img src="../../assets/media/icon.png" alt="" />
+                {{ paragraph.trim() }}
+              </p>
+            </div>
 
             <div class="section_route_container">
               <a
@@ -71,6 +78,13 @@ export default {
     }),
     // End:: Vuex Getters
 
+    splitDescription() {
+      // Split the description by dots and remove any empty spaces
+      return this.sectionData.description
+        .split('.')
+        .filter((paragraph) => paragraph.trim() !== '')
+    },
+
     // addSpanToLastWord() {
     //   const sentence = this.sectionData.title
     //   const splittedWords = sentence.split(' ')
@@ -120,9 +134,16 @@ export default {
     .section_desc {
       margin-top: 1.5rem !important;
       text-align: justify;
-
       @include font($medium_font, 1rem, var(--dark_main_theme_clr));
-
+      p.section_desc_paragraph {
+        margin-bottom: 10px !important;
+        text-align: justify;
+        @include flex(flex-start, flex-start, row, 10px);
+        img {
+          width: 20px;
+          margin-top: 5px;
+        }
+      }
       & > span {
         display: inline-block;
         margin-inline: 0.1rem;

@@ -329,6 +329,7 @@
       "madaPayment": "Payment via",
       "sendTime": "Specify the time to wait for each message to be sent in seconds",
       "changeWhatsappNumber": "Change Whatsapp Number",
+      "advertisementPosition": "advertisement position",
       "advertisementPrice": "advertisement Price",
       "advertisementPrecDisc": "Discount Percentage",
       "advertisementTitle": "advertisement Name",

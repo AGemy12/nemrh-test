@@ -54,8 +54,9 @@ export default {
     details: {
       type: Object,
       default: () => ({
-        advertisementName: '',
+        advertisementPosition: '',
         advertisementPrice: '',
+        advertisementName: '',
         discountPercentage: '',
         startDate: '',
         endDate: '',
@@ -77,7 +78,89 @@ export default {
   data() {
     return {
       termsModalIsOpen: false,
-      termsAndConditions: null,
+      termsAndConditions: `
+      <div dir="rtl" align="left">
+        <strong>
+          <h5 style="width:fit-content; margin:10px auto 20px auto; font-weight:bold;font-size:18px" >شروط واحكام النشر الاعلاني في موقع نمره </h5>
+        </strong>
+        <table><colgroup><col width="624"></colgroup>
+          <tbody>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 1. الامتثال للقوانين واللوائح </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب أن يتوافق المحتوى الإعلاني مع القوانين والأنظمة المعمول بها في المملكة، بما في ذلك نظام الإعلام المرئي والمسموع.
+                </p>
+                <p dir="rtl" style='font-size:15px;'>يجب الالتزام بالقوانين الخاصة بالإعلانات التجارية والترويجية.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 2. الاحترام للقيم والثقافة </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب أن يكون المحتوى الإعلاني متوافقًا مع القيم الدينية والاجتماعية والثقافية للمملكة.
+                </p>
+                <p dir="rtl" style='font-size:15px;'>يُمنع نشر أي محتوى يتعارض مع الشريعة الإسلامية أو القوانين السعودية، مثل المحتوى المثير للجدل أو الذي يحتوي على مواد غير لائقة.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 3. الشفافية والإفصاح </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب أن يكون المحتوى الإعلاني واضحًا وصريحًا، ويجب أن يتم الإعلان عن أي شراكات تجارية أو تعويضات مالية بوضوح.
+                </p>
+                <p dir="rtl" style='font-size:15px;'> يُفترض أن يتم توضيح طبيعة الإعلان وأن يكون خاليًا من أي تلاعب أو خداع.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 4. الحقوق الملكية الفكرية </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب احترام حقوق الملكية الفكرية وعدم استخدام أو نشر أي محتوى محمي بحقوق الطبع والنشر دون الحصول على إذن مسبق من أصحاب الحقوق.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 5. الموافقة المسبقة </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب الحصول على موافقة الهيئة قبل نشر أي محتوى إعلاني قد يكون له تأثير كبير أو يتطلب تصاريح خاصة.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 6. الرقابة والتقارير </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب أن يكون هناك آلية لمراقبة المحتوى الإعلاني وتقديم تقارير عن أي انتهاكات أو مخالفات.
+                </p>
+                <p dir="rtl" style='font-size:15px;'>يمكن للهيئة طلب مراجعة أو تعديل المحتوى الإعلاني إذا لزم الأمر.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 7. التزام المعايير الإعلانية </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب أن تلتزم الإعلانات بالمعايير الفنية والإعلانية المعتمدة من الهيئة، مثل حجم الإعلانات والمحتوى المرئي والمسموع.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-bottom:10px;'>
+              <td dir="ltr">
+                <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 8. حماية البيانات الشخصية </h6>
+                <p dir="rtl" style='font-size:15px;'>يجب أن تتوافق الإعلانات مع قوانين حماية البيانات الشخصية وعدم استخدامها بشكل غير قانوني.
+                </p>
+              </td>
+            </tr>
+            <tr style='margin-top:30px;tt'>
+              <td dir="ltr">
+                <p dir="rtl" style='font-size:15px;'>تتعاون الشركات والمواقع الإلكترونية مع هيئة الإعلام المرئي والمسموع لضمان الامتثال لهذه الشروط وتفادي أي مشاكل قانونية أو تنظيمية.
+                </p>
+              </td>
+            </tr>
+        
+          </tbody>
+        </table>
+      </div>
+      <p>&nbsp;</p>
+      `,
     }
   },
 
@@ -87,48 +170,55 @@ export default {
         {
           id: 1,
           advertisementDetailKey: `${this.$t(
+            'FORMS.Placeholders.advertisementPosition'
+          )} : `,
+          advertisementDetailValue: this.details.advertisementPosition,
+        },
+        {
+          id: 2,
+          advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementPrice'
           )} : `,
           advertisementDetailValue:
             this.details.advertisementPrice + ` ${this.$t('OTHERS.Ryal')}`,
         },
         {
-          id: 2,
+          id: 3,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementPrecDisc'
           )} : `,
           advertisementDetailValue: this.details.discountPercentage + '%',
         },
         {
-          id: 3,
+          id: 4,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementTitle'
           )} : `,
           advertisementDetailValue: this.details.advertisementName,
         },
         {
-          id: 4,
+          id: 5,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementPeriod'
           )} : `,
           advertisementDetailValue: this.details.period,
         },
         {
-          id: 5,
+          id: 6,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementStart'
           )} : `,
           advertisementDetailValue: this.details.startDate,
         },
         {
-          id: 6,
+          id: 7,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementEnd'
           )} : `,
           advertisementDetailValue: this.details.endDate,
         },
         {
-          id: 7,
+          id: 8,
           advertisementDetailKey: `${this.$t(
             'FORMS.Placeholders.advertisementLink'
           )} : `,
@@ -138,21 +228,22 @@ export default {
     },
   },
   methods: {
-    async getTermsAndConditionsData() {
-      try {
-        // ********** Start:: Implement Request ********** //
-        let res = await this.$axiosRequest({
-          method: 'GET',
-          url: 'pages/legal/terms-and-conditions',
-        })
-        // ********** End:: Implement Request ********** //
-        this.termsAndConditions = res.data.data
-      } catch (err) {
-        this.$izitoast.error({
-          message: err.response.data.message,
-        })
-      }
-    },
+    // async getTermsAndConditionsData() {
+    //   try {
+    //     // ********** Start:: Implement Request ********** //
+    //     let res = await this.$axiosRequest({
+    //       method: 'GET',
+    //       url: 'pages/legal/terms-and-conditions',
+    //     })
+    //     // ********** End:: Implement Request ********** //
+
+    //     this.termsAndConditions = res.data.data
+    //   } catch (err) {
+    //     this.$izitoast.error({
+    //       message: err.response.data.message,
+    //     })
+    //   }
+    // },
 
     toggleTermsAndConditionsModal() {
       this.termsModalIsOpen = !this.termsModalIsOpen
@@ -162,11 +253,11 @@ export default {
       this.toggleTermsAndConditionsModal()
     },
   },
-  created() {
-    // Start:: Fire Methods
-    this.getTermsAndConditionsData()
-    // End:: Fire Methods
-  },
+  // created() {
+  //   // Start:: Fire Methods
+  //   this.getTermsAndConditionsData()
+  //   // End:: Fire Methods
+  // },
 }
 </script>
 
