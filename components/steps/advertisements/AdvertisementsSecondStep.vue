@@ -1,8 +1,9 @@
 <template>
   <div class="advertisements_first_step" id="advertisementsSecondStep">
-    <h3 class="advertisements_first_step_head">
+    <!-- <h3 class="advertisements_first_step_head">
       {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }}
-    </h3>
+    </h3> -->
+    <h3>{{ selectedTitle }}</h3>
     <h4>
       {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepTwoSubTitle') }}
     </h4>
@@ -129,6 +130,10 @@ export default {
     companyDetails: {
       type: Object,
       required: false,
+    },
+    selectedTitle: {
+      type: String,
+      required: true,
     },
   },
   data() {
@@ -394,15 +399,13 @@ export default {
   }
   .advertisement_price_container {
     width: fit-content;
-    margin: 50px auto !important;
+    margin: 0px auto !important;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
     @include flex(center, center, row, 20px);
     text-transform: capitalize;
-    @media (max-width: 450px) {
-      margin: 30px auto !important;
-    }
+
     .advertisement_price {
       @include flex(center, center, row, 10px);
     }

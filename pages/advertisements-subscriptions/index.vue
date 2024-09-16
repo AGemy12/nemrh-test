@@ -14,7 +14,7 @@
       <!-- ========= Start::  Packages Section ========= -->
       <div class="advertisements_packages_container">
         <!-- ========= Start:: Advertisements Packages Section ========= -->
-        <AdvertisementsFirstStep />
+        <AdvertisementsFirstStep :adsPackages="adsPackagesData" />
         <AdvertisementsSecondStep
           ref="secondStepComponent"
           style="display: none"
@@ -118,24 +118,67 @@ export default {
     BaseBanner,
   },
 
-  async asyncData({ $axiosRequest }) {
-    try {
-      // ********** Start:: Implement Request ********** //
-      let res = await $axiosRequest({
-        method: 'GET',
-        url: 'message_bundles',
-      })
-      // ********** End:: Implement Request ********** //
-      return {
-        firstPannerData: res.data.additional_data?.first_section_title,
-        lastPannerData: res.data.additional_data?.last_section_title,
-      }
-    } catch (err) {
-      console.log(err)
+  data() {
+    return {
+      // Start:: Loaders Controlling Data
+      pageIsLoading: true,
+      // End:: Loaders Controlling Data
+
+      currentStep: 1,
+
+      // Start::
+      checkedIsTrue: false,
+      // End::
+
+      // Start:: Form Data Save
+      formData: {
+        advertisementName: '',
+        startDate: '',
+        endDate: '',
+        period: '',
+        website: '',
+      },
+      // End:: Form Data Save
     }
   },
 
+  computed: {
+    nextButtonText() {
+      return this.currentStep === 3
+        ? this.$t('BUTTONS.confirmPay')
+        : this.$t('BUTTONS.next')
+    },
+    nextDisabled() {
+      return this.currentStep === 1 && !this.termsCheckboxChecked
+    },
+    termsCheckboxChecked() {
+      let termsCheckbox = document.getElementById('termsCheckbox')
+      return termsCheckbox && termsCheckbox.checked
+    },
+  },
+
   methods: {
+    async getPackages() {
+      try {
+        // ********** Start:: Implement Request ********** //
+        let res = await this.$axiosRequest({
+          method: 'GET',
+          url: 'ad_bundles?company_id=33',
+        })
+        // ********** End:: Implement Request ********** //
+        console.log(res.data.data)
+
+        this.pageIsLoading = false
+        this.packages = res.data.data
+        return {
+          adsPackagesData: res.data.data,
+        }
+      } catch (err) {
+        this.pageIsLoading = false
+        console.log(err.response.data.message)
+      }
+    },
+
     advertisementsForwardCycleSteps() {
       const firstStep = document.getElementById('advertisementsFirstStep'),
         secondtStep = document.getElementById('advertisementsSecondStep'),
@@ -218,33 +261,16 @@ export default {
     },
   },
 
-  data() {
-    return {
-      // Start:: Loaders Controlling Data
-      pageIsLoading: true,
-      // End:: Loaders Controlling Data
-
-      // Start::
-      checkedIsTrue: false,
-      // End::
-
-      // Start:: Form Data Save
-      formData: {
-        advertisementName: '',
-        startDate: '',
-        endDate: '',
-        period: '',
-        website: '',
-      },
-      // End:: Form Data Save
-    }
-  },
-
   mounted() {
     // Start:: Fire Methods
-    if (this.firstPannerData) {
+    if (this.adsPackagesData) {
       this.pageIsLoading = !this.pageIsLoading
     }
+    // End:: Fire Methods
+  },
+  created() {
+    // Start:: Fire Methods
+    this.getPackages()
     // End:: Fire Methods
   },
 }

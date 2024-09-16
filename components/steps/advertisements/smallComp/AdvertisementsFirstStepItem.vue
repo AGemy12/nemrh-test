@@ -1,7 +1,7 @@
 <template>
   <div class="advertisement_item" @click="clickToActiveOption">
     <h5>
-      {{ advertisementItemTitle }}
+      {{ adsSinglePackage.title }}
     </h5>
     <div class="advertisement_item_image">
       <img :src="srcImage" />
@@ -12,13 +12,13 @@
 <script>
 export default {
   props: {
-    advertisementItemTitle: {
-      type: String,
-      require: true,
-    },
     srcImage: {
       type: String,
       require: true,
+    },
+    adsSinglePackage: {
+      type: Object,
+      required: true,
     },
 
     // clickToActiveOption: {
@@ -36,6 +36,7 @@ export default {
       document
         .querySelector('.advertisements_next_btn')
         .removeAttribute('disabled')
+      this.$emit('itemSelected', this.advertisementItemTitle)
     },
   },
 }

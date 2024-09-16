@@ -8,10 +8,11 @@
     </h4>
     <div class="advertisements_first_step_content">
       <AdvertisementsFirstStepItem
-        v-for="item of advFirstStepItems"
+        v-for="(item, index) in adsPackages"
         :key="item.id"
-        :advertisement-item-title="item.title"
         :src-image="item.srcImage"
+        @itemSelected="handleSelectedItem"
+        :adsSinglePackage="item"
       />
     </div>
   </div>
@@ -20,6 +21,17 @@
 <script>
 import AdvertisementsFirstStepItem from './smallComp/AdvertisementsFirstStepItem.vue'
 export default {
+  data() {
+    return {
+      selectedItemTitle: '',
+    }
+  },
+  props: {
+    adsPackages: {
+      type: Array,
+      required: true,
+    },
+  },
   components: {
     AdvertisementsFirstStepItem,
   },
@@ -58,7 +70,12 @@ export default {
       return items
     },
   },
-  methods: {},
+  methods: {
+    handleSelectedItem(selectedTitle) {
+      this.selectedItemTitle = selectedTitle // تحديث العنوان المختار
+      this.$emit('moveToSecondStep', this.selectedItemTitle) // تمرير العنوان المختار للخطوة الثانية
+    },
+  },
 }
 </script>
 

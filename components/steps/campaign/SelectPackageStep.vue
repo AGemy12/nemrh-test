@@ -5,33 +5,29 @@
     <template v-else>
       <div class="step_title_wrapper">
         <span class="step_number"> 1 </span>
-        <h2 class="step_title"> {{ $t("TITLES.CompaniesAndCampaignsForms.selectPackageStep") }} </h2>
+        <h2 class="step_title">
+          {{ $t('TITLES.CompaniesAndCampaignsForms.selectPackageStep') }}
+        </h2>
       </div>
-  
-      <v-radio-group 
-        v-model="selectedPackage" 
-      >
+
+      <v-radio-group v-model="selectedPackage">
         <div class="row">
-          <div 
-            class="col-lg-4"
-            v-for="item in packages"
-            :key="item.id"
-          >
+          <div class="col-lg-4" v-for="item in packages" :key="item.id">
             <v-radio :value="item.id" :disabled="item.disabled">
               <template v-slot:label>
-                <CampaignPackageCard 
-                  :packageData="item" 
+                <CampaignPackageCard
+                  :packageData="item"
                   :displaySubscribeBtn="false"
                 />
                 <div class="disapled_overlay" v-if="item.disabled">
-                  <p v-if="item.disable_reason"> {{item.disable_reason}} </p>
+                  <p v-if="item.disable_reason">{{ item.disable_reason }}</p>
                 </div>
               </template>
             </v-radio>
           </div>
         </div>
       </v-radio-group>
-  
+
       <div class="btns_wrapper">
         <base-button
           :btnText="$t('BUTTONS.next')"
@@ -45,11 +41,11 @@
 </template>
 
 <script>
-import MainLoader from '@/components/ui/MainLoader.vue';
-import CampaignPackageCard  from "@/components/ui/cards/packages/PackageCard.vue";
+import MainLoader from '@/components/ui/MainLoader.vue'
+import CampaignPackageCard from '@/components/ui/cards/packages/PackageCard.vue'
 
 export default {
-  name: "SelectPackageStep",
+  name: 'SelectPackageStep',
 
   emits: ['fireNavigateToNextStep'],
 
@@ -85,12 +81,12 @@ export default {
           params: {
             company_id: this.$route.params.companyId,
           },
-        });
+        })
         // ********** End:: Implement Request ********** //
-        this.pageIsLoading = false;
-        this.packages = res.data.data;
+        this.pageIsLoading = false
+        this.packages = res.data.data
       } catch (err) {
-        this.pageIsLoading = false;
+        this.pageIsLoading = false
         console.log(err.response.data.message)
       }
     },
@@ -98,14 +94,14 @@ export default {
 
     // Start:: Pass Selected Package Data To Parent Component
     navigateToNextStep() {
-      this.$emit("fireNavigateToNextStep", this.selectedPackage);
+      this.$emit('fireNavigateToNextStep', this.selectedPackage)
     },
     // End:: Pass Selected Package Data To Parent Component
   },
 
   created() {
     // Start:: Fire Methods
-    this.getPackages();
+    this.getPackages()
     // End:: Fire Methods
   },
 }
@@ -139,7 +135,7 @@ export default {
     .step_title {
       width: calc(100% - 20px + 0.8rem);
       margin-block-end: 0 !important;
-      font-size: 1rem;  
+      font-size: 1rem;
       font-family: $bold_font;
       line-height: 1.8;
     }
@@ -187,7 +183,7 @@ export default {
                   border-color: transparent;
                   * {
                     color: var(--white);
-                  } 
+                  }
                 }
               }
             }
@@ -197,7 +193,7 @@ export default {
     }
   }
 
-  .btns_wrapper { 
+  .btns_wrapper {
     @include flex(flex-end, center);
     column-gap: 0.5rem;
   }
