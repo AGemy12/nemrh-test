@@ -6,7 +6,10 @@
       @click="handleClick"
       :id="id"
     >
-      <h2 class="package_name" v-html="packageOptionTitle"></h2>
+      <h2 class="package_name">
+        <i :class="iconClass"></i>
+        <span v-html="packageOptionTitle"></span>
+      </h2>
     </div>
   </a>
 </template>
@@ -30,6 +33,10 @@ export default {
     },
     id: {
       type: String,
+    },
+    iconClass: {
+      type: String,
+      required: true,
     },
   },
   methods: {
@@ -60,12 +67,24 @@ export default {
   }
   .package_name {
     margin: 0 !important;
-    font-family: $bold_font;
-    font-size: 1.1rem;
     text-align: center;
     text-wrap: nowrap;
+    @include flex(center, center, column, 30px);
+    svg {
+      font-size: 50px;
+      color: var(--main_theme_clr);
+    }
+    span {
+      font-family: $bold_font;
+      font-size: 1.1rem;
+    }
   }
-
+  &:hover span {
+    color: var(--white);
+  }
+  &:hover svg {
+    color: var(--white) !important;
+  }
   .package_title {
     font-family: $bold_font;
     font-size: 1.4rem;

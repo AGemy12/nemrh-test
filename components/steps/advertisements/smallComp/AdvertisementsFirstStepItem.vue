@@ -1,10 +1,12 @@
 <template>
   <div class="advertisement_item" @click="clickToActiveOption">
     <h5>
-      {{ adsSinglePackage.title }}
+      <!-- {{ advertisementItemTitle }} -->
+      {{ packageData.title }}
     </h5>
     <div class="advertisement_item_image">
-      <img :src="srcImage" />
+      <!-- {{ packageData.img }} -->
+      <img src="../../../../assets/media/advestement-below-page.png" />
     </div>
   </div>
 </template>
@@ -14,9 +16,9 @@ export default {
   props: {
     srcImage: {
       type: String,
-      require: true,
+      required: true,
     },
-    adsSinglePackage: {
+    packageData: {
       type: Object,
       required: true,
     },
@@ -36,7 +38,7 @@ export default {
       document
         .querySelector('.advertisements_next_btn')
         .removeAttribute('disabled')
-      this.$emit('itemSelected', this.advertisementItemTitle)
+      this.$emit('itemSelected', this.packageData.title)
     },
   },
 }

@@ -14,9 +14,13 @@
       <!-- ========= Start::  Packages Section ========= -->
       <div class="advertisements_packages_container">
         <!-- ========= Start:: Advertisements Packages Section ========= -->
-        <AdvertisementsFirstStep :adsPackages="adsPackagesData" />
+        <AdvertisementsFirstStep
+          :adsPackages="adsPackagesData"
+          @adSelected="handleAdSelection"
+        />
         <AdvertisementsSecondStep
           ref="secondStepComponent"
+          :selectedTitle="selectedAdTitle"
           style="display: none"
         />
         <AdvertisementsThirdStep
@@ -126,6 +130,8 @@ export default {
 
       currentStep: 1,
 
+      selectedAdTitle: '',
+
       // Start::
       checkedIsTrue: false,
       // End::
@@ -166,16 +172,43 @@ export default {
           url: 'ad_bundles?company_id=33',
         })
         // ********** End:: Implement Request ********** //
-        console.log(res.data.data)
-
         this.pageIsLoading = false
-        this.packages = res.data.data
+        this.adsPackagesData = res.data.data
         return {
           adsPackagesData: res.data.data,
         }
       } catch (err) {
         this.pageIsLoading = false
         console.log(err.response.data.message)
+      }
+    },
+
+    async submitPayment() {
+      try {
+        // ********** Start:: تنفيذ طلب POST ********** //
+        const response = await this.$axiosRequest({
+          method: 'POST',
+          url: '/add-subscribe',
+          data: {
+            advertisementName: this.formData.advertisementName,
+            startDate: this.formData.startDate,
+            endDate: this.formData.endDate,
+            period: this.formData.period,
+            website: this.formData.website,
+            advertisementPrice: this.formData.advertisementPrice,
+            advertisementPosition: this.formData.advertisementPosition,
+            discountPercentage: this.formData.discountPercentage,
+          },
+        })
+        console.log('Payment Success:', response.data)
+        // ********** End:: تنفيذ طلب POST ********** //
+
+        // قم بتحويل المستخدم إلى صفحة نجاح الدفع
+        window.location.replace('/payment-success')
+      } catch (error) {
+        console.error('Payment Error:', error.response.data)
+        // قم بإظهار رسالة خطأ للمستخدم
+        alert('حدث خطأ أثناء معالجة الدفع.')
       }
     },
 
@@ -212,7 +245,7 @@ export default {
           secondtStep.style.display = 'none'
           thirdStep.style.display = 'block'
           prevBtn.style.display = 'block'
-          nextBtn.innerHTML = `${this.$t('BUTTONS.confirmPay')}`
+          nextBtn.innerHTML = this.$t('BUTTONS.confirmPay')
         }
       } else if (firstStep.style.display !== 'none') {
         secondtStep.style.display = 'block'
@@ -224,6 +257,7 @@ export default {
           window.location.replace(
             'https://demo.myfatoorah.com/En/KWT/PayInvoice/Details/01072435239241-483ab996'
           )
+          this.submitPayment()
         } else {
           this.checkedIsTrue = true
         }
@@ -242,7 +276,7 @@ export default {
         secondtStep.style.display = 'block'
         prevBtn.style.display = 'block'
         nextBtn.removeAttribute('disabled')
-        nextBtn.innerHTML = `${this.$t('Packages.PackagesOptionBtnTitle')}`
+        nextBtn.innerHTML = this.$t('Packages.PackagesOptionBtnTitle')
         this.checkedIsTrue = false
       } else if (secondtStep.style.display !== 'none') {
         secondtStep.style.display = 'none'
@@ -259,11 +293,14 @@ export default {
         this.checkedIsTrue = true
       }
     },
+    handleAdSelection(title) {
+      this.selectedAdTitle = title
+    },
   },
 
   mounted() {
     // Start:: Fire Methods
-    if (this.adsPackagesData) {
+    if (this.firstPannerData) {
       this.pageIsLoading = !this.pageIsLoading
     }
     // End:: Fire Methods

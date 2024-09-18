@@ -238,7 +238,7 @@ export default {
     BaseBanner,
   },
 
-  async asyncData({ $axiosRequest, params }) {
+  async asyncData({ $axiosRequest, params, query }) {
     try {
       // ********** Start:: Implement Request ********** //
       let res = await $axiosRequest({
@@ -246,6 +246,8 @@ export default {
         url: `bundles/${params.id}}`,
       })
       // ********** End:: Implement Request ********** //
+      const companyId = query.companyId || null
+
       return {
         checkoutData: res.data.data,
         bannerData: res.data.additional_data.last_section_title,
@@ -369,10 +371,45 @@ export default {
           REQUEST_DATA.append('ad_desc[en]', this.$cookies.get('ad_desc[en]'))
         if (this.$cookies.get('ad_notes'))
           REQUEST_DATA.append('ad_notes', this.$cookies.get('ad_notes'))
+
+        // استرجاع الصورة من localStorage
+        const imageBase64 = localStorage.getItem('adImage')
+
+        if (imageBase64) {
+          // تحويل Base64 إلى Blob
+          const byteString = atob(imageBase64.split(',')[1])
+          const mimeString = imageBase64
+            .split(',')[0]
+            .split(':')[1]
+            .split(';')[0]
+          const arrayBuffer = new ArrayBuffer(byteString.length)
+          const uint8Array = new Uint8Array(arrayBuffer)
+
+          for (let i = 0; i < byteString.length; i++) {
+            uint8Array[i] = byteString.charCodeAt(i)
+          }
+
+          const blob = new Blob([uint8Array], { type: mimeString })
+          REQUEST_DATA.append('image', blob, 'advertisement_image.png')
+        }
+
+        if (this.$cookies.get('ad_link'))
+          REQUEST_DATA.append('ad_link', this.$cookies.get('ad_link'))
+        if (this.$cookies.get('ad_title'))
+          REQUEST_DATA.append('ad_title', this.$cookies.get('ad_title'))
+        if (this.$cookies.get('duration_limit'))
+          REQUEST_DATA.append(
+            'duration_limit',
+            this.$cookies.get('duration_limit')
+          )
       }
       REQUEST_DATA.append('bundle_id', this.$route.params.id)
       if (this.appliedCoupon) REQUEST_DATA.append('code', this.appliedCoupon)
-      // Start:: Append Request Data
+
+      console.log('بيانات الريكويست قبل الإرسال:')
+      REQUEST_DATA.forEach((value, key) => {
+        console.log(`${key}:`, value)
+      })
 
       try {
         let res = await this.$axiosRequest({
@@ -382,6 +419,9 @@ export default {
               ? 'ad-subscribe'
               : 'message-subscribe',
           data: REQUEST_DATA,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         })
         this.waitingForApplyingPayment = false
 

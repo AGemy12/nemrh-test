@@ -13,15 +13,15 @@
             <h3>
               {{
                 $i18n.locale === 'ar'
-                  ? 'هذا الموقع هو نموذج تجريبي، ويحتوي علي بيانات تجريبية.'
-                  : 'This site is a demo model, and contains experimental data.'
+                  ? 'لا يوجد شركه مسجله بهذا البريد الإلكتروني'
+                  : 'There is no company registered with this email'
               }}
             </h3>
             <p>
               {{
                 $i18n.locale === 'ar'
-                  ? 'يرجى عدم ادخال اى بيانات حساسة او القيام باى عملية دفع'
-                  : 'Please do not enter any sensitive data or make any payment'
+                  ? 'يجب اضافة شركتك اولا قبل اختيار موضع الإعلان'
+                  : 'You must add your company first before choosing the ad placement'
               }}
             </p>
           </div>
@@ -29,20 +29,12 @@
 
           <!-- ========== Start:: Modal Footer ========== -->
           <div class="modal_footer_wrapper">
-            <a
-              href="https://spider-te8.com/ar/our-work"
-              target="_blank"
-              class="modal_link"
-            >
-              {{
-                $i18n.locale === 'ar'
-                  ? 'مشاهدة باقي الاعمال'
-                  : 'View the rest of the works'
-              }}
+            <a href="/add-company" class="modal_link">
+              {{ $i18n.locale === 'ar' ? 'أضف شركتك' : 'Add Your Company' }}
             </a>
 
             <button @click="toggleModal" class="close_btn">
-              {{ $i18n.locale === 'ar' ? 'تخطى' : 'Close' }}
+              {{ $i18n.locale === 'ar' ? 'إغلاق' : 'Close' }}
             </button>
           </div>
           <!-- ========== End:: Modal Footer ========== -->

@@ -72,31 +72,6 @@
           v-model="data.workField.value"
         />
         <!-- End:: Work Field Input -->
-
-        <!-- Start:: About Company Input -->
-        <base-input
-          col="6"
-          type="textarea"
-          rows="6"
-          :placeholder="$t('FORMS.Placeholders.aboutCompanyAr') + '*'"
-          :validationRules="validationSchema.aboutCompanyRules"
-          :serverSideErrorMessage="data.aboutCompanyAr.error"
-          @clearServerSideErrorMessage="data.aboutCompanyAr.error = null"
-          v-model.trim="data.aboutCompanyAr.value"
-          required
-        />
-        <base-input
-          col="6"
-          type="textarea"
-          rows="6"
-          :placeholder="$t('FORMS.Placeholders.aboutCompanyEn') + '*'"
-          :validationRules="validationSchema.aboutCompanyRules"
-          :serverSideErrorMessage="data.aboutCompanyEn.error"
-          @clearServerSideErrorMessage="data.aboutCompanyEn.error = null"
-          v-model.trim="data.aboutCompanyEn.value"
-          required
-        />
-        <!-- End:: About Company Input -->
       </div>
     </v-form>
 

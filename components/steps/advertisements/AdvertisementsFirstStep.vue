@@ -8,11 +8,10 @@
     </h4>
     <div class="advertisements_first_step_content">
       <AdvertisementsFirstStepItem
-        v-for="(item, index) in adsPackages"
+        v-for="item of adsPackages"
         :key="item.id"
-        :src-image="item.srcImage"
         @itemSelected="handleSelectedItem"
-        :adsSinglePackage="item"
+        :packageData="item"
       />
     </div>
   </div>
@@ -22,14 +21,11 @@
 import AdvertisementsFirstStepItem from './smallComp/AdvertisementsFirstStepItem.vue'
 export default {
   data() {
-    return {
-      selectedItemTitle: '',
-    }
+    return {}
   },
   props: {
     adsPackages: {
       type: Array,
-      required: true,
     },
   },
   components: {
@@ -71,9 +67,8 @@ export default {
     },
   },
   methods: {
-    handleSelectedItem(selectedTitle) {
-      this.selectedItemTitle = selectedTitle // تحديث العنوان المختار
-      this.$emit('moveToSecondStep', this.selectedItemTitle) // تمرير العنوان المختار للخطوة الثانية
+    handleSelectedItem(title) {
+      this.$emit('adSelected', title) // تمرير العنوان المختار إلى المكون الأب
     },
   },
 }
@@ -107,11 +102,8 @@ export default {
   }
   .advertisements_first_step_content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    @media (max-width: 1400px) {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
   }
 }
 </style>

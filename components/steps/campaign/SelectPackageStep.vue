@@ -4,10 +4,12 @@
 
     <template v-else>
       <div class="step_title_wrapper">
-        <span class="step_number"> 1 </span>
         <h2 class="step_title">
-          {{ $t('TITLES.CompaniesAndCampaignsForms.selectPackageStep') }}
+          {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }}
         </h2>
+        <h4 class="step_subtitle">
+          {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneSubTitle') }}
+        </h4>
       </div>
 
       <v-radio-group v-model="selectedPackage">
@@ -67,6 +69,7 @@ export default {
       // Start:: Selected Package
       selectedPackage: null,
       // End:: Selected Package
+      adPrice: null,
     }
   },
 
@@ -90,11 +93,32 @@ export default {
         console.log(err.response.data.message)
       }
     },
-    // End:: Get Packages
 
     // Start:: Pass Selected Package Data To Parent Component
-    navigateToNextStep() {
-      this.$emit('fireNavigateToNextStep', this.selectedPackage)
+    async navigateToNextStep() {
+      try {
+        let res = await this.$axiosRequest({
+          method: 'GET',
+          url: `bundles/${this.selectedPackage}`,
+        })
+
+        if (res.status === 200) {
+          this.adPrice = res.data.data.price
+
+          const selectedPackageTitle = this.packages.find(
+            (item) => item.id === this.selectedPackage
+          ).title
+
+          this.$emit(
+            'fireNavigateToNextStep',
+            this.selectedPackage,
+            selectedPackageTitle,
+            this.adPrice
+          )
+        }
+      } catch (err) {
+        console.log(err.response.data.message)
+      }
     },
     // End:: Pass Selected Package Data To Parent Component
   },
@@ -120,24 +144,27 @@ export default {
 
   .step_title_wrapper {
     margin-block-end: 2rem;
-    @include flex(flex-start, center);
-    column-gap: 0.8rem;
-    .step_number {
-      @include flex(center, center);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: var(--main_theme_clr);
-      font-size: 0.8rem;
-      color: var(--white);
-    }
 
     .step_title {
-      width: calc(100% - 20px + 0.8rem);
-      margin-block-end: 0 !important;
-      font-size: 1rem;
-      font-family: $bold_font;
-      line-height: 1.8;
+      color: var(--white);
+      width: fit-content;
+      margin: 10px auto;
+      padding: 10px;
+      background-color: var(--main_theme_clr);
+      font-size: 22px;
+      border-radius: 5px;
+      @media (max-width: 450px) {
+        font-size: 20px;
+      }
+    }
+    .step_subtitle {
+      width: fit-content;
+      margin-right: 0;
+      font-size: 20px;
+      @media (max-width: 450px) {
+        font-size: 15px;
+        margin: 20px 0;
+      }
     }
   }
 

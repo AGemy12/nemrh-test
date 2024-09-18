@@ -3,13 +3,14 @@
     <h2 class="section_title" v-html="sectionTitle"></h2>
     <div class="messaging_packages_section_content_wrapper_container">
       <PackageOption
-        href="/advertisements-subscriptions"
+        href="/find-your-company"
         :packageOptionTitle="
           $t(
             'Packages.PackagesOptions.AdvertisementsOption.AdvertisementsOptionTitle'
           )
         "
         id="advertisementsOption"
+        iconClass="fa-solid fa-rectangle-ad"
       />
       <PackageOption
         href="/messages-subscriptions"
@@ -17,6 +18,7 @@
           $t('Packages.PackagesOptions.MessagesOption.MessagesOptionTitle')
         "
         id="messagesOption"
+        iconClass="fa-solid fa-rocket"
       />
     </div>
   </section>

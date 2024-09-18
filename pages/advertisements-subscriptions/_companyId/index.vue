@@ -25,8 +25,24 @@
             <v-stepper-content step="detailsStep">
               <CampaignDetailsStep
                 @fireNavigateToPreviousStep="currentStep = 'packageStep'"
-                @fireStepsSubmit="handelLastStepSubmit"
+                @fireStepsSubmit="handleStepsSubmit"
                 :isWaitingApiResponse="isWaitingApiResponse"
+                :selectedPackageName="selectedPackageName"
+                :period="durationLimit"
+                :website="adLink"
+                :advertisementImage="adImage"
+                :originalPrice="originalPrice"
+                @fireClick="submitForm"
+              />
+            </v-stepper-content>
+            <v-stepper-content step="previewStep">
+              <CampaignPreviewStep
+                @fireNavigateToPreviousStep="currentStep = 'detailsStep'"
+                :isWaitingApiResponse="isWaitingApiResponse"
+                :selectedPackageName="selectedPackageName"
+                :advertisementPosition="advertisementPosition"
+                @fireStepsSubmit="submitForm"
+                :details="campaignDetails"
               />
             </v-stepper-content>
           </v-stepper-items>
@@ -40,6 +56,7 @@
 <script>
 import SelectPackageStep from '@/components/steps/campaign/SelectPackageStep.vue'
 import CampaignDetailsStep from '@/components/steps/campaign/CampaignDetailsStep.vue'
+import CampaignPreviewStep from '~/components/steps/campaign/CampaignPreviewStep.vue'
 
 export default {
   name: 'CreateCampaign',
@@ -75,6 +92,7 @@ export default {
   components: {
     SelectPackageStep,
     CampaignDetailsStep,
+    CampaignPreviewStep,
   },
 
   data() {
@@ -87,47 +105,106 @@ export default {
       currentStep: 'packageStep',
       // End:: Current Form Step Data
 
+      // Start:: Title Of Package Selected
+      selectedPackageName: '',
+      // End:: Title Of Package Selected
+
+      // Start:: Duration Limit
+      durationLimit: '',
+      adLink: '',
+      adImage: '',
+      // End:: Duration Limit
+
       // Start:: Crete Campaign Data
       data: {
         package: null,
-        featuresAr: null,
-        featuresEn: null,
-        notes: null,
       },
       // End:: Crete Campaign Data
+      campaignDetails: {},
     }
   },
 
   methods: {
     // Start:: Handel Next Step Navigation
-    handelNextStepNavigation(selectedPackage) {
+    handelNextStepNavigation(
+      selectedPackage,
+      selectedPackageTitle,
+      adPrice,
+      advertisementPosition,
+      companyId
+    ) {
       this.data.package = selectedPackage
+      this.selectedPackageName = selectedPackageTitle
+      this.originalPrice = adPrice
+      this.advertisementPosition = advertisementPosition
+      this.companyId = companyId
       this.currentStep = 'detailsStep'
+      console.log('Original Price:', this.originalPrice)
     },
     // End:: Handel Next Step Navigation
 
     // Start:: Handel Steps Submit
-    handelLastStepSubmit(campaignDetails) {
-      this.data.featuresAr = campaignDetails.featuresAr
-      this.data.featuresEn = campaignDetails.featuresEn
-      this.data.notes = campaignDetails.notes
+    handleStepsSubmit(submitData) {
+      console.log('Received Submit Data:', submitData)
 
-      this.submitForm()
+      if (submitData && submitData.price) {
+        this.selectedPackagePrice = submitData.price
+        this.campaignDetails = submitData
+
+        this.durationLimit = submitData.period
+        this.adLink = submitData.website
+        this.adImage = submitData.advertisementImage
+        console.log('Received Image Object:', this.adImage)
+
+        this.currentStep = 'previewStep'
+      } else {
+        console.error('Price data is missing.')
+      }
     },
+    // End  :: Handel Steps Submit
+
     async submitForm() {
-      // Start:: Cach Data To Us It In Checkout Page Data
+      console.log('company_id:', this.companyId)
+      console.log('duration_limit:', this.durationLimit)
+      console.log('ad_title:', this.selectedPackageName)
+      console.log('ad_link:', this.adLink)
+      console.log('image:', this.adImage)
+
       this.$cookies.set('company_id', this.$route.params.companyId)
-      this.$cookies.set('ad_desc[ar]', this.data.featuresAr)
-      this.$cookies.set('ad_desc[en]', this.data.featuresEn)
-      this.$cookies.set('ad_notes', this.data.notes)
-      // End:: Cach Data To Us It In Checkout Page Data
+      this.$cookies.set('duration_limit', this.durationLimit)
+      this.$cookies.set('ad_title', this.selectedPackageName)
+      this.$cookies.set('ad_link', this.adLink)
+      this.$cookies.set('image', this.adImage)
+      this.$cookies.set('ad_desc[ar]', '.')
+      this.$cookies.set('ad_desc[en]', '.')
+      this.$cookies.set('ad_notes', '.')
+
+      console.log('company_id:', this.$cookies.get('company_id'))
+      console.log('duration_limit:', this.$cookies.get('duration_limit'))
+      console.log('ad_title:', this.$cookies.get('ad_title'))
+      console.log('ad_link:', this.$cookies.get('ad_link'))
+      console.log('image:', this.$cookies.get('image'))
+      console.log('ad_desc[ar]:', this.$cookies.get('ad_desc[ar]'))
+      console.log('ad_desc[en]:', this.$cookies.get('ad_desc[en]'))
+      console.log('ad_notes:', this.$cookies.get('ad_notes'))
+
+      if (!this.data.package) {
+        console.error('Package not selected')
+        return
+      }
+      if (!this.selectedPackagePrice) {
+        console.error('Price not available')
+        return
+      }
 
       this.$router.replace({
         path: this.localePath(`/checkout/${this.data.package}`),
-        query: { subscription_type: 'campaign_subscription' },
+        query: {
+          subscription_type: 'campaign_subscription',
+          companyId: this.companyId,
+        },
       })
     },
-    // Start:: Handel Steps Submit
   },
 }
 </script>

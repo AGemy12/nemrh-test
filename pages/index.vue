@@ -143,7 +143,7 @@ export default {
       // End:: Loaders Controlling Data
 
       // Start:: Dialogs Control Data
-      spiderModalIsOpen: false,
+      spiderModalIsOpen: true,
       // End:: Dialogs Control Data
     }
   },

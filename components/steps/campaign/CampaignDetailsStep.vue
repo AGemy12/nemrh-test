@@ -1,52 +1,103 @@
 <template>
   <section class="campaign_details_step_wrapper">
     <div class="step_title_wrapper">
-      <span class="step_number"> 2 </span>
-      <h2 class="step_title"> {{ $t("TITLES.CompaniesAndCampaignsForms.campaignDetailsStep") }} </h2>
+      <h2 class="step_title">{{ selectedPackageName }}</h2>
+      <h4 class="step_subtitle">
+        {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepTwoSubTitle') }}
+      </h4>
+    </div>
+
+    <div class="advertisement_price_container">
+      <div class="advertisement_price">
+        <span v-html="$t('FORMS.Placeholders.advertisementPrice')"> </span>
+        <span class="advertisement_price_value">
+          {{ discountedPrice }} {{ $t('OTHERS.Ryal') }}
+        </span>
+      </div>
+      <div class="advertisement_disc">
+        <span v-html="$t('FORMS.Placeholders.advertisementPrecDisc')"> </span>
+        <span class="advertisement_discount_prec">
+          {{ discountPercentage }}%
+        </span>
+      </div>
     </div>
 
     <v-form
-      class="w-100"
-      ref="campaignDetailsForm"
+      class="w-100 mt-8"
+      ref="companyDetailsForm"
       v-model="formIsValid"
-      @submit.prevent="submitForm"
       lazy-validation
     >
       <div class="row">
-        <!-- Start:: Features Input -->
+        <!-- Start:: Advertisement Name And Price Input -->
         <base-input
           col="6"
-          type="textarea"
-          rows="6"
-          :placeholder="$t('FORMS.Placeholders.featuresAr')"
-          :serverSideErrorMessage="data.featuresAr.error"
-          @clearServerSideErrorMessage="data.featuresAr.error = null"
-          v-model.trim="data.featuresAr.value"
-          required
+          type="text"
+          :placeholder="$t('FORMS.Placeholders.advertisementTitle') + '*'"
+          v-model.trim="data.advertisementName.value"
         />
-        <base-input
-          col="6"
-          type="textarea"
-          rows="6"
-          :placeholder="$t('FORMS.Placeholders.featuresEn')"
-          :serverSideErrorMessage="data.featuresEn.error"
-          @clearServerSideErrorMessage="data.featuresEn.error = null"
-          v-model.trim="data.featuresEn.value"
-          required
-        />
-        <!-- End:: Features Input -->
+        <!-- End:: Advertisement Name And Price Input -->
 
-        <!-- Start:: Notes Input -->
-        <base-input
-          type="textarea"
-          rows="6"
-          :placeholder="$t('FORMS.Placeholders.otherNotes')"
-          :serverSideErrorMessage="data.notes.error"
-          @clearServerSideErrorMessage="data.notes.error = null"
-          v-model.trim="data.notes.value"
+        <!-- Start:: Advertisement Period Input -->
+        <base-select-input
+          col="6"
+          static
+          :staticItems="categories"
+          :placeholder="$t('FORMS.Placeholders.advertisementPeriod') + '*'"
+          :validationRules="validationSchema.periodRules"
+          :serverSideErrorMessage="data.period.error"
+          @clearServerSideErrorMessage="data.period.error = null"
+          v-model="data.period.value"
           required
         />
-        <!-- End:: Notes Input -->
+        <!-- End:: Advertisement Period Input -->
+
+        <!-- Start:: Advertisement Date Input -->
+        <base-input
+          col="6"
+          type="date"
+          :placeholder="$t('FORMS.Placeholders.advertisementStart') + '*'"
+          :validationRules="validationSchema.dateRules"
+          :serverSideErrorMessage="data.startDate.error"
+          @clearServerSideErrorMessage="data.startDate.error = null"
+          v-model.trim="data.startDate.value"
+          required
+        />
+        <base-input
+          col="6"
+          type="text"
+          :placeholder="$t('FORMS.Placeholders.advertisementEnd')"
+          v-model="data.endDate.value"
+          disabled
+        />
+        <!-- End:: Advertisement Date Input -->
+
+        <!-- Start:: Advertisement Link Input -->
+        <base-input
+          col="6"
+          type="text"
+          :placeholder="$t('FORMS.Placeholders.advertisementLink') + '*'"
+          :validationRules="validationSchema.websiteRules"
+          :serverSideErrorMessage="data.website.error"
+          @clearServerSideErrorMessage="data.website.error = null"
+          v-model.trim="data.website.value"
+          required
+        />
+        <!-- End:: Advertisement Link Input -->
+
+        <!-- Start:: Advertisement Image Input -->
+        <base-document-upload-input
+          col="6"
+          class="mb-8"
+          identifier="company_logo"
+          :placeholder="$t('FORMS.Placeholders.advertisementImage') + '*'"
+          accept=".jpg, .jpeg, .png, .svg, .webp"
+          @selectDocument="selectDocument"
+          @clearErrors="data.advertisementImage.error = null"
+          :errorMessage="data.advertisementImage.error"
+          required
+        />
+        <!-- End:: Advertisement Image Input -->
       </div>
     </v-form>
 
@@ -58,7 +109,7 @@
       />
 
       <base-button
-        :btnText="$t('BUTTONS.submit')"
+        :btnText="$t('BUTTONS.next')"
         styleType="primary_btn"
         :isLoading="isWaitingApiResponse"
         :disabled="!formIsValid || isWaitingApiResponse"
@@ -70,7 +121,7 @@
 
 <script>
 export default {
-  name: "CampaignDetailsStep",
+  name: 'CampaignDetailsStep',
 
   emits: ['fireNavigateToPreviousStep', 'fireStepsSubmit'],
 
@@ -79,51 +130,201 @@ export default {
       type: Boolean,
       default: false,
     },
+    selectedPackageName: {
+      type: String,
+      default: '',
+    },
+    period: {
+      type: String,
+      default: '',
+    },
+    website: {
+      type: String,
+      default: '',
+    },
+    originalPrice: {
+      type: Number,
+      default: 0,
+    },
+    advertisementImage: {
+      type: Object,
+      default: () => null,
+    },
   },
 
   data() {
     return {
       // Start:: Data Collection To Send
       data: {
-        featuresAr: {
+        advertisementName: {
           value: null,
           error: null,
         },
-        featuresEn: {
+        period: {
           value: null,
           error: null,
         },
-        notes: {
+        startDate: {
+          value: null,
+          error: null,
+        },
+        endDate: {
+          value: null,
+          error: null,
+        },
+        website: {
+          value: null,
+          error: null,
+        },
+        advertisementImage: {
           value: null,
           error: null,
         },
       },
       // End:: Data Collection To Send
 
+      // Start:: Categories Data
+      categories: [30, 90, 180, 365],
+      // End:: Categories Data
+
+      discountedPrice: this.originalPrice,
+      discountPercentage: 0,
+
       // Start:: Validation Schema
       formIsValid: true,
       validationSchema: {
-        featuresRules: [(val) => !!val || this.$t('FORMS.Validation.features')],
-        notesRules: [(val) => !!val || this.$t('FORMS.Validation.notes')],
+        periodRules: [
+          (val) => !!val || this.$t('FORMS.Validation.advertisementPeriod'),
+        ],
+        dateRules: [
+          (val) => !!val || this.$t('FORMS.Validation.date'),
+          (val) => {
+            const today = new Date().toISOString().split('T')[0]
+            return (
+              val >= today ||
+              this.$t('FORMS.Validation.advertisementStartInFuture')
+            )
+          },
+        ],
+        websiteRules: [
+          (val) => !!val || this.$t('FORMS.Validation.advertisementLink'),
+        ],
       },
       // End:: Validation Schema
     }
   },
 
-  methods: {
-    // Start:: Fire Steps Submit
-    async submitForm() {
-      await this.$refs.campaignDetailsForm.validate(); 
+  watch: {
+    // Start:: Watchers to calculate endDate based on startDate and period
+    'data.startDate.value'(newVal) {
+      this.calculateEndDate()
+    },
+    'data.period.value'(newVal) {
+      this.calculateEndDate()
+      this.applyDiscount()
+    },
+    // End:: Watchers to calculate endDate based on startDate and period
+    originalPrice(newVal) {
+      this.discountedPrice = newVal
+      this.applyDiscount()
+    },
+  },
 
-      if (this.formIsValid){
-        this.$emit("fireStepsSubmit", {
-          featuresAr: this.data.featuresAr.value,
-          featuresEn: this.data.featuresEn.value,
-          notes: this.data.notes.value
-        });
+  methods: {
+    // Start:: Select Upload Document
+    selectDocument(selectedDocument) {
+      if (selectedDocument.identifier === 'company_logo') {
+        this.formIsValid = true
+        const reader = new FileReader()
+
+        reader.onload = (event) => {
+          const imageBase64 = event.target.result
+
+          // تخزين الصورة في localStorage
+          localStorage.setItem('adImage', imageBase64)
+        }
+        reader.readAsDataURL(selectedDocument.file) // تحويل الملف إلى Base64
       }
-    }
-    // End:: Fire Steps Submit
+    },
+    // End:: Select Upload Document
+
+    calculateEndDate() {
+      if (this.data.startDate.value && this.data.period.value) {
+        const startDate = new Date(this.data.startDate.value)
+        startDate.setDate(
+          startDate.getDate() + parseInt(this.data.period.value)
+        )
+        this.data.endDate.value = startDate.toISOString().split('T')[0]
+      }
+    },
+    // Start :: Discount Operations
+
+    applyDiscount() {
+      const period = this.data.period.value
+      const originalPrice = this.originalPrice
+      let discountRate = 0
+
+      if (period === 90) {
+        discountRate = 0.15
+        this.$set(
+          this,
+          'discountedPrice',
+          3 * originalPrice - originalPrice * discountRate * 3
+        )
+      } else if (period === 180) {
+        discountRate = 0.2
+        this.$set(
+          this,
+          'discountedPrice',
+          6 * originalPrice - originalPrice * discountRate * 6
+        )
+      } else if (period === 365) {
+        discountRate = 0.3
+        this.$set(
+          this,
+          'discountedPrice',
+          12 * originalPrice - originalPrice * discountRate * 12
+        )
+      } else {
+        this.$set(this, 'discountedPrice', originalPrice)
+      }
+
+      this.discountPercentage = discountRate * 100
+    },
+    // Start :: Discount Operations
+
+    // Start :: Submit Form
+    async submitForm() {
+      await this.$refs.companyDetailsForm.validate()
+
+      const today = new Date().toISOString().split('T')[0]
+
+      if (this.data.startDate.value < today) {
+        this.data.startDate.error = this.$t(
+          'FORMS.Validation.advertisementStartInFuture'
+        )
+        return
+      }
+
+      if (this.formIsValid) {
+        this.$emit('fireStepsSubmit', {
+          advertisementName: this.data.advertisementName.value,
+          startDate: this.data.startDate.value,
+          endDate: this.data.endDate.value,
+          period: this.data.period.value,
+          website: this.data.website.value,
+          advertisementImage: this.data.advertisementImage.value,
+          price: this.discountedPrice || 0,
+          discountPercentage: this.discountPercentage || 0,
+          advertisementPosition: this.selectedPackageName,
+        })
+      }
+    },
+    // End   :: Submit Form
+  },
+  created() {
+    console.log('Original Price:', this.originalPrice)
+    this.discountedPrice = this.originalPrice
   },
 }
 </script>
@@ -132,24 +333,46 @@ export default {
 .campaign_details_step_wrapper {
   .step_title_wrapper {
     margin-block-end: 2rem;
-    @include flex(flex-start, center);
-    column-gap: 0.8rem;
-    .step_number {
-      @include flex(center, center);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: var(--main_theme_clr);
-      font-size: 0.8rem;
-      color: var(--white);
-    }
-
     .step_title {
-      width: calc(100% - 20px + 0.8rem);
-      margin-block-end: 0 !important;
-      font-size: 1rem;  
-      font-family: $bold_font;
-      line-height: 1.8;
+      color: var(--white);
+      width: fit-content;
+      margin: 10px auto;
+      padding: 10px;
+      background-color: var(--main_theme_clr);
+      font-size: 22px;
+      border-radius: 5px;
+      @media (max-width: 450px) {
+        font-size: 20px;
+      }
+    }
+    .step_subtitle {
+      width: fit-content;
+      margin-right: 0;
+      font-size: 20px;
+      text-transform: capitalize;
+      @media (max-width: 450px) {
+        font-size: 18px;
+      }
+    }
+  }
+  .advertisement_price_container {
+    width: fit-content;
+    margin: 30px auto !important;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    @include flex(center, center, row, 20px);
+    text-transform: capitalize;
+
+    .advertisement_price {
+      @include flex(center, center, row, 10px);
+    }
+    .advertisement_price_value {
+      padding: 5px 8px !important;
+      border: 2px solid var(--main_theme_clr);
+      background-color: var(--main_theme_clr);
+      border-radius: 5px;
+      color: var(--white);
     }
   }
   .form_btns_wrapper {

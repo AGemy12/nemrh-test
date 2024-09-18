@@ -228,22 +228,22 @@ export default {
     },
   },
   methods: {
-    // async getTermsAndConditionsData() {
-    //   try {
-    //     // ********** Start:: Implement Request ********** //
-    //     let res = await this.$axiosRequest({
-    //       method: 'GET',
-    //       url: 'pages/legal/terms-and-conditions',
-    //     })
-    //     // ********** End:: Implement Request ********** //
-
-    //     this.termsAndConditions = res.data.data
-    //   } catch (err) {
-    //     this.$izitoast.error({
-    //       message: err.response.data.message,
-    //     })
-    //   }
-    // },
+    async asyncData({ $axiosRequest }) {
+      try {
+        // ********** Start:: Implement Request ********** //
+        let res = await $axiosRequest({
+          method: 'GET',
+          url: 'message_bundles',
+        })
+        // ********** End:: Implement Request ********** //
+        return {
+          firstPannerData: res.data.additional_data?.first_section_title,
+          lastPannerData: res.data.additional_data?.last_section_title,
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
 
     toggleTermsAndConditionsModal() {
       this.termsModalIsOpen = !this.termsModalIsOpen

@@ -55,54 +55,47 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    'nuxt-izitoast',
-    [
-      'cookie-universal-nuxt',
-      {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7,
-      },
-    ],
-    [
-      'nuxt-gmaps',
-      {
-        key: 'AIzaSyC2MTR_vRbsbQQRPt5f5ZLCvvaKOpzkzlA',
-        libraries: ['places'],
-      },
-    ],
-    [
-      '@nuxtjs/i18n',
-      {
-        locales: [
-          {
-            name: 'عربي ',
-            code: 'ar',
-            iso: 'ar-AR',
-            file: 'ar.json',
-            dir: 'rtl',
-          },
-          {
-            name: 'English',
-            code: 'en',
-            iso: 'en-US',
-            file: 'en.json',
-            dir: 'ltr',
-          },
-        ],
-        langDir: 'locales/',
-        lazy: true,
-        loadLanguageAsync: true,
-        defaultLocale: 'ar',
-        fallbackLocale: 'ar',
-        strategy: 'prefix',
-        detectBrowserLanguage: false,
-        rootRedirect: 'ar',
-      },
-    ],
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', 'nuxt-izitoast', [
+    'cookie-universal-nuxt',
+    {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
+    },
+  ], [
+    'nuxt-gmaps',
+    {
+      key: 'AIzaSyC2MTR_vRbsbQQRPt5f5ZLCvvaKOpzkzlA',
+      libraries: ['places'],
+    },
+  ], [
+    '@nuxtjs/i18n',
+    {
+      locales: [
+        {
+          name: 'عربي ',
+          code: 'ar',
+          iso: 'ar-AR',
+          file: 'ar.json',
+          dir: 'rtl',
+        },
+        {
+          name: 'English',
+          code: 'en',
+          iso: 'en-US',
+          file: 'en.json',
+          dir: 'ltr',
+        },
+      ],
+      langDir: 'locales/',
+      lazy: true,
+      loadLanguageAsync: true,
+      defaultLocale: 'ar',
+      fallbackLocale: 'ar',
+      strategy: 'prefix',
+      detectBrowserLanguage: false,
+      rootRedirect: 'ar',
+    },
+  ], '@nuxt/icon'],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

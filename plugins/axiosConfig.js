@@ -25,7 +25,10 @@ export default ({ app, $axios, store, redirect, $cookies }, inject) => {
     const code = parseInt(error.response && error.response.status)
 
     if (code === 404) {
-      redirect('/404')
+      const requestUrl = error.response.config.url
+      if (!requestUrl.includes('company/email')) {
+        redirect('/404')
+      }
     } else if (code === 500) {
       redirect('/500')
     } else if (code === 401) {

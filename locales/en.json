@@ -270,6 +270,7 @@
       "browseCompanies": "Browse Companies",
       "name": "Name",
       "email": "Email",
+      "searchCompEmail": "Enter Your Company Email",
       "phone": "Phone Number",
       "whatsAppNumber": "Whatsapp Number",
       "address": "Address",
@@ -387,6 +388,7 @@
       "date": "You Must Enter a Date",
       "advertisementName": "You Must Enter a advertisement name",
       "advertisementPeriod": "You Must Enter a advertisement period",
+      "advertisementStartInFuture": "The start date cannot be before today.",
       "advertisementPeriodNums": "the period must be only numbers",
       "advertisementLink": "advertisement link Input Is Required",
       "advertisementImage": "advertisement image Input Is Required",
@@ -468,6 +470,8 @@
   "OTHERS": {
     "Ryal": "Ryal",
     "AdvertisementDetails": "Confirm  the advertisement details",
-    "AdvertisementPreview": "Advertisement Preview"
+    "AdvertisementPreview": "Advertisement Preview",
+    "searchAboutYourCompanyTitle": "Check the existence of your company first",
+    "agree": "I confirm that the information is correct and agree to the"
   }
 }

@@ -272,6 +272,7 @@
       "browseCompanies": "تصفح الشركات",
       "name": "الاسم",
       "email": "البريد الالكتروني",
+      "searchCompEmail": "ادخل البريد الالكنروني لشركتك",
       "phone": "رقم الجوال",
       "whatsAppNumber": "رقم الواتساب",
       "address": "العنوان",
@@ -388,6 +389,7 @@
       "maxThreeDigits": " الحد الاقصي 3 ارقام",
       "date": "يجب إدخال تاريخ",
       "advertisementPeriod": " ًلا يجب ان يكون حقل مدة الإعلان فارغا",
+      "advertisementStartInFuture": "لا يمكن أن يكون تاريخ البداية قبل اليوم.",
       "advertisementName": "حقل إسم الإعلان لايمكن ان يكون فارغ",
       "advertisementPeriodNums": " مدة الإعلان يجب ان تكون بالأرقام",
       "advertisementLink": "حقل رابط الإعلان لا يمكن ان يكون فارغا",
@@ -468,6 +470,8 @@
   "OTHERS": {
     "Ryal": "ريال",
     "AdvertisementDetails": "تأكيد تفاصيل الإعلان",
-    "AdvertisementPreview": "معاينة الإعلان"
+    "AdvertisementPreview": "معاينة الإعلان",
+    "searchAboutYourCompanyTitle": "تحقق من وجود شركتك اولا",
+    "agree": "اقر على صحة المعلومات واوافق على"
   }
 }
