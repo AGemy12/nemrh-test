@@ -91,7 +91,7 @@
           class="mb-8"
           identifier="company_logo"
           :placeholder="$t('FORMS.Placeholders.advertisementImage') + '*'"
-          accept=".jpg, .jpeg, .png, .svg, .webp"
+          accept=".jpg, .jpeg, .png, .gif"
           @selectDocument="selectDocument"
           @clearErrors="data.advertisementImage.error = null"
           :errorMessage="data.advertisementImage.error"
@@ -240,10 +240,9 @@ export default {
         reader.onload = (event) => {
           const imageBase64 = event.target.result
 
-          // تخزين الصورة في localStorage
           localStorage.setItem('adImage', imageBase64)
         }
-        reader.readAsDataURL(selectedDocument.file) // تحويل الملف إلى Base64
+        reader.readAsDataURL(selectedDocument.file)
       }
     },
     // End:: Select Upload Document

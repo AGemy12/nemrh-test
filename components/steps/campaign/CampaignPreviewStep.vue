@@ -16,10 +16,7 @@
       </div>
       <div class="advertisements_third_step_preview">
         <h6>{{ $t('OTHERS.AdvertisementPreview') }}</h6>
-        <img
-          src="../../../assets/media/advestement-below-search-engine.png"
-          alt=""
-        />
+        <img :src="selectedPackageImage" alt="Selected Advertisement Image" />
       </div>
     </div>
     <div class="advertisements_third_step_checkbox_ok">
@@ -90,8 +87,9 @@ export default {
 
   data() {
     return {
+      selectedPackageImage: '', // لإستقبال الصورة من Cookie
+
       isCheckboxChecked: false,
-      selectedImage: null,
       termsModalIsOpen: false,
       termsAndConditions: `
         <div dir="rtl" align="left">
@@ -249,8 +247,8 @@ export default {
     handleImageUpload(event) {
       const file = event.target.files[0]
       if (file) {
-        this.selectedImage = file // تخزين الصورة ككائن File
-        console.log('Uploaded Image:', this.selectedImage) // تتبع الصورة
+        this.selectedImage = file
+        console.log('Uploaded Image:', this.selectedImage)
       }
     },
     toggleTermsAndConditionsModal() {
@@ -265,6 +263,19 @@ export default {
         ...this.details,
         advertisementImage: this.selectedImage,
       })
+      this.$cookies.remove('selectedPackageImage')
+
+      console.log('تم حذف كوكي selectedPackageImage')
+    },
+  },
+
+  beforeUpdate() {
+    this.selectedPackageImage = this.$cookies.get('selectedPackageImage')
+    console.log(this.selectedPackageImage)
+  },
+  watch: {
+    '$cookies.get("selectedPackageImage")': function (newImage) {
+      this.selectedPackageImage = newImage
     },
   },
 }

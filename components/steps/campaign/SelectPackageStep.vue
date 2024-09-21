@@ -14,19 +14,22 @@
 
       <v-radio-group v-model="selectedPackage">
         <div class="row">
-          <div class="col-lg-4" v-for="item in packages" :key="item.id">
-            <v-radio :value="item.id" :disabled="item.disabled">
-              <template v-slot:label>
-                <CampaignPackageCard
-                  :packageData="item"
-                  :displaySubscribeBtn="false"
-                />
-                <div class="disapled_overlay" v-if="item.disabled">
-                  <p v-if="item.disable_reason">{{ item.disable_reason }}</p>
-                </div>
-              </template>
-            </v-radio>
-          </div>
+          <template>
+            <div class="col-lg-4" v-for="item in packages" :key="item.id">
+              <v-radio :value="item.id" :disabled="item.disabled">
+                <template v-slot:label>
+                  <CampaignPackageCard
+                    :packageData="item"
+                    :displaySubscribeBtn="false"
+                    :src-image="getImageForPackage(item.id)"
+                  />
+                  <div class="disapled_overlay" v-if="item.disabled">
+                    <p v-if="item.disable_reason">{{ item.disable_reason }}</p>
+                  </div>
+                </template>
+              </v-radio>
+            </div>
+          </template>
         </div>
       </v-radio-group>
 
@@ -73,7 +76,35 @@ export default {
     }
   },
 
+  computed: {
+    adsPositionSourses() {
+      return [
+        {
+          id: 4,
+          srcImg: require('@/assets/media/ads-positions-images/advestement-below-search-engine.png'),
+        },
+        {
+          id: 5,
+          srcImg: require('@/assets/media/ads-positions-images/advestement-middel-page.png'),
+        },
+        {
+          id: 6,
+          srcImg: require('@/assets/media/ads-positions-images/advestement-below-page.png'),
+        },
+      ]
+    },
+  },
+
   methods: {
+    getImageForPackage(packageId) {
+      const imageSource = this.adsPositionSourses.find(
+        (source) => source.id === packageId
+      )
+      return imageSource
+        ? imageSource.srcImg
+        : require('@/assets/media/ads-positions-images/advestement-below-page.png')
+    },
+
     // Start:: Get Packages
     async getPackages() {
       try {
@@ -105,9 +136,13 @@ export default {
         if (res.status === 200) {
           this.adPrice = res.data.data.price
 
-          const selectedPackageTitle = this.packages.find(
+          const selectedPackage = this.packages.find(
             (item) => item.id === this.selectedPackage
-          ).title
+          )
+
+          const selectedPackageTitle = selectedPackage.title
+          const positionImageSrc = this.getImageForPackage(selectedPackage.id)
+          this.$cookies.set('selectedPackageImage', positionImageSrc)
 
           this.$emit(
             'fireNavigateToNextStep',

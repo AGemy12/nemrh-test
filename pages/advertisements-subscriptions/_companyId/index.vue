@@ -40,7 +40,6 @@
                 @fireNavigateToPreviousStep="currentStep = 'detailsStep'"
                 :isWaitingApiResponse="isWaitingApiResponse"
                 :selectedPackageName="selectedPackageName"
-                :advertisementPosition="advertisementPosition"
                 @fireStepsSubmit="submitForm"
                 :details="campaignDetails"
               />
@@ -108,7 +107,6 @@ export default {
       // Start:: Title Of Package Selected
       selectedPackageName: '',
       // End:: Title Of Package Selected
-
       // Start:: Duration Limit
       durationLimit: '',
       adLink: '',
@@ -131,21 +129,22 @@ export default {
       selectedPackageTitle,
       adPrice,
       advertisementPosition,
-      companyId
+      companyId,
+      positionImageSrc
     ) {
       this.data.package = selectedPackage
       this.selectedPackageName = selectedPackageTitle
       this.originalPrice = adPrice
       this.advertisementPosition = advertisementPosition
       this.companyId = companyId
+      this.selectedPackageImage = positionImageSrc
       this.currentStep = 'detailsStep'
-      console.log('Original Price:', this.originalPrice)
     },
     // End:: Handel Next Step Navigation
 
     // Start:: Handel Steps Submit
     handleStepsSubmit(submitData) {
-      console.log('Received Submit Data:', submitData)
+      // console.log('Received Submit Data:', submitData)
 
       if (submitData && submitData.price) {
         this.selectedPackagePrice = submitData.price
@@ -154,7 +153,8 @@ export default {
         this.durationLimit = submitData.period
         this.adLink = submitData.website
         this.adImage = submitData.advertisementImage
-        console.log('Received Image Object:', this.adImage)
+        this.adImage = this.selectedPackageImage
+        // console.log('Received Image Object:', this.adImage)
 
         this.currentStep = 'previewStep'
       } else {
@@ -164,11 +164,11 @@ export default {
     // End  :: Handel Steps Submit
 
     async submitForm() {
-      console.log('company_id:', this.companyId)
-      console.log('duration_limit:', this.durationLimit)
-      console.log('ad_title:', this.selectedPackageName)
-      console.log('ad_link:', this.adLink)
-      console.log('image:', this.adImage)
+      // console.log('company_id:', this.companyId)
+      // console.log('duration_limit:', this.durationLimit)
+      // console.log('ad_title:', this.selectedPackageName)
+      // console.log('ad_link:', this.adLink)
+      // console.log('image:', this.adImage)
 
       this.$cookies.set('company_id', this.$route.params.companyId)
       this.$cookies.set('duration_limit', this.durationLimit)
@@ -179,14 +179,14 @@ export default {
       this.$cookies.set('ad_desc[en]', '.')
       this.$cookies.set('ad_notes', '.')
 
-      console.log('company_id:', this.$cookies.get('company_id'))
-      console.log('duration_limit:', this.$cookies.get('duration_limit'))
-      console.log('ad_title:', this.$cookies.get('ad_title'))
-      console.log('ad_link:', this.$cookies.get('ad_link'))
-      console.log('image:', this.$cookies.get('image'))
-      console.log('ad_desc[ar]:', this.$cookies.get('ad_desc[ar]'))
-      console.log('ad_desc[en]:', this.$cookies.get('ad_desc[en]'))
-      console.log('ad_notes:', this.$cookies.get('ad_notes'))
+      // console.log('company_id:', this.$cookies.get('company_id'))
+      // console.log('duration_limit:', this.$cookies.get('duration_limit'))
+      // console.log('ad_title:', this.$cookies.get('ad_title'))
+      // console.log('ad_link:', this.$cookies.get('ad_link'))
+      // console.log('image:', this.$cookies.get('image'))
+      // console.log('ad_desc[ar]:', this.$cookies.get('ad_desc[ar]'))
+      // console.log('ad_desc[en]:', this.$cookies.get('ad_desc[en]'))
+      // console.log('ad_notes:', this.$cookies.get('ad_notes'))
 
       if (!this.data.package) {
         console.error('Package not selected')

@@ -372,11 +372,9 @@ export default {
         if (this.$cookies.get('ad_notes'))
           REQUEST_DATA.append('ad_notes', this.$cookies.get('ad_notes'))
 
-        // استرجاع الصورة من localStorage
         const imageBase64 = localStorage.getItem('adImage')
 
         if (imageBase64) {
-          // تحويل Base64 إلى Blob
           const byteString = atob(imageBase64.split(',')[1])
           const mimeString = imageBase64
             .split(',')[0]
@@ -406,10 +404,10 @@ export default {
       REQUEST_DATA.append('bundle_id', this.$route.params.id)
       if (this.appliedCoupon) REQUEST_DATA.append('code', this.appliedCoupon)
 
-      console.log('بيانات الريكويست قبل الإرسال:')
-      REQUEST_DATA.forEach((value, key) => {
-        console.log(`${key}:`, value)
-      })
+      // console.log('بيانات الريكويست قبل الإرسال:')
+      // REQUEST_DATA.forEach((value, key) => {
+      //   console.log(`${key}:`, value)
+      // })
 
       try {
         let res = await this.$axiosRequest({
@@ -430,6 +428,9 @@ export default {
           this.$cookies.remove('company_id')
           this.$cookies.remove('ad_desc[ar]')
           this.$cookies.remove('ad_desc[en]')
+          this.$cookies.remove('duration_limit')
+          this.$cookies.remove('ad_link')
+          this.$cookies.remove('ad_title')
           this.$cookies.remove('ad_notes')
         }
 
