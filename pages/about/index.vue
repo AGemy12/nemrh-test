@@ -5,25 +5,25 @@
     <template v-else>
       <div class="container">
         <!-- ========= Start:: About Us Section ========= -->
-        <AboutSection :sectionData="{
-          image: pageData.about_image,
-          title: pageData.about_title,
-          description: pageData.about_description,
-          contact_number: pageData.contact_number,
-        }" />
+        <AboutSection
+          :sectionData="{
+            image: pageData.about_image,
+            title: pageData.about_title,
+            description: pageData.about_description,
+            contact_number: pageData.contact_number,
+          }"
+        />
         <!-- ========= End:: About Us Section ========= -->
 
         <!-- ========= Start:: Features Section ========= -->
         <FeaturesSection :sectionData="pageData.objectives" />
         <!-- ========= End:: Features Section ========= -->
-
-        <!-- ========= Start:: Page Banner ========= -->
-        <BaseBanner 
-          class="mt-8" 
-          :bannerData="pageData.about_last_section_content" 
-          data-aos="zoom-in"
+        <!-- ========= Start:: Banner ========= -->
+        <BannerUnderPage
+          :bannerImage="pageData?.bottom_ad_companies?.ad_image || null"
+          :companySiteLink="pageData?.bottom_ad_companies?.ad_link || null"
         />
-        <!-- ========= End:: Page Banner ========= -->
+        <!-- ========= End:: Banner ========= -->
       </div>
 
       <!-- ========= Start:: Clients Section ========= -->
@@ -34,11 +34,12 @@
 </template>
 
 <script>
-import MainLoader from '@/components/ui/MainLoader.vue';
-import AboutSection from '@/components/generalSections/AboutSection.vue';
-import FeaturesSection from '@/components/generalSections/FeaturesSection.vue';
-import BaseBanner from "@/components/banners/BaseBanner.vue";
-import ClientsSection from '@/components/generalSections/ClientsSection.vue';
+import MainLoader from '@/components/ui/MainLoader.vue'
+import AboutSection from '@/components/generalSections/AboutSection.vue'
+import FeaturesSection from '@/components/generalSections/FeaturesSection.vue'
+import BaseBanner from '@/components/banners/BaseBanner.vue'
+import ClientsSection from '@/components/generalSections/ClientsSection.vue'
+import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
 
 export default {
   name: 'AboutUsPage',
@@ -77,6 +78,7 @@ export default {
     FeaturesSection,
     BaseBanner,
     ClientsSection,
+    BannerUnderPage,
   },
 
   async asyncData({ $axiosRequest }) {
@@ -116,7 +118,11 @@ export default {
 <style lang="scss">
 .about_us_page_wrapper {
   padding-block: $section_block_padding 0;
-  background: linear-gradient(rgba(177, 162, 204, 0.6), rgba(177, 162, 204, 0.4), transparent);
+  background: linear-gradient(
+    rgba(177, 162, 204, 0.6),
+    rgba(177, 162, 204, 0.4),
+    transparent
+  );
 
   .clients_section_wrapper {
     padding-block: $section_block_padding * 1.3;

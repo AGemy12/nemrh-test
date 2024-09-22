@@ -4,7 +4,10 @@
 
     <template v-else>
       <!-- ========== Start:: Search Section ========= -->
-      <GlobalSearchSection />
+      <GlobalSearchSection
+        :searchAdImage="homePageData?.search_ad_companies?.ad_image || null"
+        :path="homePageData?.search_ad_companies?.ad_link || null"
+      />
       <!-- ========= End:: Search Section ========= -->
 
       <!-- ========= Start:: Golden Campaign Section ========= -->
@@ -20,8 +23,8 @@
 
       <!-- ========= Start:: Silver Campaign Section ========= -->
       <SilverCampaignSection
-        v-if="homePageData.last_companies"
-        :sectionData="homePageData.last_companies"
+        v-if="homePageData.middle_companies"
+        :sectionData="homePageData.middle_companies"
       />
       <!-- ========= End:: Silver Campaign Section ========= -->
 
@@ -40,6 +43,13 @@
           :sectionData="homePageData.message_bundles"
         /> -->
         <!-- ========= End:: Messages Packages Section ========= -->
+
+        <!-- ========= Start:: Banner ========= -->
+        <BannerUnderPage
+          :bannerImage="homePageData?.bottom_ad_companies?.ad_image || null"
+          :companySiteLink="homePageData?.bottom_ad_companies?.ad_link || null"
+        />
+        <!-- ========= End:: Banner ========= -->
 
         <!-- ========= Start:: Clients Section ========= -->
         <ClientsSection
@@ -65,9 +75,9 @@ import GoldenCampaignSection from '@/components/generalSections/01.GoldenCampaig
 import PremiumCampaignSection from '@/components/generalSections/02.PremiumCampaignSection.vue'
 import SilverCampaignSection from '@/components/generalSections/03.SilverCampaignSection.vue'
 import AboutSection from '@/components/generalSections/AboutSection.vue'
-import MessagingPackagesSection from '@/components/generalSections/MessagingPackagesSection.vue'
 import ClientsSection from '@/components/generalSections/ClientsSection.vue'
 import SpiderModel from '@/components/ui/modals/SpiderModel.vue'
+import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
 
 export default {
   name: 'HomePage',
@@ -109,6 +119,7 @@ export default {
     AboutSection,
     ClientsSection,
     SpiderModel,
+    BannerUnderPage,
   },
 
   async asyncData({ $axiosRequest }) {
@@ -168,25 +179,6 @@ export default {
     },
   },
 
-  scrollToSection() {
-    const targetSectionId = 'pricing'
-
-    if (window.location.hash === `#${targetSectionId}`) {
-      // إذا كنت بالفعل في نفس القسم، قم بإزالة الـ hash
-      history.replaceState(null, null, ' ')
-    } else {
-      // إذا لم تكن في القسم المستهدف، انتقل إليه
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-
-      setTimeout(() => {
-        const section = document.querySelector(`#${targetSectionId}`)
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' })
-          history.replaceState(null, null, `#${targetSectionId}`)
-        }
-      }, 500)
-    }
-  },
   mounted() {
     // Start:: Fire Methods
     if (this.homePageData) {

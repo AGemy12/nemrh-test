@@ -3,15 +3,6 @@
 
   <section class="pricing_page_content_wrapper" v-else>
     <template>
-      <!-- ========= Start:: Page Banner ========= -->
-      <BaseBanner
-        class="hero_banner_wrapper"
-        :bannerImage="require('@/assets/media/images/pricing_banner.svg')"
-        :bannerData="firstPannerData"
-        :showBannerButton="false"
-      />
-      <!-- ========= End:: Page Banner ========= -->
-
       <!-- ========= Start::  Find Company Section ========= -->
       <section class="find_your_company container">
         <div class="title_wrapper">
@@ -70,7 +61,6 @@
 
 <script>
 import MainLoader from '@/components/ui/MainLoader.vue'
-import BaseBanner from '@/components/banners/BaseBanner.vue'
 import isValidEmail from '@/utils/isValidEmail'
 import SpiderModel from '~/components/ui/modals/SpiderModel.vue'
 
@@ -114,7 +104,6 @@ export default {
   components: {
     MainLoader,
     SpiderModel,
-    BaseBanner,
   },
 
   data() {

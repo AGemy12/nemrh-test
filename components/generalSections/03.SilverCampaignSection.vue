@@ -1,21 +1,28 @@
 <template>
   <section class="silver_campaign_section_content_wrapper">
-    <h2 class="section_title" v-html="$t('TITLES.SilverCampaignSec.title')"></h2>
-    <p class="section_desc" v-lettering="{ splits: [' '] }" :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'">
-      {{ $t("TITLES.SilverCampaignSec.desc") }}
+    <h2
+      class="section_title"
+      v-html="$t('TITLES.SilverCampaignSec.title')"
+    ></h2>
+    <p
+      class="section_desc"
+      v-lettering="{ splits: [' '] }"
+      :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'"
+    >
+      {{ $t('TITLES.SilverCampaignSec.desc') }}
     </p>
 
     <div class="companies_content_wrapper">
-      <SilverCampaignCarousel :carouselItems="sectionData"/>
+      <SilverCampaignCarousel :carouselItems="sectionData" />
     </div>
   </section>
 </template>
 
 <script>
-import SilverCampaignCarousel from '@/components/carousels/SilverCampaignCarousel.vue';
+import SilverCampaignCarousel from '@/components/carousels/SilverCampaignCarousel.vue'
 
 export default {
-  name: "SilverCampaignSection",
+  name: 'SilverCampaignSection',
 
   components: {
     SilverCampaignCarousel,
@@ -63,11 +70,11 @@ export default {
     text-align: center;
     max-width: 40%;
 
-    &>span {
+    & > span {
       display: inline-block;
       margin-inline: 0.1rem;
 
-      &:nth-last-of-type(-n+2) {
+      &:nth-last-of-type(-n + 2) {
         color: var(--main_theme_clr);
         font-family: $semi_bold_font !important;
       }
@@ -100,5 +107,6 @@ export default {
       margin-block: 0.5rem;
       max-width: 95%;
     }
-  };
-}</style>
+  }
+}
+</style>

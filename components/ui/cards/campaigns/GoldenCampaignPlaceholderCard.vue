@@ -10,7 +10,7 @@
 
     <nuxt-link
       class="add_campaign_route"
-      :to="localePath('/advertisements-subscriptions')"
+      :to="localePath('/find-your-company')"
     >
       {{ $t('BUTTONS.addCampaign') }}
     </nuxt-link>

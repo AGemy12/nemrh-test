@@ -103,6 +103,7 @@
     "CompaniesAndCampaignsForms": {
       "title": "Advertise your company easily with Nemrh",
       "addCompanyTitle": "Add your company easily with Nemrh",
+      "CanCompanyAd": " Advertise your company here",
       "desc": "Any questions or comments? Just write us a message!",
       "campaignDetailsStep": "If you subscribe to a major package, fill in the features to be displayed",
       "selectPackageStep": "Select Package",

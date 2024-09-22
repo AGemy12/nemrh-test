@@ -52,7 +52,14 @@
         </button>
       </form>
       <div class="below_search_engine_banner">
-        <img src="../../assets/media/diyarsco-banner.jpg" alt="" />
+        <a :href="addProtocol(path)" v-if="searchAdImage" target="_blank">
+          <img :src="searchAdImage" alt="إعلان تحت محرك البحث" />
+        </a>
+        <div class="below_search_engine_banner_alt" v-else>
+          <a href="/find-your-company">
+            {{ $t('TITLES.CompaniesAndCampaignsForms.CanCompanyAd') }}
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -71,6 +78,12 @@ export default {
     displayDescription: {
       type: Boolean,
       default: true,
+    },
+    searchAdImage: {
+      type: String,
+    },
+    path: {
+      type: String,
     },
   },
 
@@ -103,6 +116,13 @@ export default {
   },
 
   methods: {
+    addProtocol(link) {
+      if (link && !/^https?:\/\//i.test(link)) {
+        return `https://${link}`
+      }
+      return link
+    },
+
     // Start:: Pass Search Keyword Data To Parent Component
     handelSearch() {
       if (!this.$route.path.includes('/companies')) {
@@ -260,13 +280,49 @@ export default {
     }
     .below_search_engine_banner {
       margin: 30px auto 0 auto;
-      max-width: 700px;
+      max-width: 1000px;
+      @include simpleShadow;
       @media (max-width: 450px) {
-        margin-top: 10px;
+        margin-top: 30px;
         margin-bottom: 10px;
       }
-      img {
-        width: 100%;
+      a {
+        @include flex(center, center);
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+        }
+      }
+      .below_search_engine_banner_alt {
+        width: 750px;
+        background-color: var(--main_theme_clr);
+        @media (max-width: 768px) {
+          width: 300px;
+          height: 100px;
+          a {
+            font-size: 15px;
+          }
+        }
+        height: 150px;
+        @include flex(center, center);
+        a {
+          padding: 10px;
+          border: 1px solid var(--white);
+          background-color: var(--white);
+          color: var(--dark);
+          font-size: 20px;
+          font-weight: bold;
+          border-radius: 5px;
+          transition: 0.5s;
+          &:hover {
+            background-color: var(--main_theme_clr);
+            color: var(--white);
+          }
+          @media (max-width: 768px) {
+            font-size: 14px;
+          }
+        }
       }
     }
   }

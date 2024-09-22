@@ -1,70 +1,70 @@
 <template>
   <div class="silver_campaign_carousel_wrapper">
     <client-only>
-        <swiper-carousel
-          class="silver_campaign_carousel"
-          :options="swiperOption"
-          :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'"
+      <swiper-carousel
+        class="silver_campaign_carousel"
+        :options="swiperOption"
+        :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'"
+      >
+        <swiper-slide
+          class="slide_wrapper"
+          v-for="(item, index) in carouselItems"
+          :key="item.id"
+          data-aos="fade-up"
+          data-aos-duration="400"
+          :data-aos-delay="index * 400"
         >
-          <swiper-slide
-            class="slide_wrapper"
-            v-for="(item, index) in carouselItems"
-            :key="item.id"
-            data-aos="fade-up" 
-            data-aos-duration="400"
-            :data-aos-delay="index * 400" 
-          >
-            <SilverCampaignCard :campaignData="item" />
-          </swiper-slide>
-        </swiper-carousel>
-      </client-only>
+          <SilverCampaignCard :campaignData="item" />
+        </swiper-slide>
+      </swiper-carousel>
+    </client-only>
   </div>
 </template>
 
 <script>
-  import SilverCampaignCard from '@/components/ui/cards/campaigns/SilverCampaignCard.vue';
+import SilverCampaignCard from '@/components/ui/cards/campaigns/SilverCampaignCard.vue'
 
-  export default {
-    name: "SilverCampaignCarousel",
+export default {
+  name: 'SilverCampaignCarousel',
 
-    components: {
-      SilverCampaignCard,
+  components: {
+    SilverCampaignCard,
+  },
+
+  props: {
+    carouselItems: {
+      type: Array,
+      required: true,
     },
+  },
 
-    props: {
-      carouselItems: {
-        type: Array,
-        required: true,
-      },
-    },
-
-    data() {
-      return {
-        swiperOption: {
-          grabCursor: true,
-          loop: false,
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
+  data() {
+    return {
+      swiperOption: {
+        grabCursor: true,
+        loop: false,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 12,
           },
-          breakpoints: {
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 12,
-            },
-            850: {
-              slidesPerView: 2,
-              spaceBetween: 12,
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-            },
+          850: {
+            slidesPerView: 2,
+            spaceBetween: 12,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20,
           },
         },
-      }
-    },
-  }
+      },
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>

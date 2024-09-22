@@ -15,7 +15,11 @@
       <v-radio-group v-model="selectedPackage">
         <div class="row">
           <template>
-            <div class="col-lg-4" v-for="item in packages" :key="item.id">
+            <div
+              class="col-12 col-md-6"
+              v-for="item in packages"
+              :key="item.id"
+            >
               <v-radio :value="item.id" :disabled="item.disabled">
                 <template v-slot:label>
                   <CampaignPackageCard
@@ -81,7 +85,7 @@ export default {
       return [
         {
           id: 4,
-          srcImg: require('@/assets/media/ads-positions-images/advestement-below-search-engine.png'),
+          srcImg: require('@/assets/media/ads-positions-images/advestement-square-rec.png'),
         },
         {
           id: 5,
@@ -90,6 +94,10 @@ export default {
         {
           id: 6,
           srcImg: require('@/assets/media/ads-positions-images/advestement-below-page.png'),
+        },
+        {
+          id: 7,
+          srcImg: require('@/assets/media/ads-positions-images/advestement-below-search-engine.png'),
         },
       ]
     },

@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .package_card_wrapper {
-  min-height: 250px;
+  min-height: 200px;
   padding: 0.5rem 0;
   @include flex(space-between, center, column);
   row-gap: 1.3rem;
@@ -73,7 +73,7 @@ export default {
   .package_name {
     margin: 0 auto !important;
     font-family: $semi_bold_font;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding-top: 0.5rem;
   }
   .package_card_position {

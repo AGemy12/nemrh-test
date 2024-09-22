@@ -184,7 +184,7 @@ export default {
       // End:: Data Collection To Send
 
       // Start:: Categories Data
-      categories: [30, 90, 180, 365],
+      categories: [30, 90, 180, 360],
       // End:: Categories Data
 
       discountedPrice: this.originalPrice,
@@ -277,7 +277,7 @@ export default {
           'discountedPrice',
           6 * originalPrice - originalPrice * discountRate * 6
         )
-      } else if (period === 365) {
+      } else if (period === 360) {
         discountRate = 0.3
         this.$set(
           this,

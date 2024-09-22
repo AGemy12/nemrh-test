@@ -25,15 +25,11 @@
       <!-- ========= Start:: Site Cycle Steps Section ========= -->
       <SiteCycleStepsSection />
       <!-- ========= End:: Site Cycle Steps Section ========= -->
-
       <!-- ========= Start:: Banner ========= -->
-      <div class="container">
-        <BaseBanner
-          class="mt-5"
-          :bannerData="lastPannerData"
-          data-aos="fade-up"
-        />
-      </div>
+      <BannerUnderPage
+        :bannerImage="homePageData?.bottom_ad_companies?.ad_image || null"
+        :companySiteLink="homePageData?.bottom_ad_companies?.ad_link || null"
+      />
       <!-- ========= End:: Banner ========= -->
     </template>
   </section>
@@ -44,6 +40,7 @@ import MainLoader from '@/components/ui/MainLoader.vue'
 import PackagesSection from '@/components/generalSections/PackagesSection.vue'
 import SiteCycleStepsSection from '@/components/generalSections/SiteCycleStepsSection.vue'
 import BaseBanner from '@/components/banners/BaseBanner.vue'
+import BannerUnderPage from '@/components/banners/BannerUnderPage.vue'
 
 export default {
   name: 'SubscriptionsPage',
@@ -81,23 +78,49 @@ export default {
     PackagesSection,
     SiteCycleStepsSection,
     BaseBanner,
+    BannerUnderPage,
   },
+
+  // async asyncData({ $axiosRequest }) {
+  //   try {
+  //     // ********** Start:: Implement Request ********** //
+  //     let res = await $axiosRequest({
+  //       method: 'GET',
+  //       url: 'message_bundles',
+  //     })
+  //     // ********** End:: Implement Request ********** //
+  //     return {
+  //       messagingPackages: res.data.data,
+  //       firstPannerData: res.data.additional_data?.first_section_title,
+  //       lastPannerData: res.data.additional_data?.last_section_title,
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // },
 
   async asyncData({ $axiosRequest }) {
     try {
       // ********** Start:: Implement Request ********** //
       let res = await $axiosRequest({
         method: 'GET',
-        url: 'message_bundles',
+        url: 'pages/home',
       })
       // ********** End:: Implement Request ********** //
       return {
-        messagingPackages: res.data.data,
-        firstPannerData: res.data.additional_data?.first_section_title,
-        lastPannerData: res.data.additional_data?.last_section_title,
+        homePageData: res.data.data,
       }
     } catch (err) {
-      console.log(err)
+      console.log(err.response ? err.response.data.message : err.message)
+      return {
+        homePageData: {
+          middle_company: null,
+          last_companies: null,
+          about: null,
+          message_bundles: null,
+          partners: null,
+        },
+      }
     }
   },
 
@@ -116,7 +139,7 @@ export default {
 
   mounted() {
     // Start:: Fire Methods
-    if (this.messagingPackages) {
+    if (this.homePageData) {
       this.pageIsLoading = !this.pageIsLoading
     }
     // End:: Fire Methods

@@ -2,7 +2,10 @@
   <section class="companies_page_content_wrapper">
     <div class="container">
       <!-- ========== Start:: Search ========= -->
-      <GlobalSearchSection :displayDescription="false" />
+      <GlobalSearchSection
+        :searchAdImage="homePageData?.search_ad_companies?.ad_image || null"
+        :path="homePageData?.search_ad_companies?.ad_link || null"
+      />
       <!-- ========= End:: Search ========= -->
 
       <!-- ========= Start:: Companies Categories ========= -->
@@ -26,11 +29,12 @@
       />
       <!-- ========= End:: Companies Table ========= -->
 
-      <!-- ========= Start:: Page Banner ========= -->
-      <div class="container">
-        <BaseBanner v-if="bannerData" class="mt-8" :bannerData="bannerData" />
-      </div>
-      <!-- ========= End:: Page Banner ========= -->
+      <!-- ========= Start:: Banner ========= -->
+      <BannerUnderPage
+        :bannerImage="homePageData?.bottom_ad_companies?.ad_image || null"
+        :companySiteLink="homePageData?.bottom_ad_companies?.ad_link || null"
+      />
+      <!-- ========= End:: Banner ========= -->
     </div>
   </section>
 </template>
@@ -40,6 +44,7 @@ import GlobalSearchSection from '@/components/generalSections/GlobalSearchSectio
 import CategoriesButtonsCarousel from '@/components/carousels/CategoriesButtonsCarousel.vue'
 import CompaniesTable from '@/components/tables/CompaniesTable.vue'
 import BaseBanner from '@/components/banners/BaseBanner.vue'
+import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
 
 export default {
   name: 'Companies',
@@ -77,6 +82,7 @@ export default {
     CategoriesButtonsCarousel,
     CompaniesTable,
     BaseBanner,
+    BannerUnderPage,
   },
 
   data() {
@@ -143,6 +149,29 @@ export default {
       document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
     },
     // End:: Page Query Param Watcher To Get Page Data Based On It's Change
+  },
+
+  async asyncData({ $axiosRequest }) {
+    try {
+      // ********** Start:: Implement Request ********** //
+      let res = await $axiosRequest({
+        method: 'GET',
+        url: 'pages/home',
+      })
+      // ********** End:: Implement Request ********** //
+      return {
+        homePageData: res.data.data,
+      }
+    } catch (err) {
+      console.log(err.response ? err.response.data.message : err.message)
+      return {
+        homePageData: {
+          middle_company: null,
+          last_companies: null,
+          message_bundles: null,
+        },
+      }
+    }
   },
 
   methods: {

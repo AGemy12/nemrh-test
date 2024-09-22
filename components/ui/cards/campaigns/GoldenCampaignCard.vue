@@ -20,7 +20,11 @@
       </div>
     </div>
 
-    <a class="item_website_link" :href="campaignData.website" target="_blank">
+    <a
+      class="item_website_link"
+      :href="addProtocol(campaignData.website)"
+      target="_blank"
+    >
       {{ $t('BUTTONS.visitWebsite') }}
     </a>
   </div>
@@ -40,6 +44,15 @@ export default {
     campaignData: {
       type: Object,
       required: true,
+    },
+  },
+
+  methods: {
+    addProtocol(link) {
+      if (link && !/^https?:\/\//i.test(link)) {
+        return `https://${link}`
+      }
+      return link
     },
   },
 }
