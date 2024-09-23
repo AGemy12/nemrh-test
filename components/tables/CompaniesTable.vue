@@ -81,15 +81,39 @@
     </v-data-table>
 
     <!-- Start:: Start Campaign Modal -->
-    <div class="d-flex justify-content-end flex-wrap" v-if="userIsLoggedIn">
+    <div
+      class="mt-5 py-2 d-flex justify-content-end align-items-center flex-wrap"
+      v-if="userIsLoggedIn"
+    >
+      <button
+        type="button"
+        class="messages_compains_info mx-3 d-flex align-items-center"
+        @click.stop="toggleTermsAndConditionsModal"
+      >
+        <i class="fa-solid fa-circle-info"></i>
+      </button>
+
       <base-button
-        class="mt-5 py-2 mx-3 select_companies"
+        class="mx-3 select_companies"
         :btnText="$t('BUTTONS.selectCompanies')"
         @fireClick="SendSelectedCategoryToModal"
       />
 
+      <TextContentModal
+        v-if="termsModalIsOpen"
+        contentIsHtml
+        :modalIsOpen="termsModalIsOpen"
+        :modalTitle="$t('TITLES.StaticContentPages.messagesCompainesHelper')"
+        :modalBody="
+          $i18n.locale === 'ar' ? termsAndConditionsAr : termsAndConditionsEn
+        "
+        :modalBtnText="$t('BUTTONS.agree')"
+        @toggleModal="toggleTermsAndConditionsModal"
+        @fireConfirmClick="agreeToTermsAndConditions"
+      />
+
       <base-button
-        class="mt-5 py-2 mx-3"
+        class="mx-3"
         :btnText="$t('BUTTONS.startCampaign')"
         styleType="primary_btn"
         :disabled="selectedCompanies.length === 0"
@@ -173,6 +197,7 @@ import ConfirmationModal from '@/components/modals/general/ConfirmationModal.vue
 import AddWhatsappNumber from '@/components/modals/addWhatsappNumber/AddWhatsappNumber.vue'
 import ScanWhatsappQrCode from '~/components/modals/addWhatsappNumber/ScanWhatsappQrCode.vue'
 import StartCampaignModal from '@/components/modals/companies/StartCompaginModal.vue'
+import TextContentModal from '../modals/general/TextContentModal.vue'
 
 export default {
   name: 'CompaniesTable',
@@ -213,6 +238,7 @@ export default {
     ConfirmationModal,
     AddWhatsappNumber,
     ScanWhatsappQrCode,
+    TextContentModal,
   },
 
   data() {
@@ -221,6 +247,138 @@ export default {
       isWaitingApiResponse: false,
       isWaitingApiCopyNumberResponse: false,
       // End:: Loaders Controlling Data
+
+      termsModalIsOpen: false,
+
+      termsAndConditionsAr: `
+        <div dir="rtl" align="left">
+          <strong>
+          <table><colgroup><col width="624"></colgroup>
+            <tbody>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 1.  مدة صلاحية الباقة: </h6>
+                  <p dir="rtl" style='font-size:15px;'>يجب استخدام الباقة خلال الفترة المحددة للاشتراك. بعد انتهاء الفترة، سيتم إلغاء أي رسائل غير مستخدمة ولن يتم ترحيلها إلى الفترة التالية.
+                  </p>
+                  </p>
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 2. المسؤولية عن الاستخدام: </h6>
+                  <p dir="rtl" style='font-size:15px;'>إذا قام المستخدم بإرسال جميع الرسائل دفعة واحدة، فإن الموقع غير مسؤول عن أي مشاكل قد تحدث نتيجة لذلك، وتقع المسؤولية كاملة على المستخدم لضمان إرسال الرسائل بشكل صحيح.
+                  </p>
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 3. الرسائل غير المرسلة: </h6>
+                  <p dir="rtl" style='font-size:15px;'>في حال واجه المستخدم مشكلة في إرسال الرسائل نتيجة لخطأ في بيانات الاتصال أو أي خطأ تقني ناتج عن المستخدم، فإن الموقع غير ملزم بتعويض الرسائل غير المرسلة.
+                  </p>
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 4. التحقق من البيانات: </h6>
+                  <p dir="rtl" style='font-size:15px;'> تقع على عاتق المستخدم مسؤولية التأكد من صحة أرقام الهواتف أو العناوين البريدية التي يتم إرسال الرسائل إليها. الموقع غير مسؤول عن أي رسائل تُرسل إلى أرقام أو عناوين خاطئة.
+                  </p>
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 5. السياسة المتعلقة بالاسترداد: </h6>
+                  <p dir="rtl" style='font-size:15px;'>لا يمكن استرداد قيمة الباقة بعد بدء استخدامها، حتى لو لم يتم استخدام كافة الرسائل.
+                  </p>
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 6. التحديثات التقنية: </h6>
+                  <p dir="rtl" style='font-size:15px;'> يحق للموقع إجراء تحديثات أو تحسينات على النظام في أي وقت، وقد يتطلب ذلك انقطاعًا مؤقتًا في الخدمة. سيتم إعلام المستخدمين في حال حدوث أي انقطاع.
+                  </p>
+                 
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 7. الاستخدام القانوني: </h6>
+                  <p dir="rtl" style='font-size:15px;'>يجب استخدام الباقة في إطار القوانين المعمول بها، وأي استخدام غير قانوني للرسائل قد يؤدي إلى إيقاف الخدمة دون إشعار مسبق.
+                  </p>
+                </td>
+              </tr>
+              <tr style='margin:10px 0;'>
+                <td dir="ltr">
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 8.  التحذيرات الأمنية: </h6>
+                  <p dir="rtl" style='font-size:15px;'>يجب على المستخدم التأكد من حماية حسابه وتغيير كلمات المرور بانتظام لضمان عدم إساءة استخدام الباقة.
+                  </p>
+                </td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+        <p>&nbsp;</p>
+        `,
+      termsAndConditionsEn: `
+      <div dir="ltr" align="left">
+  <strong>
+    <table>
+      <colgroup><col width="624"></colgroup>
+      <tbody>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>1. Package Validity Period:</h6>
+            <p dir="ltr" style='font-size:15px;'>The package must be used within the specified subscription period. Unused messages will be canceled after the period ends and will not be carried over to the next period.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>2. Responsibility for Usage:</h6>
+            <p dir="ltr" style='font-size:15px;'>If the user sends all messages at once, the website is not responsible for any issues that arise, and it is the user's responsibility to ensure proper message delivery.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>3. Unsent Messages:</h6>
+            <p dir="ltr" style='font-size:15px;'>If the user encounters an issue sending messages due to incorrect contact details or a technical error caused by the user, the website is not obligated to compensate for unsent messages.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>4. Data Verification:</h6>
+            <p dir="ltr" style='font-size:15px;'>It is the user's responsibility to ensure the accuracy of phone numbers or email addresses to which messages are sent. The website is not responsible for messages sent to incorrect numbers or addresses.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>5. Refund Policy:</h6>
+            <p dir="ltr" style='font-size:15px;'>The package value cannot be refunded after it has been used, even if not all messages have been sent.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>6. Technical Updates:</h6>
+            <p dir="ltr" style='font-size:15px;'>The website reserves the right to make system updates or improvements at any time, which may require temporary service interruptions. Users will be notified of any disruptions.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>7. Legal Use:</h6>
+            <p dir="ltr" style='font-size:15px;'>The package must be used within the framework of applicable laws, and any illegal use of messages may result in service suspension without prior notice.</p>
+          </td>
+        </tr>
+        <tr style='margin:10px 0;'>
+          <td dir="ltr">
+            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>8. Security Warnings:</h6>
+            <p dir="ltr" style='font-size:15px;'>Users must ensure the security of their account and regularly change passwords to prevent misuse of the package.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </strong>
+</div>
+
+      `,
 
       // Start:: Selected Items Data
       selectedCompanies: [],
@@ -299,6 +457,14 @@ export default {
   },
 
   methods: {
+    toggleTermsAndConditionsModal() {
+      this.termsModalIsOpen = !this.termsModalIsOpen
+    },
+    agreeToTermsAndConditions() {
+      this.termsAgreement = true
+      this.toggleTermsAndConditionsModal()
+    },
+
     // Start:: Handel Pagination Query Params
     updateRouterQueryParam(pagenationValue) {
       this.$router.push({
@@ -511,7 +677,6 @@ export default {
   .select_companies {
     @include primaryBtnStyle;
     font-size: 1rem;
-    margin-top: 35px;
     width: max-content;
     border: 1px solid transparent;
     background-image: linear-gradient(90deg, transparent 50%, var(--white) 50%);
@@ -540,6 +705,12 @@ export default {
         }
       }
     }
+  }
+}
+.messages_compains_info {
+  svg {
+    color: var(--main_theme_clr);
+    font-size: 25px;
   }
 }
 </style>

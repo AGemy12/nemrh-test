@@ -160,7 +160,8 @@
     "StaticContentPages": {
       "termsAndConditions": "الشروط و الاحكام",
       "privacyPolicy": "سياسة الخصوصية",
-      "pageDesc": "أي أسئلة أو تعليقات؟ فقط اكتب لنا رسالة!"
+      "pageDesc": "أي أسئلة أو تعليقات؟ فقط اكتب لنا رسالة!",
+      "messagesCompainesHelper": "تعليمات وملاحظات مستخدم حزم الرسائل"
     },
     "EmptyContent": {
       "emptyRates": "لا توجد تعليقات، كن أول من يعلق على الشركة"

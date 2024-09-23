@@ -160,7 +160,8 @@
     "StaticContentPages": {
       "termsAndConditions": "Terms And Conditions",
       "privacyPolicy": "Privacy Policy",
-      "pageDesc": "Any questions or comments? Just write us a message!"
+      "pageDesc": "Any questions or comments? Just write us a message!",
+      "messagesCompainesHelper": "Message package user instructions and notes"
     },
     "EmptyContent": {
       "emptyRates": "There are no comments, be the first to comment on the company"

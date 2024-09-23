@@ -146,21 +146,35 @@ export default {
       // Start:: Append Request Data
       const REQUEST_DATA = new FormData()
       REQUEST_DATA.append('_method', 'PUT')
+      REQUEST_DATA.append(
+        'category_id',
+        this.data.workField && this.data.workField.id
+          ? this.data.workField.id
+          : null
+      )
       REQUEST_DATA.append('company_id', this.companyId)
       REQUEST_DATA.append('title[ar]', this.data.nameAr)
       REQUEST_DATA.append('title[en]', this.data.nameEn)
       REQUEST_DATA.append('main_service[ar]', this.data.serviceAr)
       REQUEST_DATA.append('main_service[en]', this.data.serviceEn)
-      REQUEST_DATA.append('category_id', this.data.workField.id)
+      REQUEST_DATA.append(
+        'category_id',
+        this.data.workField ? this.data.workField.id : null
+      )
       REQUEST_DATA.append('desc[ar]', this.data.descAr)
       REQUEST_DATA.append('desc[en]', this.data.descEn)
       REQUEST_DATA.append('phone', this.data.whatsappNumber)
       REQUEST_DATA.append('email', this.data.email)
       REQUEST_DATA.append('link', this.data.website)
-      this.data.socialLinks.forEach((item, index) => {
-        REQUEST_DATA.append(`socials[${index}][id]`, item.platform.id)
-        REQUEST_DATA.append(`socials[${index}][link]`, item.link)
-      })
+
+      if (this.data.socialLinks && Array.isArray(this.data.socialLinks)) {
+        this.data.socialLinks.forEach((item, index) => {
+          if (item.platform && item.platform.id) {
+            REQUEST_DATA.append(`socials[${index}][id]`, item.platform.id)
+            REQUEST_DATA.append(`socials[${index}][link]`, item.link)
+          }
+        })
+      }
       REQUEST_DATA.append('location[ar]', this.data.addressAr)
       REQUEST_DATA.append('location[en]', this.data.addressEn)
       REQUEST_DATA.append('image', this.data.logo.file)

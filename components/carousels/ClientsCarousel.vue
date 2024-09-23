@@ -74,11 +74,15 @@ export default {
 .clients_carousel_wrapper {
   .clients_carousel {
     .slide_wrapper {
+      flex-shrink: 0;
       .client_image_card {
         inline-size: 100%;
         block-size: 5rem;
         img {
           inline-size: 213.25px;
+          @media (max-width: 480px) {
+            inline-size: 143.5px;
+          }
           block-size: 100%;
           aspect-ratio: 3/2;
           object-fit: contain;

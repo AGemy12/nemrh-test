@@ -46,11 +46,13 @@
     </div>
 
     <TextContentModal
-      v-if="termsModalIsOpen && termsAndConditions"
+      v-if="termsModalIsOpen"
       contentIsHtml
       :modalIsOpen="termsModalIsOpen"
       :modalTitle="$t('TITLES.StaticContentPages.termsAndConditions')"
-      :modalBody="termsAndConditions"
+      :modalBody="
+        $i18n.locale === 'ar' ? termsAndConditionsAr : termsAndConditionsEn
+      "
       :modalBtnText="$t('BUTTONS.agree')"
       @toggleModal="toggleTermsAndConditionsModal"
       @fireConfirmClick="agreeToTermsAndConditions"
@@ -87,11 +89,13 @@ export default {
 
   data() {
     return {
-      selectedPackageImage: '', // لإستقبال الصورة من Cookie
+      selectedPackageImage: '',
 
       isCheckboxChecked: false,
       termsModalIsOpen: false,
-      termsAndConditions: `
+      isWaitingApiResponse: false, // Define this here
+
+      termsAndConditionsAr: `
         <div dir="rtl" align="left">
           <strong>
             <h5 style="width:fit-content; margin:10px auto 20px auto; font-weight:bold;font-size:18px" >شروط واحكام النشر الاعلاني في موقع نمره </h5>
@@ -100,7 +104,7 @@ export default {
             <tbody>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 1. الامتثال للقوانين واللوائح </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 1. الامتثال للقوانين واللوائح </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب أن يتوافق المحتوى الإعلاني مع القوانين والأنظمة المعمول بها في المملكة، بما في ذلك نظام الإعلام المرئي والمسموع.
                   </p>
                   <p dir="rtl" style='font-size:15px;'>يجب الالتزام بالقوانين الخاصة بالإعلانات التجارية والترويجية.
@@ -109,7 +113,7 @@ export default {
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 2. الاحترام للقيم والثقافة </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 2. الاحترام للقيم والثقافة </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب أن يكون المحتوى الإعلاني متوافقًا مع القيم الدينية والاجتماعية والثقافية للمملكة.
                   </p>
                   <p dir="rtl" style='font-size:15px;'>يُمنع نشر أي محتوى يتعارض مع الشريعة الإسلامية أو القوانين السعودية، مثل المحتوى المثير للجدل أو الذي يحتوي على مواد غير لائقة.
@@ -118,7 +122,7 @@ export default {
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 3. الشفافية والإفصاح </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 3. الشفافية والإفصاح </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب أن يكون المحتوى الإعلاني واضحًا وصريحًا، ويجب أن يتم الإعلان عن أي شراكات تجارية أو تعويضات مالية بوضوح.
                   </p>
                   <p dir="rtl" style='font-size:15px;'> يُفترض أن يتم توضيح طبيعة الإعلان وأن يكون خاليًا من أي تلاعب أو خداع.
@@ -127,21 +131,21 @@ export default {
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 4. الحقوق الملكية الفكرية </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 4. الحقوق الملكية الفكرية </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب احترام حقوق الملكية الفكرية وعدم استخدام أو نشر أي محتوى محمي بحقوق الطبع والنشر دون الحصول على إذن مسبق من أصحاب الحقوق.
                   </p>
                 </td>
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 5. الموافقة المسبقة </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 5. الموافقة المسبقة </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب الحصول على موافقة الهيئة قبل نشر أي محتوى إعلاني قد يكون له تأثير كبير أو يتطلب تصاريح خاصة.
                   </p>
                 </td>
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 6. الرقابة والتقارير </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 6. الرقابة والتقارير </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب أن يكون هناك آلية لمراقبة المحتوى الإعلاني وتقديم تقارير عن أي انتهاكات أو مخالفات.
                   </p>
                   <p dir="rtl" style='font-size:15px;'>يمكن للهيئة طلب مراجعة أو تعديل المحتوى الإعلاني إذا لزم الأمر.
@@ -150,14 +154,14 @@ export default {
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 7. التزام المعايير الإعلانية </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 7. التزام المعايير الإعلانية </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب أن تلتزم الإعلانات بالمعايير الفنية والإعلانية المعتمدة من الهيئة، مثل حجم الإعلانات والمحتوى المرئي والمسموع.
                   </p>
                 </td>
               </tr>
               <tr style='margin-bottom:10px;'>
                 <td dir="ltr">
-                  <h6 dir="rtl" style='font-size:16px; font-weight:bold ' > 8. حماية البيانات الشخصية </h6>
+                  <h6 dir="rtl" style='font-size:16px; font-weight:bold margin:10px 0; ' > 8. حماية البيانات الشخصية </h6>
                   <p dir="rtl" style='font-size:15px;'>يجب أن تتوافق الإعلانات مع قوانين حماية البيانات الشخصية وعدم استخدامها بشكل غير قانوني.
                   </p>
                 </td>
@@ -174,6 +178,76 @@ export default {
         </div>
         <p>&nbsp;</p>
         `,
+      termsAndConditionsEn: `
+      <div dir="ltr" align="left">
+  <strong>
+    <h5 style="width:fit-content; margin:10px auto 20px auto; font-weight:bold;font-size:18px">Advertising Terms and Conditions on Nemrah Website</h5>
+  </strong>
+  <table>
+    <colgroup><col width="624"></colgroup>
+    <tbody>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>1. Compliance with Laws and Regulations</h6>
+          <p dir="ltr" style='font-size:15px;'>Advertising content must comply with the applicable laws and regulations in the Kingdom, including the Audio-Visual Media Law.</p>
+          <p dir="ltr" style='font-size:15px;'>Adherence to commercial and promotional advertising laws is mandatory.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>2. Respect for Values and Culture</h6>
+          <p dir="ltr" style='font-size:15px;'>The advertising content must align with the religious, social, and cultural values of the Kingdom.</p>
+          <p dir="ltr" style='font-size:15px;'>It is prohibited to publish content that contradicts Islamic law or Saudi laws, such as controversial or inappropriate material.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>3. Transparency and Disclosure</h6>
+          <p dir="ltr" style='font-size:15px;'>The advertising content must be clear and explicit, and any commercial partnerships or financial compensations must be clearly disclosed.</p>
+          <p dir="ltr" style='font-size:15px;'>The nature of the advertisement should be clear, free from any manipulation or deceit.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>4. Intellectual Property Rights</h6>
+          <p dir="ltr" style='font-size:15px;'>Intellectual property rights must be respected, and no content protected by copyright can be used or published without prior permission from the rights holders.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>5. Prior Approval</h6>
+          <p dir="ltr" style='font-size:15px;'>Approval from the relevant authorities must be obtained before publishing any advertising content that may have significant impact or require special permits.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>6. Monitoring and Reporting</h6>
+          <p dir="ltr" style='font-size:15px;'>There must be a mechanism to monitor advertising content and report any violations or infringements.</p>
+          <p dir="ltr" style='font-size:15px;'>The authority may request a review or modification of the advertising content if necessary.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>7. Compliance with Advertising Standards</h6>
+          <p dir="ltr" style='font-size:15px;'>Advertisements must comply with the technical and advertising standards set by the authority, including the size of ads and audiovisual content.</p>
+        </td>
+      </tr>
+      <tr style='margin-bottom:10px;'>
+        <td dir="ltr">
+          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>8. Protection of Personal Data</h6>
+          <p dir="ltr" style='font-size:15px;'>Advertisements must comply with personal data protection laws and not use data unlawfully.</p>
+        </td>
+      </tr>
+      <tr style='margin-top:30px;'>
+        <td dir="ltr">
+          <p dir="ltr" style='font-size:15px;'>Companies and websites cooperate with the Audio-Visual Media Authority to ensure compliance with these conditions and avoid any legal or regulatory issues.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>&nbsp;</p>
+`,
     }
   },
 

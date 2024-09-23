@@ -56,12 +56,15 @@ export default {
 <style lang="scss">
 .banner_under_page {
   max-width: 1185px;
-  margin: 1rem auto;
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+  margin: 0rem auto 2rem auto;
   div {
     @include simpleShadow;
-    border-radius: 10px;
     img {
       width: 100%;
+      border-radius: 10px;
     }
     .banner_under_page_alt {
       height: 250px;

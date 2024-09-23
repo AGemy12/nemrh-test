@@ -66,7 +66,7 @@
                 "
               />
               <EditCompanyModal
-                v-if="editCompanyModalIsOpen"
+                v-if="companyProfileData?.id"
                 :modalIsOpen="editCompanyModalIsOpen"
                 :modalTitle="
                   $t('TITLES.Modals.editCompany', {
@@ -385,15 +385,14 @@ export default {
       $axiosRequest.get(`company/${params.id}/reviews`),
     ])
 
+    console.log('Company Profile Data:', companyProfileRes.data.data.id)
+
     return {
       companyProfileData: companyProfileRes.data.data,
       bannerData: companyProfileRes.data.additional_data.bottom_banner_content,
       ratesData: ratesRes.data.data,
-      userAvailableCopiesCount:
-        companyProfileRes.data.additional_data.remaining_copies_count,
     }
   },
-
   data() {
     return {
       // Start:: Loaders Controlling Data
