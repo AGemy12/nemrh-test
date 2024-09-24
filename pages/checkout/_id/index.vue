@@ -311,6 +311,8 @@ export default {
       return this.$route.query.subscription_type
     },
     // End:: Subscription Type
+
+    ...mapGetters(['getAdvertisementImage']),
   },
 
   methods: {
@@ -358,6 +360,8 @@ export default {
 
     // Start:: Bay For The Order
     async bayForTheOrder() {
+      console.log('Image from Vuex: ', this.getAdvertisementImage)
+
       this.waitingForApplyingPayment = true
 
       // Start:: Append Request Data
@@ -372,7 +376,7 @@ export default {
         if (this.$cookies.get('ad_notes'))
           REQUEST_DATA.append('ad_notes', this.$cookies.get('ad_notes'))
 
-        const imageBase64 = localStorage.getItem('adImage')
+        const imageBase64 = this.getAdvertisementImage
 
         if (imageBase64) {
           const byteString = atob(imageBase64.split(',')[1])

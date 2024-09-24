@@ -18,13 +18,13 @@
         <!-- ========= Start:: Features Section ========= -->
         <FeaturesSection :sectionData="pageData.objectives" />
         <!-- ========= End:: Features Section ========= -->
-        <!-- ========= Start:: Banner ========= -->
-        <BannerUnderPage
-          :bannerImage="pageData?.bottom_ad_companies?.ad_image || null"
-          :companySiteLink="pageData?.bottom_ad_companies?.ad_link || null"
-        />
-        <!-- ========= End:: Banner ========= -->
       </div>
+      <!-- ========= Start:: Banner ========= -->
+      <BannerUnderPage
+        :bannerImage="pageData?.bottom_ad_companies?.ad_image || null"
+        :companySiteLink="pageData?.bottom_ad_companies?.ad_link || null"
+      />
+      <!-- ========= End:: Banner ========= -->
 
       <!-- ========= Start:: Clients Section ========= -->
       <ClientsSection :sectionData="pageData.partners" />

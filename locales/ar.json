@@ -98,7 +98,8 @@
     },
     "Companies": {
       "title": "الشركات",
-      "companyRates": "تقييمات {companyName}"
+      "companyRates": "تقييمات {companyName}",
+      "messagesCompainesInfo": "تعليمات حملة الرسائل "
     },
     "CompaniesAndCampaignsForms": {
       "title": "اعلن عن شركتك بكل سهوله مع نمــــرة",
@@ -474,6 +475,9 @@
     "AdvertisementDetails": "تأكيد تفاصيل الإعلان",
     "AdvertisementPreview": "معاينة الإعلان",
     "searchAboutYourCompanyTitle": "تحقق من وجود شركتك اولا",
-    "agree": "اقر على صحة المعلومات واوافق على"
+    "agree": "اقر على صحة المعلومات واوافق على",
+    "bannerUnderSearTitle": "ابعاد بانر الإعلان الموصى بها 1920 بيكسل للعرض و 350 بيكسل للارتفاع ",
+    "bannerUnderPageTitle": "ابعاد بانر الإعلان الموصى بها 1920 بيكسل للعرض و 500 بيكسل للارتفاع ",
+    "bannerMiddelPageTitle": "ابعاد بانر الإعلان الموصى بها 336 بيكسل للعرض و 280 بيكسل للارتفاع "
   }
 }

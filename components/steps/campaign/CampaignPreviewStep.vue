@@ -90,10 +90,9 @@ export default {
   data() {
     return {
       selectedPackageImage: '',
-
       isCheckboxChecked: false,
       termsModalIsOpen: false,
-      isWaitingApiResponse: false, // Define this here
+      isWaitingApiResponse: false,
 
       termsAndConditionsAr: `
         <div dir="rtl" align="left">
@@ -179,75 +178,75 @@ export default {
         <p>&nbsp;</p>
         `,
       termsAndConditionsEn: `
-      <div dir="ltr" align="left">
-  <strong>
-    <h5 style="width:fit-content; margin:10px auto 20px auto; font-weight:bold;font-size:18px">Advertising Terms and Conditions on Nemrah Website</h5>
-  </strong>
-  <table>
-    <colgroup><col width="624"></colgroup>
-    <tbody>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>1. Compliance with Laws and Regulations</h6>
-          <p dir="ltr" style='font-size:15px;'>Advertising content must comply with the applicable laws and regulations in the Kingdom, including the Audio-Visual Media Law.</p>
-          <p dir="ltr" style='font-size:15px;'>Adherence to commercial and promotional advertising laws is mandatory.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>2. Respect for Values and Culture</h6>
-          <p dir="ltr" style='font-size:15px;'>The advertising content must align with the religious, social, and cultural values of the Kingdom.</p>
-          <p dir="ltr" style='font-size:15px;'>It is prohibited to publish content that contradicts Islamic law or Saudi laws, such as controversial or inappropriate material.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>3. Transparency and Disclosure</h6>
-          <p dir="ltr" style='font-size:15px;'>The advertising content must be clear and explicit, and any commercial partnerships or financial compensations must be clearly disclosed.</p>
-          <p dir="ltr" style='font-size:15px;'>The nature of the advertisement should be clear, free from any manipulation or deceit.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>4. Intellectual Property Rights</h6>
-          <p dir="ltr" style='font-size:15px;'>Intellectual property rights must be respected, and no content protected by copyright can be used or published without prior permission from the rights holders.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>5. Prior Approval</h6>
-          <p dir="ltr" style='font-size:15px;'>Approval from the relevant authorities must be obtained before publishing any advertising content that may have significant impact or require special permits.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>6. Monitoring and Reporting</h6>
-          <p dir="ltr" style='font-size:15px;'>There must be a mechanism to monitor advertising content and report any violations or infringements.</p>
-          <p dir="ltr" style='font-size:15px;'>The authority may request a review or modification of the advertising content if necessary.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>7. Compliance with Advertising Standards</h6>
-          <p dir="ltr" style='font-size:15px;'>Advertisements must comply with the technical and advertising standards set by the authority, including the size of ads and audiovisual content.</p>
-        </td>
-      </tr>
-      <tr style='margin-bottom:10px;'>
-        <td dir="ltr">
-          <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>8. Protection of Personal Data</h6>
-          <p dir="ltr" style='font-size:15px;'>Advertisements must comply with personal data protection laws and not use data unlawfully.</p>
-        </td>
-      </tr>
-      <tr style='margin-top:30px;'>
-        <td dir="ltr">
-          <p dir="ltr" style='font-size:15px;'>Companies and websites cooperate with the Audio-Visual Media Authority to ensure compliance with these conditions and avoid any legal or regulatory issues.</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<p>&nbsp;</p>
-`,
+        <div dir="ltr" align="left">
+          <strong>
+            <h5 style="width:fit-content; margin:10px auto 20px auto; font-weight:bold;font-size:18px">Advertising Terms and Conditions on Nemrah Website</h5>
+          </strong>
+          <table>
+            <colgroup><col width="624"></colgroup>
+            <tbody>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>1. Compliance with Laws and Regulations</h6>
+                  <p dir="ltr" style='font-size:15px;'>Advertising content must comply with the applicable laws and regulations in the Kingdom, including the Audio-Visual Media Law.</p>
+                  <p dir="ltr" style='font-size:15px;'>Adherence to commercial and promotional advertising laws is mandatory.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>2. Respect for Values and Culture</h6>
+                  <p dir="ltr" style='font-size:15px;'>The advertising content must align with the religious, social, and cultural values of the Kingdom.</p>
+                  <p dir="ltr" style='font-size:15px;'>It is prohibited to publish content that contradicts Islamic law or Saudi laws, such as controversial or inappropriate material.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>3. Transparency and Disclosure</h6>
+                  <p dir="ltr" style='font-size:15px;'>The advertising content must be clear and explicit, and any commercial partnerships or financial compensations must be clearly disclosed.</p>
+                  <p dir="ltr" style='font-size:15px;'>The nature of the advertisement should be clear, free from any manipulation or deceit.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>4. Intellectual Property Rights</h6>
+                  <p dir="ltr" style='font-size:15px;'>Intellectual property rights must be respected, and no content protected by copyright can be used or published without prior permission from the rights holders.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>5. Prior Approval</h6>
+                  <p dir="ltr" style='font-size:15px;'>Approval from the relevant authorities must be obtained before publishing any advertising content that may have significant impact or require special permits.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>6. Monitoring and Reporting</h6>
+                  <p dir="ltr" style='font-size:15px;'>There must be a mechanism to monitor advertising content and report any violations or infringements.</p>
+                  <p dir="ltr" style='font-size:15px;'>The authority may request a review or modification of the advertising content if necessary.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>7. Compliance with Advertising Standards</h6>
+                  <p dir="ltr" style='font-size:15px;'>Advertisements must comply with the technical and advertising standards set by the authority, including the size of ads and audiovisual content.</p>
+                </td>
+              </tr>
+              <tr style='margin-bottom:10px;'>
+                <td dir="ltr">
+                  <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0; '>8. Protection of Personal Data</h6>
+                  <p dir="ltr" style='font-size:15px;'>Advertisements must comply with personal data protection laws and not use data unlawfully.</p>
+                </td>
+              </tr>
+              <tr style='margin-top:30px;'>
+                <td dir="ltr">
+                  <p dir="ltr" style='font-size:15px;'>Companies and websites cooperate with the Audio-Visual Media Authority to ensure compliance with these conditions and avoid any legal or regulatory issues.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>&nbsp;</p>
+        `,
     }
   },
 
@@ -322,7 +321,7 @@ export default {
       const file = event.target.files[0]
       if (file) {
         this.selectedImage = file
-        console.log('Uploaded Image:', this.selectedImage)
+        // console.log('Uploaded Image:', this.selectedImage)
       }
     },
     toggleTermsAndConditionsModal() {
@@ -339,13 +338,13 @@ export default {
       })
       this.$cookies.remove('selectedPackageImage')
 
-      console.log('تم حذف كوكي selectedPackageImage')
+      // console.log('تم حذف كوكي selectedPackageImage')
     },
   },
 
   beforeUpdate() {
     this.selectedPackageImage = this.$cookies.get('selectedPackageImage')
-    console.log(this.selectedPackageImage)
+    // console.log(this.selectedPackageImage)
   },
   watch: {
     '$cookies.get("selectedPackageImage")': function (newImage) {

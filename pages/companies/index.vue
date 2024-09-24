@@ -1,13 +1,13 @@
 <template>
   <section class="companies_page_content_wrapper">
+    <!-- ========== Start:: Search ========= -->
+    <GlobalSearchSection
+      :searchAdImage="homePageData?.search_ad_companies?.ad_image || null"
+      :path="homePageData?.search_ad_companies?.ad_link || null"
+      style="margin-bottom: 2rem"
+    />
+    <!-- ========= End:: Search ========= -->
     <div class="container">
-      <!-- ========== Start:: Search ========= -->
-      <GlobalSearchSection
-        :searchAdImage="homePageData?.search_ad_companies?.ad_image || null"
-        :path="homePageData?.search_ad_companies?.ad_link || null"
-      />
-      <!-- ========= End:: Search ========= -->
-
       <!-- ========= Start:: Companies Categories ========= -->
       <CategoriesButtonsCarousel
         v-if="!isSearchQueryParamExist"
@@ -28,14 +28,14 @@
         @onCopyToClipboard="decrementAvailableCopiesCount"
       />
       <!-- ========= End:: Companies Table ========= -->
-
-      <!-- ========= Start:: Banner ========= -->
-      <BannerUnderPage
-        :bannerImage="homePageData?.bottom_ad_companies?.ad_image || null"
-        :companySiteLink="homePageData?.bottom_ad_companies?.ad_link || null"
-      />
-      <!-- ========= End:: Banner ========= -->
     </div>
+
+    <!-- ========= Start:: Banner ========= -->
+    <BannerUnderPage
+      :bannerImage="homePageData?.bottom_ad_companies?.ad_image || null"
+      :companySiteLink="homePageData?.bottom_ad_companies?.ad_link || null"
+    />
+    <!-- ========= End:: Banner ========= -->
   </section>
 </template>
 
@@ -255,23 +255,5 @@ export default {
     rgba(177, 162, 204, 0.4),
     transparent
   );
-  .search_section_content_wrapper {
-    background: transparent;
-    .wrapper {
-      min-height: unset;
-      max-height: unset;
-      row-gap: 1.5rem;
-      padding-block: $section_block_padding * 1.5 $section_block_padding * 0.8;
-    }
-  }
-
-  @include media(md) {
-    padding-block: $section_block_padding * 0.5;
-    .search_section_content_wrapper {
-      .wrapper {
-        padding-block: 0 4rem;
-      }
-    }
-  }
 }
 </style>

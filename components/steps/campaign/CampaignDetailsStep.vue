@@ -120,6 +120,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'CampaignDetailsStep',
 
@@ -232,15 +234,18 @@ export default {
 
   methods: {
     // Start:: Select Upload Document
+    ...mapActions(['storeImage']),
+
     selectDocument(selectedDocument) {
       if (selectedDocument.identifier === 'company_logo') {
-        this.formIsValid = true
         const reader = new FileReader()
 
         reader.onload = (event) => {
           const imageBase64 = event.target.result
 
-          localStorage.setItem('adImage', imageBase64)
+          console.log('Loaded Image: ', imageBase64)
+
+          this.storeImage(imageBase64)
         }
         reader.readAsDataURL(selectedDocument.file)
       }
@@ -306,13 +311,15 @@ export default {
       }
 
       if (this.formIsValid) {
+        const advertisementImage = this.$store.state.advertisementImage
+
         this.$emit('fireStepsSubmit', {
           advertisementName: this.data.advertisementName.value,
           startDate: this.data.startDate.value,
           endDate: this.data.endDate.value,
           period: this.data.period.value,
           website: this.data.website.value,
-          advertisementImage: this.data.advertisementImage.value,
+          advertisementImage: advertisementImage,
           price: this.discountedPrice || 0,
           discountPercentage: this.discountPercentage || 0,
           advertisementPosition: this.selectedPackageName,

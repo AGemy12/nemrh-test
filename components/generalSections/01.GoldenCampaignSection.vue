@@ -86,7 +86,7 @@ export default {
       let campaignItemsListWithFixedType = this.companies.map((item) => {
         return {
           id: item?.id,
-          image: item?.ad_image,
+          image: item?.company?.image,
           name: item?.company?.title,
           website: item?.ad_link,
           rate: item?.company?.rate,

@@ -439,7 +439,7 @@ export default {
     createCampaignRoute() {
       return (companyId) =>
         this.userIsLoggedIn
-          ? this.localePath(`/create-campaign/${companyId}`)
+          ? this.localePath(`/advertisements-subscriptions/${companyId}`)
           : this.localePath('/auth/login')
     },
     // End:: Create Campaign Route Based On User Authentication Status

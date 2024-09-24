@@ -1,16 +1,22 @@
-// store/index.js
+// store.js
 export const state = () => ({
-  adImage: null, // تخزين الصورة
+  advertisementImage: null, // تخزين الصورة مؤقتاً
 })
 
 export const mutations = {
-  setAdImage(state, image) {
-    state.adImage = image
+  setAdvertisementImage(state, image) {
+    state.advertisementImage = image
+  },
+}
+
+export const actions = {
+  storeImage({ commit }, image) {
+    commit('setAdvertisementImage', image)
   },
 }
 
 export const getters = {
-  getAdImage(state) {
-    return state.adImage
+  getAdvertisementImage(state) {
+    return state.advertisementImage
   },
 }

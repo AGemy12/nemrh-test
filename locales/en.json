@@ -98,7 +98,8 @@
     },
     "Companies": {
       "title": "Companies",
-      "companyRates": "{companyName} Rates"
+      "companyRates": "{companyName} Rates",
+      "messagesCompainesInfo": "Message campaign instructions"
     },
     "CompaniesAndCampaignsForms": {
       "title": "Advertise your company easily with Nemrh",
@@ -474,6 +475,9 @@
     "AdvertisementDetails": "Confirm  the advertisement details",
     "AdvertisementPreview": "Advertisement Preview",
     "searchAboutYourCompanyTitle": "Check the existence of your company first",
-    "agree": "I confirm that the information is correct and agree to the"
+    "agree": "I confirm that the information is correct and agree to the",
+    "bannerUnderSearTitle": "Recommended banner dimensions are 1920 pixels wide and 350 pixels high",
+    "bannerUnderPageTitle": "Recommended banner dimensions are 1920 pixels wide and 500 pixels high",
+    "bannerMiddelPageTitle": "Recommended banner dimensions are 336px pixels wide and 280px pixels high"
   }
 }

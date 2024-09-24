@@ -142,7 +142,7 @@ export default {
 
     // Start:: Handel Steps Submit
     handleStepsSubmit(submitData) {
-      console.log('Received Submit Data:', submitData)
+      // console.log('Received Submit Data:', submitData)
 
       if (submitData && submitData.price) {
         this.selectedPackagePrice = submitData.price

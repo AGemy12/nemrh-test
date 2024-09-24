@@ -51,23 +51,15 @@
           <i class="fa-regular fa-trash-can"></i>
         </button>
       </form>
-      <div class="below_search_engine_banner">
-        <a :href="addProtocol(path)" v-if="searchAdImage" target="_blank">
-          <img :src="searchAdImage" alt="إعلان تحت محرك البحث" />
-        </a>
-        <div class="below_search_engine_banner_alt" v-else>
-          <a href="/find-your-company">
-            {{ $t('TITLES.CompaniesAndCampaignsForms.CanCompanyAd') }}
-          </a>
-        </div>
-      </div>
     </div>
+
+    <BannerUnderSearchEngine :searchAdImage="searchAdImage" :path="path" />
   </section>
   <!-- <GlobalCaruosel /> -->
 </template>
 
 <script>
-// import GlobalCaruosel from '@/components/carousels/GlobalCaruosel.vue'
+import BannerUnderSearchEngine from '../banners/BannerUnderSearchEngine.vue'
 
 export default {
   name: 'GlobalSearchSection',
@@ -87,9 +79,9 @@ export default {
     },
   },
 
-  // components: {
-  //   GlobalCaruosel,
-  // },
+  components: {
+    BannerUnderSearchEngine,
+  },
 
   data() {
     return {
@@ -176,11 +168,16 @@ export default {
 
 .search_section_content_wrapper {
   position: relative;
+  min-height: 100vh;
+  @media (max-width: 480px) {
+    min-height: calc(100vh - 61px);
+  }
   .wrapper {
-    min-height: 100vh;
-    max-height: 100vh;
-    padding-block: $section_block_padding;
+    padding-top: 7rem;
     padding-inline: 4rem;
+    @media (min-width: 1601px) {
+      padding-top: 9rem;
+    }
     @include flex(center, center, column);
     animation: fadeIn 1s linear;
     .section_title {
@@ -218,12 +215,12 @@ export default {
     }
 
     .section_desc {
-      margin-block: 2rem !important;
+      margin-block: 1rem !important;
       color: var(--white);
       font-size: 1rem;
       text-align: center;
       @media (max-width: 450px) {
-        margin-block: 1rem !important;
+        margin-block: 0.5rem !important;
       }
       & > span {
         display: block;
@@ -275,53 +272,6 @@ export default {
         i {
           color: var(--mid_red);
           font-size: 1.3rem;
-        }
-      }
-    }
-    .below_search_engine_banner {
-      margin: 30px auto 0 auto;
-      max-width: 1000px;
-      @include simpleShadow;
-      @media (max-width: 450px) {
-        margin-top: 30px;
-        margin-bottom: 10px;
-      }
-      a {
-        @include flex(center, center);
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 10px;
-        }
-      }
-      .below_search_engine_banner_alt {
-        width: 750px;
-        background-color: var(--main_theme_clr);
-        @media (max-width: 768px) {
-          width: 300px;
-          height: 100px;
-          a {
-            font-size: 15px;
-          }
-        }
-        height: 150px;
-        @include flex(center, center);
-        a {
-          padding: 10px;
-          border: 1px solid var(--white);
-          background-color: var(--white);
-          color: var(--dark);
-          font-size: 20px;
-          font-weight: bold;
-          border-radius: 5px;
-          transition: 0.5s;
-          &:hover {
-            background-color: var(--main_theme_clr);
-            color: var(--white);
-          }
-          @media (max-width: 768px) {
-            font-size: 14px;
-          }
         }
       }
     }

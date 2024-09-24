@@ -82,15 +82,16 @@
 
     <!-- Start:: Start Campaign Modal -->
     <div
-      class="mt-5 py-2 d-flex justify-content-end align-items-center flex-wrap"
+      class="companies_table_btns mt-5 py-2 d-flex justify-content-end align-items-center flex-wrap"
       v-if="userIsLoggedIn"
     >
       <button
         type="button"
-        class="messages_compains_info mx-3 d-flex align-items-center"
+        class="messages_compains_info select_companies mx-3 d-flex align-items-center"
         @click.stop="toggleTermsAndConditionsModal"
       >
         <i class="fa-solid fa-circle-info"></i>
+        <span> {{ $t('TITLES.Companies.messagesCompainesInfo') }} </span>
       </button>
 
       <base-button
@@ -252,8 +253,7 @@ export default {
 
       termsAndConditionsAr: `
         <div dir="rtl" align="left">
-          <strong>
-          <table><colgroup><col width="624"></colgroup>
+          <table>
             <tbody>
               <tr style='margin:10px 0;'>
                 <td dir="ltr">
@@ -296,7 +296,6 @@ export default {
                   <h6 dir="rtl" style='font-size:16px; font-weight:bold; margin:10px 0; ' > 6. التحديثات التقنية: </h6>
                   <p dir="rtl" style='font-size:15px;'> يحق للموقع إجراء تحديثات أو تحسينات على النظام في أي وقت، وقد يتطلب ذلك انقطاعًا مؤقتًا في الخدمة. سيتم إعلام المستخدمين في حال حدوث أي انقطاع.
                   </p>
-                 
                 </td>
               </tr>
               <tr style='margin:10px 0;'>
@@ -313,71 +312,65 @@ export default {
                   </p>
                 </td>
               </tr>
-             
             </tbody>
           </table>
         </div>
-        <p>&nbsp;</p>
         `,
       termsAndConditionsEn: `
       <div dir="ltr" align="left">
-  <strong>
-    <table>
-      <colgroup><col width="624"></colgroup>
-      <tbody>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>1. Package Validity Period:</h6>
-            <p dir="ltr" style='font-size:15px;'>The package must be used within the specified subscription period. Unused messages will be canceled after the period ends and will not be carried over to the next period.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>2. Responsibility for Usage:</h6>
-            <p dir="ltr" style='font-size:15px;'>If the user sends all messages at once, the website is not responsible for any issues that arise, and it is the user's responsibility to ensure proper message delivery.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>3. Unsent Messages:</h6>
-            <p dir="ltr" style='font-size:15px;'>If the user encounters an issue sending messages due to incorrect contact details or a technical error caused by the user, the website is not obligated to compensate for unsent messages.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>4. Data Verification:</h6>
-            <p dir="ltr" style='font-size:15px;'>It is the user's responsibility to ensure the accuracy of phone numbers or email addresses to which messages are sent. The website is not responsible for messages sent to incorrect numbers or addresses.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>5. Refund Policy:</h6>
-            <p dir="ltr" style='font-size:15px;'>The package value cannot be refunded after it has been used, even if not all messages have been sent.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>6. Technical Updates:</h6>
-            <p dir="ltr" style='font-size:15px;'>The website reserves the right to make system updates or improvements at any time, which may require temporary service interruptions. Users will be notified of any disruptions.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>7. Legal Use:</h6>
-            <p dir="ltr" style='font-size:15px;'>The package must be used within the framework of applicable laws, and any illegal use of messages may result in service suspension without prior notice.</p>
-          </td>
-        </tr>
-        <tr style='margin:10px 0;'>
-          <td dir="ltr">
-            <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>8. Security Warnings:</h6>
-            <p dir="ltr" style='font-size:15px;'>Users must ensure the security of their account and regularly change passwords to prevent misuse of the package.</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </strong>
-</div>
-
+        <table>
+          <tbody>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>1. Package Validity Period:</h6>
+                <p dir="ltr" style='font-size:15px;'>The package must be used within the specified subscription period. Unused messages will be canceled after the period ends and will not be carried over to the next period.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>2. Responsibility for Usage:</h6>
+                <p dir="ltr" style='font-size:15px;'>If the user sends all messages at once, the website is not responsible for any issues that arise, and it is the user's responsibility to ensure proper message delivery.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>3. Unsent Messages:</h6>
+                <p dir="ltr" style='font-size:15px;'>If the user encounters an issue sending messages due to incorrect contact details or a technical error caused by the user, the website is not obligated to compensate for unsent messages.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>4. Data Verification:</h6>
+                <p dir="ltr" style='font-size:15px;'>It is the user's responsibility to ensure the accuracy of phone numbers or email addresses to which messages are sent. The website is not responsible for messages sent to incorrect numbers or addresses.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>5. Refund Policy:</h6>
+                <p dir="ltr" style='font-size:15px;'>The package value cannot be refunded after it has been used, even if not all messages have been sent.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>6. Technical Updates:</h6>
+                <p dir="ltr" style='font-size:15px;'>The website reserves the right to make system updates or improvements at any time, which may require temporary service interruptions. Users will be notified of any disruptions.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>7. Legal Use:</h6>
+                <p dir="ltr" style='font-size:15px;'>The package must be used within the framework of applicable laws, and any illegal use of messages may result in service suspension without prior notice.</p>
+              </td>
+            </tr>
+            <tr style='margin:10px 0;'>
+              <td dir="ltr">
+                <h6 dir="ltr" style='font-size:16px; font-weight:bold; margin:10px 0;>8. Security Warnings:</h6>
+                <p dir="ltr" style='font-size:15px;'>Users must ensure the security of their account and regularly change passwords to prevent misuse of the package.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       `,
 
       // Start:: Selected Items Data
@@ -706,8 +699,15 @@ export default {
       }
     }
   }
+  .companies_table_btns {
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
+  }
 }
 .messages_compains_info {
+  @include flex(center, center, row, 5px);
   svg {
     color: var(--main_theme_clr);
     font-size: 25px;

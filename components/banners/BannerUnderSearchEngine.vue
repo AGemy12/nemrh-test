@@ -1,17 +1,11 @@
 <template>
-  <div class="silver_campaign_card_wrapper">
-    <div class="details_wrapper" v-if="campaignData">
-      <a
-        class="item_website_link"
-        :href="addProtocol(campaignData.ad_link)"
-        target="_blank"
-      >
-        <img :src="campaignData.ad_image" alt="" />
-      </a>
-    </div>
-    <div class="silver_campaign_card_wrapper_alt" v-else>
-      <img src="../../../../assets/media/logo/logo_white.svg" alt="" />
-      <p>{{ $t('OTHERS.bannerMiddelPageTitle') }}</p>
+  <div class="below_search_engine_banner">
+    <a :href="addProtocol(path)" v-if="searchAdImage" target="_blank">
+      <img :src="searchAdImage" alt="إعلان تحت محرك البحث" />
+    </a>
+    <div class="below_search_engine_banner_alt" v-else>
+      <img src="../../assets/media/logo/logo_white.svg" alt="" />
+      <p>{{ $t('OTHERS.bannerUnderSearTitle') }}</p>
       <a href="/find-your-company">
         {{ $t('TITLES.CompaniesAndCampaignsForms.CanCompanyAd') }}
       </a>
@@ -21,15 +15,17 @@
 
 <script>
 export default {
-  name: 'SilverCampaignCard',
-
   props: {
-    campaignData: {
-      type: Object,
-      required: true,
+    searchAdImage: {
+      type: String,
+    },
+    path: {
+      type: String,
     },
   },
-
+  data() {
+    return {}
+  },
   methods: {
     addProtocol(link) {
       if (link && !/^https?:\/\/(www\.)?/i.test(link)) {
@@ -45,35 +41,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.silver_campaign_card_wrapper {
-  padding: 0 5px;
-  background-color: #fbf9ff;
-  border-radius: 8px;
-  @include flex(center, center);
-  .details_wrapper {
-    padding-block: 0.5rem;
-    font-size: 1.1rem;
-    color: var(--dark_main_theme_clr);
-    max-width: 300px;
-    max-height: 280px;
-    overflow: hidden;
+.below_search_engine_banner {
+  width: 100vw;
+  max-height: 380px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  @include simpleShadow;
+  a {
     @include flex(center, center);
     img {
       width: 100%;
     }
   }
-  .silver_campaign_card_wrapper_alt {
-    padding: 2rem 0.5rem;
-    width: 300px;
-    height: 280px;
+  .below_search_engine_banner_alt {
+    width: inherit;
+    padding: 1rem 0;
+    @media (min-width: 992px) {
+      min-height: 350px;
+    }
     background-color: var(--main_theme_clr);
     @include flex(center, center, column, 20px);
-
     img {
       width: 200px;
     }
     p {
-      font-size: 1rem;
+      font-size: 1.5rem;
       color: var(--white);
       text-align: justify;
     }
@@ -82,7 +75,7 @@ export default {
       border: 1px solid var(--white);
       background-color: var(--white);
       color: var(--dark);
-      font-size: 1rem;
+      font-size: 20px;
       font-weight: bold;
       border-radius: 5px;
       transition: 0.5s;
@@ -92,7 +85,7 @@ export default {
       }
     }
     @media (max-width: 768px) {
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       img {
         width: 80px;
       }
