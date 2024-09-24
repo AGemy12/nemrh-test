@@ -4,9 +4,11 @@
 
     <template v-else>
       <div class="step_title_wrapper">
-        <h2 class="step_title">
+        <h2 class="global_title">
           {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }}
         </h2>
+        <h3 class="step_title">{{ companyTitle }}</h3>
+
         <h4 class="step_subtitle">
           {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneSubTitle') }}
         </h4>
@@ -56,13 +58,18 @@ import CampaignPackageCard from '@/components/ui/cards/packages/PackageCard.vue'
 export default {
   name: 'SelectPackageStep',
 
-  emits: ['fireNavigateToNextStep'],
+  emits: ['fireNavigateToNextStep', 'fireCompanyTitle'],
 
   components: {
     MainLoader,
     CampaignPackageCard,
   },
 
+  props: {
+    companyTitle: {
+      type: String,
+    },
+  },
   data() {
     return {
       // Start:: Loaders Controlling Data
@@ -77,6 +84,7 @@ export default {
       selectedPackage: null,
       // End:: Selected Package
       adPrice: null,
+      companyTitle: {},
     }
   },
 
@@ -127,6 +135,15 @@ export default {
         // ********** End:: Implement Request ********** //
         this.pageIsLoading = false
         this.packages = res.data.data
+
+        let companyRes = await this.$axiosRequest({
+          method: 'GET',
+          url: `companies/${this.$route.params.companyId}`,
+        })
+
+        this.companyTitle = companyRes.data.data.title
+
+        this.$emit('fireCompanyTitle', this.companyTitle)
       } catch (err) {
         this.pageIsLoading = false
         console.log(err.response.data.message)
@@ -187,11 +204,18 @@ export default {
 
   .step_title_wrapper {
     margin-block-end: 2rem;
-
+    .global_title {
+      background-color: var(--deactive_button_bg);
+      color: var(--main_theme_clr);
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-transform: capitalize;
+    }
     .step_title {
       color: var(--white);
       width: fit-content;
-      margin: 10px auto;
+      margin: 1rem auto 0 auto;
       padding: 10px;
       background-color: var(--main_theme_clr);
       font-size: 22px;

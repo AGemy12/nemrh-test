@@ -1,7 +1,10 @@
 <template>
   <div class="advertisements_third_step_container" id="advertisementsThirdStep">
-    <h3 class="advertisements_first_step_head">
+    <h2 class="global_title">
       {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }}
+    </h2>
+    <h3 class="step_title">
+      {{ companyTitle }}
     </h3>
 
     <div class="advertisements_third_step">
@@ -66,6 +69,10 @@ import AdvertisementsThirdStepDetail from '~/components/steps/advertisements/sma
 
 export default {
   props: {
+    companyTitle: {
+      type: String,
+      default: '',
+    },
     details: {
       type: Object,
       default: () => ({
@@ -93,6 +100,7 @@ export default {
       isCheckboxChecked: false,
       termsModalIsOpen: false,
       isWaitingApiResponse: false,
+      companyTitle: '',
 
       termsAndConditionsAr: `
         <div dir="rtl" align="left">
@@ -356,7 +364,14 @@ export default {
 
 <style lang="scss" scoped>
 .advertisements_third_step_container {
-  @include flex(center, center, column, 20px);
+  .global_title {
+    background-color: var(--deactive_button_bg);
+    color: var(--main_theme_clr);
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-transform: capitalize;
+  }
 
   h3 {
     color: var(--white);

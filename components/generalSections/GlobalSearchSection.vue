@@ -168,8 +168,10 @@ export default {
 
 .search_section_content_wrapper {
   position: relative;
-  height: 100vh;
-
+  height: calc(var(--vh, 1vh) * 100);
+  @media (max-width: 480px) {
+    height: calc((var(--vh, 1vh) * 100) - 61px);
+  }
   .wrapper {
     padding-top: 7rem;
     padding-inline: 4rem;

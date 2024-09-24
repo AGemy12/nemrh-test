@@ -1,7 +1,13 @@
 <template>
   <section class="campaign_details_step_wrapper">
     <div class="step_title_wrapper">
-      <h2 class="step_title">{{ selectedPackageName }}</h2>
+      <h2 class="global_title">
+        {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }}
+      </h2>
+      <h3 class="step_title">
+        {{ companyTitle }}
+        <!-- {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepOneTitle') }} -->
+      </h3>
       <h4 class="step_subtitle">
         {{ $t('CYCLESTEPS.Advertisements.AdvertisementsStepTwoSubTitle') }}
       </h4>
@@ -152,6 +158,10 @@ export default {
       type: Object,
       default: () => null,
     },
+    companyTitle: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -184,7 +194,7 @@ export default {
         },
       },
       // End:: Data Collection To Send
-
+      companyTitle: '',
       // Start:: Categories Data
       categories: [30, 90, 180, 360],
       // End:: Categories Data
@@ -339,6 +349,14 @@ export default {
 .campaign_details_step_wrapper {
   .step_title_wrapper {
     margin-block-end: 2rem;
+    .global_title {
+      background-color: var(--deactive_button_bg);
+      color: var(--main_theme_clr);
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-transform: capitalize;
+    }
     .step_title {
       color: var(--white);
       width: fit-content;

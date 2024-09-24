@@ -38,6 +38,7 @@ export default {
     '@/plugins/vueLottie.client.js',
     '@/plugins/vueLettering.client.js',
     '@/plugins/main.js',
+    { src: '~/plugins/viewport.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,47 +56,55 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', 'nuxt-izitoast', [
-    'cookie-universal-nuxt',
-    {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    },
-  ], [
-    'nuxt-gmaps',
-    {
-      key: 'AIzaSyC2MTR_vRbsbQQRPt5f5ZLCvvaKOpzkzlA',
-      libraries: ['places'],
-    },
-  ], [
-    '@nuxtjs/i18n',
-    {
-      locales: [
-        {
-          name: 'عربي ',
-          code: 'ar',
-          iso: 'ar-AR',
-          file: 'ar.json',
-          dir: 'rtl',
-        },
-        {
-          name: 'English',
-          code: 'en',
-          iso: 'en-US',
-          file: 'en.json',
-          dir: 'ltr',
-        },
-      ],
-      langDir: 'locales/',
-      lazy: true,
-      loadLanguageAsync: true,
-      defaultLocale: 'ar',
-      fallbackLocale: 'ar',
-      strategy: 'prefix',
-      detectBrowserLanguage: false,
-      rootRedirect: 'ar',
-    },
-  ], '@nuxt/icon'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    'nuxt-izitoast',
+    [
+      'cookie-universal-nuxt',
+      {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+      },
+    ],
+    [
+      'nuxt-gmaps',
+      {
+        key: 'AIzaSyC2MTR_vRbsbQQRPt5f5ZLCvvaKOpzkzlA',
+        libraries: ['places'],
+      },
+    ],
+    [
+      '@nuxtjs/i18n',
+      {
+        locales: [
+          {
+            name: 'عربي ',
+            code: 'ar',
+            iso: 'ar-AR',
+            file: 'ar.json',
+            dir: 'rtl',
+          },
+          {
+            name: 'English',
+            code: 'en',
+            iso: 'en-US',
+            file: 'en.json',
+            dir: 'ltr',
+          },
+        ],
+        langDir: 'locales/',
+        lazy: true,
+        loadLanguageAsync: true,
+        defaultLocale: 'ar',
+        fallbackLocale: 'ar',
+        strategy: 'prefix',
+        detectBrowserLanguage: false,
+        rootRedirect: 'ar',
+      },
+    ],
+    '@nuxt/icon',
+  ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

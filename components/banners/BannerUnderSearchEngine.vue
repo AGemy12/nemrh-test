@@ -47,6 +47,10 @@ export default {
   overflow: hidden;
   position: absolute;
   bottom: 0;
+  @media (max-width: 480px) {
+    position: relative;
+    margin-top: 2rem;
+  }
   @include simpleShadow;
   a {
     @include flex(center, center);

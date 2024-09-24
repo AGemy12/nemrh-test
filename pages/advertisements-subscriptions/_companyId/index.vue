@@ -19,6 +19,8 @@
             <v-stepper-content step="packageStep">
               <SelectPackageStep
                 @fireNavigateToNextStep="handelNextStepNavigation"
+                @fireCompanyTitle="handelSendTitleToNext"
+                :companyTitle="companyTitle"
               />
             </v-stepper-content>
 
@@ -32,6 +34,7 @@
                 :website="adLink"
                 :advertisementImage="adImage"
                 :originalPrice="originalPrice"
+                :companyTitle="companyTitle"
                 @fireClick="submitForm"
               />
             </v-stepper-content>
@@ -42,6 +45,7 @@
                 :selectedPackageName="selectedPackageName"
                 @fireStepsSubmit="submitForm"
                 :details="campaignDetails"
+                :companyTitle="companyTitle"
               />
             </v-stepper-content>
           </v-stepper-items>
@@ -111,6 +115,7 @@ export default {
       durationLimit: '',
       adLink: '',
       adImage: '',
+      companyTitle: '',
       // End:: Duration Limit
 
       // Start:: Crete Campaign Data
@@ -123,6 +128,10 @@ export default {
   },
 
   methods: {
+    handelSendTitleToNext(companyTitle) {
+      this.companyTitle = companyTitle
+      this.currentStep = 'packageStep'
+    },
     // Start:: Handel Next Step Navigation
     handelNextStepNavigation(
       selectedPackage,
@@ -176,15 +185,6 @@ export default {
       this.$cookies.set('ad_desc[ar]', '.')
       this.$cookies.set('ad_desc[en]', '.')
       this.$cookies.set('ad_notes', '.')
-
-      // console.log('company_id:', this.$cookies.get('company_id'))
-      // console.log('duration_limit:', this.$cookies.get('duration_limit'))
-      // console.log('ad_title:', this.$cookies.get('ad_title'))
-      // console.log('ad_link:', this.$cookies.get('ad_link'))
-      // console.log('image:', this.$cookies.get('image'))
-      // console.log('ad_desc[ar]:', this.$cookies.get('ad_desc[ar]'))
-      // console.log('ad_desc[en]:', this.$cookies.get('ad_desc[en]'))
-      // console.log('ad_notes:', this.$cookies.get('ad_notes'))
 
       if (!this.data.package) {
         console.error('Package not selected')
