@@ -243,7 +243,7 @@ export default {
         reader.onload = (event) => {
           const imageBase64 = event.target.result
 
-          console.log('Loaded Image: ', imageBase64)
+          // console.log('Loaded Image: ', imageBase64)
 
           this.storeImage(imageBase64)
         }
@@ -329,7 +329,7 @@ export default {
     // End   :: Submit Form
   },
   created() {
-    console.log('Original Price:', this.originalPrice)
+    // console.log('Original Price:', this.originalPrice)
     this.discountedPrice = this.originalPrice
   },
 }

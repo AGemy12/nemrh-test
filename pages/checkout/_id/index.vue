@@ -360,7 +360,7 @@ export default {
 
     // Start:: Bay For The Order
     async bayForTheOrder() {
-      console.log('Image from Vuex: ', this.getAdvertisementImage)
+      // console.log('Image from Vuex: ', this.getAdvertisementImage)
 
       this.waitingForApplyingPayment = true
 

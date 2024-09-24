@@ -48,7 +48,9 @@
   }
 
   &.small_screens_navbar {
-    position: static;
+    position: fixed;
+    top: 0;
+    background-color: var(--white);
     padding: 0;
     overflow: visible;
     border-bottom: 1px solid var(--border_clr);

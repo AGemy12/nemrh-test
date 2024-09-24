@@ -168,10 +168,8 @@ export default {
 
 .search_section_content_wrapper {
   position: relative;
-  min-height: 100vh;
-  @media (max-width: 480px) {
-    min-height: calc(100vh - 61px);
-  }
+  height: 100vh;
+
   .wrapper {
     padding-top: 7rem;
     padding-inline: 4rem;
@@ -278,8 +276,6 @@ export default {
   }
   @include media(md) {
     .wrapper {
-      min-height: unset;
-      max-height: unset;
       padding-inline: 1.5rem;
       flex-wrap: wrap;
       text-align: center;
