@@ -42,11 +42,14 @@ export default {
 
 <style lang="scss" scoped>
 .below_search_engine_banner {
-  width: 100vw;
+  width: 90vw;
   max-height: 380px;
   overflow: hidden;
   position: absolute;
+  left: 5vw;
   bottom: 0;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
   @media (max-width: 480px) {
     position: relative;
     margin-top: 2rem;

@@ -58,7 +58,7 @@ export default {
     }
   }
   .companies_content_wrapper {
-    max-width: 100%;
+    width: 100%;
   }
 
   @include media(md) {

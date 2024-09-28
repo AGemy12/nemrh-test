@@ -195,7 +195,7 @@ export default {
         return
       }
 
-      this.$router.replace({
+      this.$router.push({
         path: this.localePath(`/checkout/${this.data.package}`),
         query: {
           subscription_type: 'campaign_subscription',

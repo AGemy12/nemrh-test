@@ -377,6 +377,7 @@ export default {
           REQUEST_DATA.append('ad_notes', this.$cookies.get('ad_notes'))
 
         const imageBase64 = this.getAdvertisementImage
+        const imageName = this.getAdvertisementImageName
 
         if (imageBase64) {
           const byteString = atob(imageBase64.split(',')[1])
@@ -392,7 +393,7 @@ export default {
           }
 
           const blob = new Blob([uint8Array], { type: mimeString })
-          REQUEST_DATA.append('image', blob, 'advertisement_image.png')
+          REQUEST_DATA.append('image', blob, imageName)
         }
 
         if (this.$cookies.get('ad_link'))

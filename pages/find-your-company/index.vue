@@ -43,13 +43,14 @@
       <!-- ========= End::  Find Company Section ========= -->
 
       <!-- ========= Start:: Banner ========= -->
-      <div class="container">
-        <BaseBanner
-          class="mt-5"
-          :bannerData="lastPannerData"
-          data-aos="fade-up"
-        />
-      </div>
+      <BannerUnderPage
+        :bannerImage="
+          BannerUnderPageDetails?.bottom_ad_companies?.ad_image || null
+        "
+        :companySiteLink="
+          BannerUnderPageDetails?.bottom_ad_companies?.ad_link || null
+        "
+      />
       <!-- ========= End:: Banner ========= -->
     </template>
     <SpiderModel
@@ -62,6 +63,7 @@
 <script>
 import MainLoader from '@/components/ui/MainLoader.vue'
 import isValidEmail from '@/utils/isValidEmail'
+import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
 import SpiderModel from '~/components/ui/modals/SpiderModel.vue'
 
 export default {
@@ -103,6 +105,7 @@ export default {
   },
   components: {
     MainLoader,
+    BannerUnderPage,
     SpiderModel,
   },
 
@@ -140,6 +143,7 @@ export default {
       })
       // ********** End:: Implement Request ********** //
       return {
+        BannerUnderPageDetails: res.data.additional_data,
         firstPannerData: res.data.additional_data?.first_section_title,
         lastPannerData: res.data.additional_data?.last_section_title,
       }

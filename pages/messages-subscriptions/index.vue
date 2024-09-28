@@ -22,15 +22,15 @@
       <!-- ========= Start:: Site Cycle Steps Section ========= -->
       <!-- <SiteCycleStepsSection /> -->
       <!-- ========= End:: Site Cycle Steps Section ========= -->
-
       <!-- ========= Start:: Banner ========= -->
-      <div class="container">
-        <BaseBanner
-          class="mt-5"
-          :bannerData="lastPannerData"
-          data-aos="fade-up"
-        />
-      </div>
+      <BannerUnderPage
+        :bannerImage="
+          BannerUnderPageDetails?.bottom_ad_companies?.ad_image || null
+        "
+        :companySiteLink="
+          BannerUnderPageDetails?.bottom_ad_companies?.ad_link || null
+        "
+      />
       <!-- ========= End:: Banner ========= -->
     </template>
   </section>
@@ -41,6 +41,7 @@ import MainLoader from '@/components/ui/MainLoader.vue'
 import MessagingPackagesSection from '@/components/generalSections/MessagingPackagesSection.vue'
 import SiteCycleStepsSection from '@/components/generalSections/SiteCycleStepsSection.vue'
 import BaseBanner from '@/components/banners/BaseBanner.vue'
+import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
 
 export default {
   name: 'SubscriptionsPage',
@@ -78,6 +79,7 @@ export default {
     MessagingPackagesSection,
     SiteCycleStepsSection,
     BaseBanner,
+    BannerUnderPage,
   },
 
   async asyncData({ $axiosRequest }) {
@@ -90,6 +92,7 @@ export default {
       // ********** End:: Implement Request ********** //
       return {
         messagingPackages: res.data.data,
+        BannerUnderPageDetails: res.data.additional_data,
         firstPannerData: res.data.additional_data?.first_section_title,
         lastPannerData: res.data.additional_data?.last_section_title,
       }

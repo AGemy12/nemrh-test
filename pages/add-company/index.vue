@@ -85,6 +85,16 @@
         </nuxt-link>
       </div>
     </div>
+    <!-- ========= Start:: Banner ========= -->
+    <BannerUnderPage
+      :bannerImage="
+        BannerUnderPageDetails?.bottom_ad_companies?.ad_image || null
+      "
+      :companySiteLink="
+        BannerUnderPageDetails?.bottom_ad_companies?.ad_link || null
+      "
+    />
+    <!-- ========= End:: Banner ========= -->
   </section>
 </template>
 
@@ -92,6 +102,7 @@
 import CompanyDetailsStep from '@/components/steps/company/CompanyDetailsStep.vue'
 import CompanyContactInfoStep from '@/components/steps/company/CompanyContactInfoStep.vue'
 import CompanyIdentityStep from '@/components/steps/company/CompanyIdentityStep.vue'
+import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
 
 export default {
   name: 'AddCompany',
@@ -130,6 +141,7 @@ export default {
     CompanyDetailsStep,
     CompanyContactInfoStep,
     CompanyIdentityStep,
+    BannerUnderPage,
   },
 
   data() {
@@ -167,6 +179,25 @@ export default {
       // End:: Request Complete Message
     }
   },
+
+  // Start:: Handel Banner Under Page Request
+  async asyncData({ $axiosRequest }) {
+    try {
+      // ********** Start:: Implement Request ********** //
+      let res = await $axiosRequest({
+        method: 'GET',
+        url: 'message_bundles',
+      })
+      // ********** End:: Implement Request ********** //
+      return {
+        BannerUnderPageDetails: res.data.additional_data,
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  // Start:: Handel Banner Under Page Request
 
   methods: {
     // Start:: Handel Steps Navigation

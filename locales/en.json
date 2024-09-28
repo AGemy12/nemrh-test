@@ -114,7 +114,8 @@
       "requestSent": "Yor request sent successfully, we will contact you soon"
     },
     "Subscriptions": {
-      "title": "Subscriptions"
+      "title": "Subscriptions",
+      "MessPackageDisValue": "Save 50 riyals per month"
     },
     "SiteCycleSteps": {
       "title": "Connects you to services and products <span> with button click </span>"
@@ -476,8 +477,16 @@
     "AdvertisementPreview": "Advertisement Preview",
     "searchAboutYourCompanyTitle": "Check the existence of your company first",
     "agree": "I confirm that the information is correct and agree to the",
+    "MessPackageCondAgree": "I acknowledge and agree to the",
     "bannerUnderSearTitle": "Recommended banner dimensions are 1920 pixels wide and 350 pixels high",
     "bannerUnderPageTitle": "Recommended banner dimensions are 1920 pixels wide and 500 pixels high",
-    "bannerMiddelPageTitle": "Recommended banner dimensions are 336px pixels wide and 280px pixels high"
+    "bannerMiddelPageTitle": "Recommended banner dimensions are 336px pixels wide and 280px pixels high",
+    "MessageLimit": "Messages Limit",
+    "unlimitedMessage": "Unlimited",
+    "MessageLimitNote": "The package ends when the subscription period expires or when the allowed number of messages is exhausted, whichever comes first",
+    "durationLimit": "Package duration",
+    "nemrhCompMess": "Messaging companies on the Nemrh website.",
+    "yourCustomerMess": "The ability to upload your customer numbers to write to them",
+    "days": "days"
   }
 }

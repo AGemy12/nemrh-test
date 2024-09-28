@@ -114,7 +114,8 @@
       "requestSent": "تم ارسال طلبك بنجاح , سوف يتم التواصل معك على البريد الإلكتروني ."
     },
     "Subscriptions": {
-      "title": "الإشتراكات"
+      "title": "الإشتراكات",
+      "MessPackageDisValue": "وفر 50 ريال شهريا"
     },
     "SiteCycleSteps": {
       "title": "يصلك بالخدمات والمنتجات  <span> بضغطة واحدة </span>"
@@ -476,8 +477,16 @@
     "AdvertisementPreview": "معاينة الإعلان",
     "searchAboutYourCompanyTitle": "تحقق من وجود شركتك اولا",
     "agree": "اقر على صحة المعلومات واوافق على",
+    "MessPackageCondAgree": "اقر واوافق على",
     "bannerUnderSearTitle": "ابعاد بانر الإعلان الموصى بها 1920 بيكسل للعرض و 350 بيكسل للارتفاع ",
     "bannerUnderPageTitle": "ابعاد بانر الإعلان الموصى بها 1920 بيكسل للعرض و 500 بيكسل للارتفاع ",
-    "bannerMiddelPageTitle": "ابعاد بانر الإعلان الموصى بها 336 بيكسل للعرض و 280 بيكسل للارتفاع "
+    "bannerMiddelPageTitle": "ابعاد بانر الإعلان الموصى بها 336 بيكسل للعرض و 280 بيكسل للارتفاع ",
+    "MessageLimit": "عدد الرسائل",
+    "unlimitedMessage": "غير محدود",
+    "durationLimit": "مدة الباقة",
+    "MessageLimitNote": "تنتهي الباقة بانتهاء مدة الإشتراك أو باستنفاذ عدد الرسائل المسموح أيهما اسرع",
+    "nemrhCompMess": "مراسلة شركات موقع نمره",
+    "yourCustomerMess": "امكانية رفع ارقام عملائك لمراسلتهم",
+    "days": "يوم"
   }
 }

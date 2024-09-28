@@ -61,6 +61,7 @@ export default {
 <style lang="scss">
 .banner_under_page {
   width: 100vw;
+  margin-top: 2rem;
   div {
     @include simpleShadow;
     img {

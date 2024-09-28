@@ -8,7 +8,7 @@
       flat
     >
       <v-card elevation="0">
-        <h5> {{ $t("TITLES.Modals.writeTheTextToSend") }} </h5>
+        <h5>{{ $t('TITLES.Modals.writeTheTextToSend') }}</h5>
 
         <v-form
           class="w-100"
@@ -47,9 +47,9 @@
 
 <script>
 export default {
-  name: "SendMessageModal",
+  name: 'SendMessageModal',
 
-  emits: ["toggleModal", "onResponseSuccess"],
+  emits: ['toggleModal', 'onResponseSuccess'],
 
   props: {
     modalIsOpen: {
@@ -99,17 +99,17 @@ export default {
 
     // Start:: Submit Form
     async submitForm() {
-      await this.$refs.sendMessageForm.validate();
+      await this.$refs.sendMessageForm.validate()
 
       if (this.formIsValid) {
-        this.isWaitingApiResponse = true;
+        this.isWaitingApiResponse = true
 
         // Start:: Append Request Data
-        const REQUEST_DATA = new FormData();
+        const REQUEST_DATA = new FormData()
         this.selectedCompaniesToSendMessage.forEach((item, index) => {
-          REQUEST_DATA.append(`companies_ids[${index}]`, item.id);
-        });
-        REQUEST_DATA.append('message', this.data.message.value);
+          REQUEST_DATA.append(`companies_ids[${index}]`, item.id)
+        })
+        REQUEST_DATA.append('message', this.data.message.value)
         // Start:: Append Request Data
 
         try {
@@ -120,29 +120,28 @@ export default {
             data: REQUEST_DATA,
           })
           // ********** End:: Implement Request ********** //
-          this.isWaitingApiResponse = false;
+          this.isWaitingApiResponse = false
 
           // Start:: Clear Form Inputs Data
-          this.$refs.sendMessageForm.resetValidation();
-          this.data.message.value = null;
-          this.data.message.error = null;
+          this.$refs.sendMessageForm.resetValidation()
+          this.data.message.value = null
+          this.data.message.error = null
           // End:: Clear Form Inputs Data
 
-          this.$emit('onResponseSuccess');
-          this.toggleModal();
+          this.$emit('onResponseSuccess')
+          this.toggleModal()
         } catch (err) {
-          this.isWaitingApiResponse = false;
+          this.isWaitingApiResponse = false
           this.$izitoast.error({
             message: err.response.data.message,
-          });
+          })
         }
       }
     },
     // End:: Submit Form
   },
-};
+}
 </script>
-
 
 <style lang="scss" scoped>
 .v-card {
