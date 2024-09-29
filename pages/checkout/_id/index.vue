@@ -141,7 +141,12 @@
 
                   <div class="detail_item">
                     <span> {{ $t('TITLES.Checkout.subscriptionPrice') }} </span>
-                    <p>{{ totalPrice }} {{ $t('APP_CURRENCY') }}</p>
+                    <p v-if="subscriptionType == 'campaign_subscription'">
+                      {{ totalPrice }} {{ $t('APP_CURRENCY') }}
+                    </p>
+                    <p v-else>
+                      {{ checkoutData.price }} {{ $t('APP_CURRENCY') }}
+                    </p>
                   </div>
 
                   <div class="detail_item" v-if="checkoutData.is_vat_active">
@@ -151,9 +156,12 @@
 
                   <div class="detail_item" v-if="checkoutData.is_vat_active">
                     <span> {{ $t('TITLES.Checkout.vatAmount') }} </span>
-                    <p>
+                    <p v-if="subscriptionType == 'campaign_subscription'">
                       {{ (totalPrice * checkoutData.vat_percent) / 100 }}
                       {{ $t('APP_CURRENCY') }}
+                    </p>
+                    <p v-else>
+                      {{ checkoutData.vat_price }} {{ $t('APP_CURRENCY') }}
                     </p>
                   </div>
 
@@ -171,12 +179,15 @@
                     <span>
                       {{ $t('TITLES.Checkout.total') }}
                     </span>
-                    <p>
+                    <p v-if="subscriptionType == 'campaign_subscription'">
                       {{
                         totalPrice +
                         (totalPrice * checkoutData.vat_percent) / 100
                       }}
                       {{ $t('APP_CURRENCY') }}
+                    </p>
+                    <p v-else>
+                      {{ checkoutData.total_price }} {{ $t('APP_CURRENCY') }}
                     </p>
                   </div>
 
@@ -409,7 +420,7 @@ export default {
 
           const blob = new Blob([uint8Array], { type: mimeString })
           REQUEST_DATA.append('image', blob, imageName)
-          console.log('هل الصورة موجودة:', REQUEST_DATA.has('image'))
+          // console.log('هل الصورة موجودة:', REQUEST_DATA.has('image'))
         }
 
         if (this.$cookies.get('ad_link'))
@@ -443,7 +454,7 @@ export default {
           },
         })
         this.waitingForApplyingPayment = false
-        console.log('استجابة السيرفر:', res.data)
+        // console.log('استجابة السيرفر:', res.data)
 
         // Delete Cached Data
         if (this.subscriptionType === 'campaign_subscription') {
