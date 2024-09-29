@@ -253,13 +253,16 @@ export default {
         reader.onload = (event) => {
           const imageBase64 = event.target.result
 
-          // console.log('Loaded Image: ', imageBase64)
-
-          this.storeImage(imageBase64)
+          // تخزين الصورة في Vuex
+          this.storeImage({
+            image: imageBase64,
+            name: selectedDocument.file.name,
+          })
         }
         reader.readAsDataURL(selectedDocument.file)
       }
     },
+
     // End:: Select Upload Document
 
     calculateEndDate() {

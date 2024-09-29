@@ -141,7 +141,7 @@
 
                   <div class="detail_item">
                     <span> {{ $t('TITLES.Checkout.subscriptionPrice') }} </span>
-                    <p>{{ checkoutData.price }} {{ $t('APP_CURRENCY') }}</p>
+                    <p>{{ totalPrice }} {{ $t('APP_CURRENCY') }}</p>
                   </div>
 
                   <div class="detail_item" v-if="checkoutData.is_vat_active">
@@ -151,7 +151,10 @@
 
                   <div class="detail_item" v-if="checkoutData.is_vat_active">
                     <span> {{ $t('TITLES.Checkout.vatAmount') }} </span>
-                    <p>{{ checkoutData.vat_price }} {{ $t('APP_CURRENCY') }}</p>
+                    <p>
+                      {{ (totalPrice * checkoutData.vat_percent) / 100 }}
+                      {{ $t('APP_CURRENCY') }}
+                    </p>
                   </div>
 
                   <div class="detail_item" v-if="appliedCoupon">
@@ -169,7 +172,11 @@
                       {{ $t('TITLES.Checkout.total') }}
                     </span>
                     <p>
-                      {{ checkoutData.total_price }} {{ $t('APP_CURRENCY') }}
+                      {{
+                        totalPrice +
+                        (totalPrice * checkoutData.vat_percent) / 100
+                      }}
+                      {{ $t('APP_CURRENCY') }}
                     </p>
                   </div>
 
@@ -306,13 +313,19 @@ export default {
     }),
     // End:: Vuex Getters
 
+    // Start:: Get Final Price From Cookie
+    totalPrice() {
+      return this.$cookies.get('price')
+    },
+    // End:: Get Final Price From Cookie
+
     // Start:: Subscription Type
     subscriptionType() {
       return this.$route.query.subscription_type
     },
     // End:: Subscription Type
 
-    ...mapGetters(['getAdvertisementImage']),
+    ...mapGetters(['getAdvertisementImage', 'getAdvertisementImageName']),
   },
 
   methods: {
@@ -375,6 +388,8 @@ export default {
           REQUEST_DATA.append('ad_desc[en]', this.$cookies.get('ad_desc[en]'))
         if (this.$cookies.get('ad_notes'))
           REQUEST_DATA.append('ad_notes', this.$cookies.get('ad_notes'))
+        if (this.$cookies.get('price'))
+          REQUEST_DATA.append('price', this.$cookies.get('price'))
 
         const imageBase64 = this.getAdvertisementImage
         const imageName = this.getAdvertisementImageName
@@ -394,6 +409,7 @@ export default {
 
           const blob = new Blob([uint8Array], { type: mimeString })
           REQUEST_DATA.append('image', blob, imageName)
+          console.log('هل الصورة موجودة:', REQUEST_DATA.has('image'))
         }
 
         if (this.$cookies.get('ad_link'))
@@ -427,6 +443,7 @@ export default {
           },
         })
         this.waitingForApplyingPayment = false
+        console.log('استجابة السيرفر:', res.data)
 
         // Delete Cached Data
         if (this.subscriptionType === 'campaign_subscription') {
@@ -437,6 +454,7 @@ export default {
           this.$cookies.remove('ad_link')
           this.$cookies.remove('ad_title')
           this.$cookies.remove('ad_notes')
+          this.$cookies.remove('price')
         }
 
         // Redirect To Payment Invoice

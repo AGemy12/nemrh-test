@@ -116,6 +116,7 @@ export default {
       adLink: '',
       adImage: '',
       companyTitle: '',
+      selectedPackagePrice: '',
       // End:: Duration Limit
 
       // Start:: Crete Campaign Data
@@ -162,6 +163,7 @@ export default {
         this.adImage = submitData.advertisementImage
         this.adImage = this.selectedPackageImage
         // console.log('Received Image Object:', this.adImage)
+        // console.log('Received Price:', this.selectedPackagePrice)
 
         this.currentStep = 'previewStep'
       } else {
@@ -182,6 +184,7 @@ export default {
       this.$cookies.set('ad_title', this.selectedPackageName)
       this.$cookies.set('ad_link', this.adLink)
       this.$cookies.set('image', this.adImage)
+      this.$cookies.set('price', this.selectedPackagePrice)
       this.$cookies.set('ad_desc[ar]', '.')
       this.$cookies.set('ad_desc[en]', '.')
       this.$cookies.set('ad_notes', '.')
