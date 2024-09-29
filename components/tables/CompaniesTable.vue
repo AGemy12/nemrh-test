@@ -96,9 +96,18 @@
         :btnText="$t('BUTTONS.startCampaign')"
         styleType="primary_btn"
         :disabled="selectedCompanies.length === 0"
-        @fireClick="startCampaignModalIsOpen = !startCampaignModalIsOpen"
+        @fireClick="
+          isUserSubscribed === false
+            ? (sureUserUnSubscribed = true)
+            : (startCampaignModalIsOpen = true)
+        "
       />
     </div>
+
+    <NoSubscribedUserModel
+      :modalIsOpen="sureUserUnSubscribed"
+      @toggleModal="toggleModal"
+    />
 
     <StartCampaignModal
       v-if="startCampaignModalIsOpen"
@@ -177,6 +186,7 @@ import AddWhatsappNumber from '@/components/modals/addWhatsappNumber/AddWhatsapp
 import ScanWhatsappQrCode from '~/components/modals/addWhatsappNumber/ScanWhatsappQrCode.vue'
 import StartCampaignModal from '@/components/modals/companies/StartCompaginModal.vue'
 import TextContentModal from '../modals/general/TextContentModal.vue'
+import NoSubscribedUserModel from '../ui/modals/NoSubscribedUserModel.vue'
 
 export default {
   name: 'CompaniesTable',
@@ -208,6 +218,10 @@ export default {
       type: Object,
       required: true,
     },
+    isUserSubscribed: {
+      type: Boolean,
+      required: true,
+    },
   },
 
   components: {
@@ -218,6 +232,7 @@ export default {
     AddWhatsappNumber,
     ScanWhatsappQrCode,
     TextContentModal,
+    NoSubscribedUserModel,
   },
 
   data() {
@@ -239,7 +254,11 @@ export default {
       actionMessageModalIsOpen: false,
       confirmationModalIsOpen: false,
       confirmationModalTitle: null,
-      // End:: Dialogs Control Data
+      // End :: Dialogs Control Data
+
+      // Start :: Sure User Unsubscribed
+      sureUserUnSubscribed: false,
+      // End :: Sure User Unsubscribed
 
       // Start:: Action Message Modal Content Based On User Status
       actionMessageModalContent: null,
@@ -315,10 +334,10 @@ export default {
     },
     // End:: Handel Pagination Query Params
 
-    startCampaginModel() {
-      this.startCampaignModalIsOpen = !this.startCampaignModalIsOpen
-      restartSocket()
-    },
+    // startCampaginModel() {
+    //   this.startCampaignModalIsOpen = !this.startCampaignModalIsOpen
+    //   restartSocket()
+    // },
 
     // Start:: Handel Copy To Clipboard
     async copyToClipboard(itemIdToCopy, modalContent) {
@@ -390,6 +409,10 @@ export default {
     },
     // End:: Handel Modal Toggling
 
+    toggleModal() {
+      this.sureUserUnSubscribed = !this.sureUserUnSubscribed
+    },
+
     // Start:: Handel Action Message Modal Toggling
     handelQrCodeModalToggle() {
       this.ScanQrModelIsOpen = !this.ScanQrModelIsOpen
@@ -401,8 +424,12 @@ export default {
     },
 
     SendSelectedCategoryToModal() {
-      this.selectedCategorieId = this.$route.query.filter_category
-      this.startCampaignModalIsOpen = !this.startCampaignModalIsOpe
+      if (this.isUserSubscribed === false) {
+        this.sureUserUnSubscribed = true
+      } else {
+        this.selectedCategorieId = this.$route.query.filter_category
+        this.startCampaignModalIsOpen = !this.startCampaignModalIsOpe
+      }
     },
   },
 }

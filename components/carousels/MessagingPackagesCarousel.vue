@@ -262,6 +262,19 @@ export default {
       this.termsAgreement = true
       this.toggleTermsAndConditionsModal()
     },
+
+    resetData() {
+      this.isCheckboxChecked = false // إعادة تعيين حالة الـ Checkbox
+      this.selectedPackageId = null // إعادة تعيين حزمة الباقة المختارة
+    },
+  },
+  mounted() {
+    this.resetData()
+  },
+  watch: {
+    $route() {
+      this.isCheckboxChecked = false // إعادة تعيين حالة الـ Checkbox عند تغيير المسار
+    },
   },
 }
 </script>

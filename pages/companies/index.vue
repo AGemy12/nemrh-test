@@ -26,6 +26,7 @@
         :userAvailableCopiesCount="userAvailableCopiesCount"
         :paginations="paginations"
         @onCopyToClipboard="decrementAvailableCopiesCount"
+        :is-user-subscribed="isUserSubscribed"
       />
       <!-- ========= End:: Companies Table ========= -->
     </div>
@@ -99,6 +100,7 @@ export default {
       // Start:: Companies Data
       companies: [],
       userIsSubscribedInMessagingPackage: false,
+      isUserSubscribed: false,
       userAvailableCopiesCount: 0,
       campaignDetails: null,
       // End:: Companies Data
@@ -210,6 +212,7 @@ export default {
           res.data.additional_data.has_message_subscriptions
         this.userAvailableCopiesCount =
           res.data.additional_data.remaining_copies_count
+        this.isUserSubscribed = res.data.additional_data.is_user_subscribed
         this.bannerData = res.data.additional_data.bottom_banner_content
         this.paginations.current_page = res.data.meta.current_page
         this.paginations.last_page = res.data.meta.last_page
