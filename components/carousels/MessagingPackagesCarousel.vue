@@ -16,6 +16,13 @@
             :packageData="item"
             :isSelected="selectedPackageId === item.id"
             @click.native="selectPackage(item.id)"
+            :discount-rate="
+              item.id === 2
+                ? 'خصم %30'
+                : null || item.id === 3
+                ? 'خصم %80'
+                : null
+            "
           />
         </swiper-slide>
       </swiper-carousel>
@@ -84,19 +91,19 @@ export default {
         },
         spaceBetween: 15,
         breakpoints: {
-          320: {
+          480: {
             slidesPerView: 1,
           },
-          850: {
+          992: {
             slidesPerView: 2,
           },
-          1024: {
+          1280: {
             slidesPerView: 3,
           },
-          // 1366: {
-          //   slidesPerView: 4,
-          //   spaceBetween: 20,
-          // },
+          1920: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
         },
       },
       selectedPackageId: null,

@@ -1,9 +1,14 @@
 <template>
   <div :class="['package_card_wrapper', { selected: isSelected }]">
-    <h2 class="package_name">{{ packageData.title }}</h2>
-    <h3 class="package_title">
-      {{ $t('TITLES.Subscriptions.MessPackageDisValue') }}
+    <h2 class="package_name" :style="`color: ${titleColor}`">
+      {{ packageData.title }}
+    </h2>
+    <h3 class="package_price">
+      {{ packageData.price }} {{ $t('OTHERS.Ryal') }}
     </h3>
+    <h4 class="package_title">
+      {{ discountRate }}
+    </h4>
     <p class="package_desc">{{ packageData.desc }}</p>
     <ul class="package_advantages_list">
       <li>
@@ -71,6 +76,12 @@ export default {
       type: Boolean,
       default: false,
     },
+    discountRate: {
+      type: String,
+    },
+    titleColor: {
+      type: String,
+    },
   },
 
   computed: {
@@ -85,7 +96,7 @@ export default {
 
 <style lang="scss" scoped>
 .package_card_wrapper {
-  height: 550px;
+  height: 570px;
   padding: 1rem;
   @include flex(space-evenly, stretch, column);
   row-gap: 1.3rem;
@@ -98,6 +109,15 @@ export default {
     font-size: 1.5rem;
     width: fit-content;
     margin: 0 auto !important;
+    @media (max-width: 480px) {
+      font-size: 1.2rem !important;
+    }
+  }
+  .package_price {
+    font-size: 1.5rem;
+    width: fit-content;
+    font-weight: bold;
+    margin: 0 auto;
     @media (max-width: 480px) {
       font-size: 1.2rem !important;
     }
@@ -120,8 +140,10 @@ export default {
     color: var(--light_theme_text_clr);
     text-align: justify;
     line-height: 1.8;
+    height: 100px;
     @media (max-width: 480px) {
       font-size: 1rem !important;
+      height: auto;
     }
   }
 
@@ -137,13 +159,19 @@ export default {
         font-size: 1.2rem !important;
         @media (max-width: 480px) {
           font-size: 1rem !important;
+          .message_limit_note {
+            font-size: 0.6rem;
+          }
         }
         .message_limit_note {
           display: block;
           text-align: justify;
-          font-size: 1rem;
+          font-size: 0.9rem;
           margin: 0.5rem auto;
           width: 90%;
+          @media (max-width: 480px) {
+            font-size: 0.8rem !important;
+          }
         }
       }
     }

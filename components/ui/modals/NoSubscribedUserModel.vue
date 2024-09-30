@@ -62,6 +62,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+div.v-dialog {
+  margin: 0 !important;
+  .v-card {
+    padding: 0;
+  }
+}
 .modal_wrapper {
   @include flex(center, center);
   flex-direction: column;
@@ -86,7 +92,7 @@ export default {
       line-height: 1.7;
       color: red;
 
-      @include flex(flex-start, center, row, 10px);
+      @include flex(center, center, row, 10px);
 
       @include media(md) {
         font-size: 1.25rem;
@@ -96,6 +102,11 @@ export default {
       }
       @media (max-width: 480px) {
         align-items: flex-start;
+        gap: 5px;
+        font-size: 1rem;
+        svg {
+          font-size: 1.5rem;
+        }
       }
     }
   }

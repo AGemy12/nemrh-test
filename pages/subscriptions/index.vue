@@ -106,9 +106,14 @@ export default {
         method: 'GET',
         url: 'pages/home',
       })
+      let secRes = await $axiosRequest({
+        method: 'GET',
+        url: 'message_bundles',
+      })
       // ********** End:: Implement Request ********** //
       return {
         homePageData: res.data.data,
+        firstPannerData: secRes.data.additional_data.first_section_title,
       }
     } catch (err) {
       console.log(err.response ? err.response.data.message : err.message)

@@ -8,9 +8,12 @@
         <div class="contact_section">
           <!-- Start:: Contact Section Header -->
           <div class="contact_section_header_wrapper">
-            <h1 class="section_title" v-html="$t('TITLES.ContactUs.title')"></h1>
-            <p class="section_desc" >
-              {{ $t("TITLES.ContactUs.desc") }} 
+            <h1
+              class="section_title"
+              v-html="$t('TITLES.ContactUs.title')"
+            ></h1>
+            <p class="section_desc">
+              {{ $t('TITLES.ContactUs.desc') }}
             </p>
           </div>
           <!-- End:: Contact Section Header -->
@@ -21,29 +24,41 @@
               <div class="col-lg-6">
                 <div class="contact_info_wrapper">
                   <div class="wrapper">
-                    <h3> {{ $t("TITLES.ContactUs.contactInfo") }} </h3>
-                    <p> {{ $t("TITLES.ContactUs.leaveMessage") }} </p>
+                    <h3>{{ $t('TITLES.ContactUs.contactInfo') }}</h3>
+                    <p>{{ $t('TITLES.ContactUs.leaveMessage') }}</p>
 
                     <div class="contacts">
-                      <div class="contact_info" v-if="contactData.contact_info.phone">
+                      <div
+                        class="contact_info"
+                        v-if="contactData.contact_info.phone"
+                      >
                         <i class="fa-solid fa-phone-volume"></i>
                         <a
                           :href="`tel:${contactData.contact_info.phone}`"
                           class="contact_copy"
                           dir="ltr"
                         >
-                          {{contactData.contact_info.phone}}
+                          {{ contactData.contact_info.phone }}
                         </a>
                       </div>
 
-                      <div class="contact_info" v-if="contactData.contact_info.email">
+                      <div
+                        class="contact_info"
+                        v-if="contactData.contact_info.email"
+                      >
                         <i class="fa-solid fa-envelope"></i>
-                        <a :href="`mailto:${'demo@gmail.com'}`" class="contact_copy">
-                          {{contactData.contact_info.email}}
+                        <a
+                          :href="`mailto:${'demo@gmail.com'}`"
+                          class="contact_copy"
+                        >
+                          {{ contactData.contact_info.email }}
                         </a>
                       </div>
 
-                      <div class="contact_info" v-if="contactData.contact_info.location">
+                      <div
+                        class="contact_info"
+                        v-if="contactData.contact_info.location"
+                      >
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="contact_copy">
                           {{ contactData.contact_info.location }}
@@ -53,7 +68,10 @@
                   </div>
 
                   <ul class="social_links">
-                    <li class="social_item" v-if="contactData.socials.whatsapp_link">
+                    <li
+                      class="social_item"
+                      v-if="contactData.socials.whatsapp_link"
+                    >
                       <a
                         :href="contactData.socials.whatsapp_link"
                         target="_blank"
@@ -73,13 +91,16 @@
                       </a>
                     </li>
 
-                    <li class="social_item" v-if="contactData.socials.instagram">
+                    <li
+                      class="social_item"
+                      v-if="contactData.socials.instagram"
+                    >
                       <a
                         :href="contactData.socials.instagram"
                         target="_blank"
                         aria-label="instagram"
                       >
-                      <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-instagram"></i>
                       </a>
                     </li>
 
@@ -115,7 +136,7 @@
                     required
                   />
                   <!-- End:: Name Input -->
-  
+
                   <!-- Start:: Email Input -->
                   <base-input
                     type="email"
@@ -127,20 +148,20 @@
                     required
                   />
                   <!-- End:: Email Input -->
-  
-                    <!-- Start:: Phone Number Input -->
-                    <base-input
-                      type="tel"
-                      :placeholder="$t('FORMS.Placeholders.phone')+'*'"
-                      staticPlaceholder="9665xxxxxxx"
-                      :validationRules="validationSchema.phoneRules"
-                      :serverSideErrorMessage="data.phone.error"
-                      @clearServerSideErrorMessage="data.phone.error = null"
-                      v-model.trim="data.phone.value"
-                      required
-                    />
-                    <!-- End:: Phone Number Input -->
-  
+
+                  <!-- Start:: Phone Number Input -->
+                  <base-input
+                    type="tel"
+                    :placeholder="$t('FORMS.Placeholders.phone') + '*'"
+                    staticPlaceholder="9665xxxxxxx"
+                    :validationRules="validationSchema.phoneRules"
+                    :serverSideErrorMessage="data.phone.error"
+                    @clearServerSideErrorMessage="data.phone.error = null"
+                    v-model.trim="data.phone.value"
+                    required
+                  />
+                  <!-- End:: Phone Number Input -->
+
                   <!-- Start:: Message Input -->
                   <base-input
                     type="textarea"
@@ -153,7 +174,7 @@
                     required
                   />
                   <!-- End:: Message Input -->
-  
+
                   <base-button
                     class="w-100"
                     :btnText="$t('BUTTONS.send')"
@@ -171,7 +192,7 @@
 
         <!-- ========== Start:: Faqs ========== -->
         <div class="faqs_section">
-          <h2 class="faqs_section_title"> {{ $t("TITLES.ContactUs.faqs") }} </h2>
+          <h2 class="faqs_section_title">{{ $t('TITLES.ContactUs.faqs') }}</h2>
 
           <div class="faqs_wrapper">
             <v-expansion-panels v-model="activePanels">
@@ -183,10 +204,10 @@
                   <template v-slot:actions>
                     <i class="fa-solid fa-angle-down"></i>
                   </template>
-                  {{item.question}}
+                  {{ item.question }}
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  {{item.answer}}
+                  {{ item.answer }}
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -205,10 +226,12 @@
         :options="{ fullscreenControl: false, styles: mapStyle }"
         :zoom="19"
       >
-        <GMapMarker :position="{
-          lat: +contactData.contact_info.lat,
-          lng: +contactData.contact_info.lng,
-        }"></GMapMarker>
+        <GMapMarker
+          :position="{
+            lat: +contactData.contact_info.lat,
+            lng: +contactData.contact_info.lng,
+          }"
+        ></GMapMarker>
       </GMap>
       <!-- ========== End:: Map ========== -->
     </template>
@@ -216,10 +239,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import MainLoader from '@/components/ui/MainLoader.vue';
-import isValidEmail from '@/utils/isValidEmail';
-import dummyData from '@/helpers/dummyData';
+import { mapGetters } from 'vuex'
+import MainLoader from '@/components/ui/MainLoader.vue'
+import isValidEmail from '@/utils/isValidEmail'
+import dummyData from '@/helpers/dummyData'
 
 export default {
   name: 'ContactPage',
@@ -311,9 +334,11 @@ export default {
             this.$t('FORMS.Validation.invalidEmail'),
         ],
         phoneRules: [
-          val => !!val || this.$t('FORMS.Validation.phone'),
-          val => !(val && val.length !== 12) || this.$t('FORMS.Validation.phoneLength'),
-          (val) => /^\d*$/.test(val) || this.$t('FORMS.Validation.onlyNumbers')
+          (val) => !!val || this.$t('FORMS.Validation.phone'),
+          (val) =>
+            !(val && val.length !== 12) ||
+            this.$t('FORMS.Validation.phoneLength'),
+          (val) => /^\d*$/.test(val) || this.$t('FORMS.Validation.onlyNumbers'),
         ],
         messageRules: [(val) => !!val || this.$t('FORMS.Validation.message')],
       },
@@ -328,7 +353,7 @@ export default {
   computed: {
     // Start:: Vuex Getters
     ...mapGetters({
-      contactData: "contactUsData/contactUsData",
+      contactData: 'contactUsData/contactUsData',
     }),
     // End:: Vuex Getters
   },
@@ -336,17 +361,17 @@ export default {
   methods: {
     // Start:: Submit Form
     async submitForm() {
-      this.$refs.contactForm.validate();
+      this.$refs.contactForm.validate()
 
       if (this.formIsValid) {
-        this.isWaitingApiResponse = true;
+        this.isWaitingApiResponse = true
 
         // Start:: Append Request Data
-        const REQUEST_DATA = new FormData();
-        REQUEST_DATA.append('name', this.data.name.value);
-        REQUEST_DATA.append('email', this.data.email.value);
-        REQUEST_DATA.append('phone_number', this.data.phone.value);
-        REQUEST_DATA.append('message', this.data.message.value);
+        const REQUEST_DATA = new FormData()
+        REQUEST_DATA.append('name', this.data.name.value)
+        REQUEST_DATA.append('email', this.data.email.value)
+        REQUEST_DATA.append('phone_number', this.data.phone.value)
+        REQUEST_DATA.append('message', this.data.message.value)
         // Start:: Append Request Data
 
         try {
@@ -356,29 +381,29 @@ export default {
             url: 'pages/contact',
             data: REQUEST_DATA,
           })
-          this.isWaitingApiResponse = false;
+          this.isWaitingApiResponse = false
           this.$izitoast.success({
             message: res.data.message,
-          });
+          })
           // ********** End:: Implement Request ********** //
 
           // Start:: Clear Form Inputs Data
-          this.$refs.contactForm.resetValidation();
-          this.data.name.value = null;
-          this.data.name.error = null;
-          this.data.email.value = null;
-          this.data.email.error = null;
-          this.data.phone.value = null;
-          this.data.phone.error = null;
-          this.data.message.value = null;
-          this.data.message.error = null;
+          this.$refs.contactForm.resetValidation()
+          this.data.name.value = null
+          this.data.name.error = null
+          this.data.email.value = null
+          this.data.email.error = null
+          this.data.phone.value = null
+          this.data.phone.error = null
+          this.data.message.value = null
+          this.data.message.error = null
           // End:: Clear Form Inputs Data
         } catch (err) {
-          this.isWaitingApiResponse = false;
-          this.data.name.error = err.response.data.errors.name;
-          this.data.email.error = err.response.data.errors.email;
-          this.data.phone.error = err.response.data.errors.phone;
-          this.data.message.error = err.response.data.errors.message;
+          this.isWaitingApiResponse = false
+          this.data.name.error = err.response.data.errors.name
+          this.data.email.error = err.response.data.errors.email
+          this.data.phone.error = err.response.data.errors.phone
+          this.data.message.error = err.response.data.errors.message
         }
       }
     },
@@ -390,7 +415,11 @@ export default {
 <style lang="scss">
 .contact_us_wrapper {
   padding-block: $section_block_padding * 1.5 0;
-  background: linear-gradient(rgba(177, 162, 204, 0.6), rgba(177, 162, 204, 0.4), transparent);
+  background: linear-gradient(
+    rgba(177, 162, 204, 0.6),
+    rgba(177, 162, 204, 0.4),
+    transparent
+  );
 
   .contact_section {
     .contact_section_header_wrapper {
@@ -400,7 +429,7 @@ export default {
         text-transform: capitalize;
         @include flex(center, center);
         column-gap: 0.8rem;
-  
+
         span {
           position: relative;
           text-decoration: none;
@@ -412,7 +441,7 @@ export default {
           background-color: var(--main_theme_clr);
           border-radius: 8px;
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -420,7 +449,7 @@ export default {
             @include rtl(right, 10px, auto);
             display: block;
             @include size(28px, 28px);
-            background-image: url("@/assets/media/icons/ui_icons/hand_pointing.svg");
+            background-image: url('@/assets/media/icons/ui_icons/hand_pointing.svg');
             background-size: contain;
           }
         }
@@ -447,14 +476,14 @@ export default {
         background-color: var(--main_theme_clr);
         border-radius: 8px;
         overflow: hidden;
-        &::before, 
+        &::before,
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           display: block;
           border-radius: 50%;
         }
-  
+
         &::before {
           bottom: -65px;
           @include rtl(right, 70%, -40px);
@@ -462,7 +491,7 @@ export default {
           background-color: var(--dark_main_theme_clr);
           opacity: 0.4;
         }
-  
+
         &::after {
           bottom: 30px;
           @include rtl(right, 62%, 50px);
@@ -470,7 +499,7 @@ export default {
           background-color: var(--soft_main_theme_clr);
           opacity: 0.2;
         }
-  
+
         .wrapper {
           h3 {
             @include font($bold_font, 1.5rem, var(--white));
@@ -480,12 +509,12 @@ export default {
             margin-block: 1.2rem 3.7rem !important;
             line-height: 1.6;
           }
-    
+
           .contacts {
             margin-block-start: 1rem;
             @include flex(flex-start, flex-start, column);
             row-gap: 3rem;
-    
+
             .contact_info {
               @include flex(center, center);
               column-gap: 1.2rem;
@@ -496,15 +525,16 @@ export default {
                   font-family: $regular_font;
                 }
               }
-  
-              svg,i {
+
+              svg,
+              i {
                 font-size: 1.3rem;
                 color: var(--white);
               }
             }
           }
         }
-  
+
         .social_links {
           width: 100%;
           @include flex(flex-end, center);
@@ -515,14 +545,16 @@ export default {
             border-radius: 50%;
             @include flex(center, center);
             transition: all 0.3s linear;
-            i, svg {
+            i,
+            svg {
               font-size: 1.2rem;
               color: var(--white);
               transition: all 0.3s linear;
             }
             &:hover {
               background-color: var(--white);
-              i, svg {
+              i,
+              svg {
                 color: var(--main_theme_clr);
               }
             }
@@ -562,7 +594,7 @@ export default {
           font-size: 1.05rem;
           font-family: $bold_font;
           line-height: 1.7;
-          @include flex(space-between, center,);
+          @include flex(space-between, center);
           column-gap: 10px;
           &::before {
             display: none;
@@ -573,7 +605,8 @@ export default {
             border-radius: 50%;
             @include flex(center, center);
             transition: all 0.3s linear;
-            svg, i {
+            svg,
+            i {
               font-size: 1rem;
               transition: all 0.3s linear;
             }
@@ -582,7 +615,8 @@ export default {
             .v-expansion-panel-header__icon {
               background-color: var(--main_theme_clr);
               transform: rotate(180deg);
-              svg, i {
+              svg,
+              i {
                 color: var(--white);
               }
             }
@@ -601,22 +635,24 @@ export default {
 
   @include media(md) {
     padding-block-start: $section_block_padding * 0.5;
+    position: relative;
+    top: 61px;
+    margin-bottom: 40px;
     .contact_section {
       .contact_section_header_wrapper {
-    
         .section_title {
           font-size: 1.4rem;
           line-height: 1.6;
           flex-wrap: wrap;
           row-gap: 1rem;
           text-align: center;
-    
+
           span {
             padding: 0.2rem 1.2rem;
             font-size: 1.1rem;
           }
         }
-    
+
         .section_desc {
           max-width: 95%;
         }
@@ -639,7 +675,7 @@ export default {
               font-size: 0.9rem;
               margin-block-end: 2rem !important;
             }
-      
+
             .contacts {
               margin-block-start: 0;
               margin-block-end: 2rem;
@@ -650,7 +686,8 @@ export default {
                     font-size: 0.95rem;
                   }
                 }
-                svg,i {
+                svg,
+                i {
                   font-size: 1.1rem;
                 }
               }
@@ -675,7 +712,8 @@ export default {
             &.v-expansion-panel-header--active {
               .v-expansion-panel-header__icon {
                 background-color: transparent;
-                svg, i {
+                svg,
+                i {
                   color: var(--theme_text_clr);
                 }
               }

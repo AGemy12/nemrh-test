@@ -733,8 +733,10 @@ export default {
   }
 
   @include media(md) {
-    padding-block: 0 40px;
-
+    padding-block: 0;
+    margin-bottom: 40px;
+    position: relative;
+    top: 61px;
     .company_details_wrapper {
       padding: 1rem;
       .wrapper {
