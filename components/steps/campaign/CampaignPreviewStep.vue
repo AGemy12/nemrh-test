@@ -324,12 +324,12 @@ export default {
   methods: {
     handleCheckBox() {
       this.isCheckboxChecked = !this.isCheckboxChecked
+      console.log('Checkbox Statu ==>', this.isCheckboxChecked)
     },
     handleImageUpload(event) {
       const file = event.target.files[0]
       if (file) {
         this.selectedImage = file
-        // console.log('Uploaded Image:', this.selectedImage)
       }
     },
     toggleTermsAndConditionsModal() {
@@ -345,14 +345,10 @@ export default {
         advertisementImage: this.selectedImage,
       })
       this.$cookies.remove('selectedPackageImage')
-
-      // console.log('تم حذف كوكي selectedPackageImage')
     },
   },
-
   beforeUpdate() {
     this.selectedPackageImage = this.$cookies.get('selectedPackageImage')
-    // console.log(this.selectedPackageImage)
   },
   watch: {
     '$cookies.get("selectedPackageImage")': function (newImage) {

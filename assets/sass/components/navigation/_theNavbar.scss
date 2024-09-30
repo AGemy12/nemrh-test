@@ -48,9 +48,7 @@
   }
 
   &.small_screens_navbar {
-    position: fixed;
-    top: 0;
-    background-color: var(--white);
+    position: static;
     padding: 0;
     overflow: visible;
     border-bottom: 1px solid var(--border_clr);
@@ -158,7 +156,7 @@
         }
         .routes_list {
           @include flex(flex-start, center);
-          column-gap: 35px !important;
+          column-gap: 35px;
           .navbar_route {
             @include flex(center, center);
             & > button,
@@ -171,7 +169,6 @@
               font-size: 0.95rem;
               font-family: $semi_bold_font;
               overflow: hidden;
-              text-transform: capitalize;
               &.nuxt-link-exact-active,
               &.nuxt-link-active,
               &.active,

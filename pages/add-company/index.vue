@@ -348,9 +348,6 @@ export default {
 
   @include media(md) {
     padding-block: $section_block_padding * 0.5;
-    margin-bottom: 45px;
-    position: relative;
-    top: 61px;
     .page_header_wrapper {
       .section_title {
         font-size: 1.4rem;

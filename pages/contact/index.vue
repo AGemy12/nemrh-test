@@ -635,9 +635,6 @@ export default {
 
   @include media(md) {
     padding-block-start: $section_block_padding * 0.5;
-    position: relative;
-    top: 61px;
-    margin-bottom: 40px;
     .contact_section {
       .contact_section_header_wrapper {
         .section_title {

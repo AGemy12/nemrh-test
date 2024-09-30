@@ -50,9 +50,18 @@ export default {
   bottom: 0;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
-  /* @media (max-width: 480px) {
-    bottom: 50px;
-  }*/
+  @media (max-width: 480px) {
+    position: unset;
+    margin-top: 30px;
+    width: 100%;
+    a {
+      width: 90%;
+      margin: 0 auto;
+      img {
+        border-radius: 10px;
+      }
+    }
+  }
   @include simpleShadow;
   a {
     @include flex(center, center);

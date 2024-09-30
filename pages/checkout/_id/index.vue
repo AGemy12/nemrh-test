@@ -466,6 +466,7 @@ export default {
           this.$cookies.remove('ad_title')
           this.$cookies.remove('ad_notes')
           this.$cookies.remove('price')
+          this.$cookies.remove('image')
         }
 
         // Redirect To Payment Invoice

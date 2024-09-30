@@ -207,6 +207,19 @@ export default {
       })
     },
   },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      if (sessionStorage.getItem('shouldReloadCreateCampaign')) {
+        sessionStorage.removeItem('shouldReloadCreateCampaign')
+        window.location.reload()
+      }
+    })
+  },
+
+  beforeRouteLeave(to, from, next) {
+    sessionStorage.setItem('shouldReloadCreateCampaign', true)
+    next()
+  },
 }
 </script>
 
@@ -241,7 +254,9 @@ export default {
     padding: 2rem;
     background-color: var(--theme_main_bg);
     border-radius: 8px;
-
+    @media (max-width: 480px) {
+      padding: 0;
+    }
     .v-stepper {
       .v-stepper__content {
         padding: 0;

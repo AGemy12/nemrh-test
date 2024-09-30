@@ -116,15 +116,26 @@ export default {
     }
     // End:: Fire Methods
   },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      if (sessionStorage.getItem('shouldReloadSubscriptionsPage')) {
+        sessionStorage.removeItem('shouldReloadSubscriptionsPage')
+        window.location.reload()
+      }
+    })
+  },
+
+  beforeRouteLeave(to, from, next) {
+    sessionStorage.setItem('shouldReloadSubscriptionsPage', true)
+    next()
+  },
 }
 </script>
 
 <style lang="scss">
 .pricing_page_content_wrapper {
   padding-block: $section_block_padding;
-  padding-top: 0;
-  position: relative;
-  top: 61px;
+
   background: linear-gradient(
     rgba(177, 162, 204, 0.6),
     rgba(177, 162, 204, 0.4),
