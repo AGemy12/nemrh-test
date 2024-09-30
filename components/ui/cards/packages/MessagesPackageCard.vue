@@ -1,6 +1,6 @@
 <template>
   <div :class="['package_card_wrapper', { selected: isSelected }]">
-    <h2 class="package_name" :style="`color: ${titleColor}`">
+    <h2 class="package_name">
       {{ packageData.title }}
     </h2>
     <h3 class="package_price">
@@ -79,9 +79,6 @@ export default {
     discountRate: {
       type: String,
     },
-    titleColor: {
-      type: String,
-    },
   },
 
   computed: {
@@ -129,9 +126,7 @@ export default {
     width: fit-content;
     margin: 0 auto !important;
     color: var(--main_theme_clr);
-    @media (max-width: 480px) {
-      font-size: 1rem !important;
-    }
+    font-weight: bold;
   }
 
   .package_desc {

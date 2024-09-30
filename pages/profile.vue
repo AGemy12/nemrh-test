@@ -12,10 +12,15 @@
       <div class="user_profile_wrapper">
         <ProfileTabs
           :class="{ active: profileTabsDrawerIsActive }"
-          @closeProfileTabs="profileTabsDrawerIsActive = !profileTabsDrawerIsActive"
+          @closeProfileTabs="
+            profileTabsDrawerIsActive = !profileTabsDrawerIsActive
+          "
         />
 
-        <div class="profile_views_container" :class="{'dashboard_view': $route.path.includes('/vendor-dashboard')}">
+        <div
+          class="profile_views_container"
+          :class="{ dashboard_view: $route.path.includes('/vendor-dashboard') }"
+        >
           <NuxtChild />
         </div>
       </div>
@@ -25,10 +30,10 @@
 </template>
 
 <script>
-import ProfileTabs from "@/components/profile/ProfileSideNav.vue";
+import ProfileTabs from '@/components/profile/ProfileSideNav.vue'
 
 export default {
-  name: "ProfilePage",
+  name: 'ProfilePage',
 
   transition: {
     name: 'fadeInUp',
@@ -47,15 +52,15 @@ export default {
     }
   },
 
-  middleware: "notAuthedUserMiddleware",
+  middleware: 'notAuthedUserMiddleware',
 
-    watch: {
+  watch: {
     profileTabsDrawerIsActive(newVal) {
-      let screenBreakPoint = window.matchMedia('(max-width: 1000px)').matches;
-      if(screenBreakPoint) {
+      let screenBreakPoint = window.matchMedia('(max-width: 1000px)').matches
+      if (screenBreakPoint) {
         newVal
           ? (document.documentElement.style.overflowY = 'hidden')
-          : (document.documentElement.style.overflowY = 'initial');
+          : (document.documentElement.style.overflowY = 'initial')
       }
     },
   },
@@ -63,10 +68,18 @@ export default {
 </script>
 
 <style lang="scss">
-.profile_page_content_wrapper{
+.profile_page_content_wrapper {
   padding-block: $section_block_padding * 1.5 $section_block_padding;
-  background: linear-gradient(rgba(177, 162, 204, 0.6), rgba(177, 162, 204, 0.4), transparent);
-
+  background: linear-gradient(
+    rgba(177, 162, 204, 0.6),
+    rgba(177, 162, 204, 0.4),
+    transparent
+  );
+  position: relative;
+  top: 61px;
+  padding-bottom: 0 !important;
+  margin-bottom: 45px;
+  display: block;
   .container {
     @include flex(center, center);
     .toggle_profile_taps_btn {
@@ -148,7 +161,8 @@ export default {
                   border-block-end: 1px solid rgba(0, 0, 0, 0.03);
                 }
                 .download_file {
-                  svg, i {
+                  svg,
+                  i {
                     font-size: 1.2rem;
                     color: var(--main_theme_clr);
                   }

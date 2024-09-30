@@ -68,6 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/*
 .modal_wrapper {
   @include flex(center, center);
   flex-direction: column;
@@ -101,6 +102,64 @@ export default {
 
       @include media(md) {
         font-size: 1rem;
+      }
+    }
+  }
+
+  .modal_footer_wrapper {
+    @include flex(center, center);
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 25px 15px;
+  }
+}
+
+.modal_link {
+  @include primaryBtnStyle;
+}
+
+.close_btn {
+  @include primaryBtnStyle;
+  background-color: transparent;
+  background-image: none;
+  color: var(--theme_text_clr);
+}
+  */
+div.v-dialog {
+  margin: 0 !important;
+  .v-card {
+    padding: 0;
+  }
+}
+.modal_wrapper {
+  padding: 2.5rem 1rem 1rem;
+  .modal_close_btn {
+    position: absolute;
+    top: 3px;
+    inset-inline-start: 15px;
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .modal_body {
+    @include flex(center, center, column);
+    gap: 0.825rem;
+
+    h3 {
+      @include font($medium_font, 1.5rem, var(--theme_text_clr));
+      text-align: center;
+      line-height: 1.7;
+      color: red;
+
+      @media (max-width: 480px) {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 1rem;
+        @media (max-width: 480px) {
+          font-size: 1rem;
+        }
       }
     }
   }

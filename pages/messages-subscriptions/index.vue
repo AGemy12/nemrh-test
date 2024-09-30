@@ -122,6 +122,9 @@ export default {
 <style lang="scss">
 .pricing_page_content_wrapper {
   padding-block: $section_block_padding;
+  padding-top: 0;
+  position: relative;
+  top: 61px;
   background: linear-gradient(
     rgba(177, 162, 204, 0.6),
     rgba(177, 162, 204, 0.4),

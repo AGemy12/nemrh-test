@@ -10,11 +10,7 @@
       <!-- Start:: Page Image -->
       <AuthImageCard
         class="col-lg-5 p-0"
-        :title="
-          isAuthContenetAvailable
-            ? contactData.auth_side_content
-            : ''
-        "
+        :title="isAuthContenetAvailable ? contactData.auth_side_content : ''"
         :authRouteText="$t('BUTTONS.registerRoute')"
       />
       <!-- End:: Page Image -->
@@ -84,6 +80,8 @@ export default {
 <style lang="scss">
 .profile_page_content_wrapper {
   padding-block: $section_block_padding * 1.5 $section_block_padding;
+  position: relative;
+  top: 0;
   background: linear-gradient(
     rgba(177, 162, 204, 0.6),
     rgba(177, 162, 204, 0.4),
