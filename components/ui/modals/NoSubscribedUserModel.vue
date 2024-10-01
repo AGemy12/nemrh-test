@@ -14,7 +14,7 @@
               <i class="fa-solid fa-ban"></i>
               {{
                 $i18n.locale === 'ar'
-                  ? 'يجب عليك الإشتراك في احدى حزمنا للإرسال'
+                  ? 'يجب عليك الإشتراك في احدى باقاتنا للإرسال'
                   : 'You have to subscribe to one of our bundles to send messages'
               }}
             </h3>

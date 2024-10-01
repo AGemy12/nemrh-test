@@ -271,8 +271,8 @@ export default {
     },
 
     resetData() {
-      this.isCheckboxChecked = false // إعادة تعيين حالة الـ Checkbox
-      this.selectedPackageId = null // إعادة تعيين حزمة الباقة المختارة
+      this.isCheckboxChecked = false
+      this.selectedPackageId = null
     },
   },
   mounted() {
@@ -280,7 +280,7 @@ export default {
   },
   watch: {
     $route() {
-      this.isCheckboxChecked = false // إعادة تعيين حالة الـ Checkbox عند تغيير المسار
+      this.isCheckboxChecked = false
     },
   },
 }
