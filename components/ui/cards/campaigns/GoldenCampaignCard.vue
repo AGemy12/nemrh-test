@@ -65,7 +65,9 @@ export default {
   border-radius: 8px;
   @include flex(space-between, center);
   column-gap: 0.5rem;
-
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+  }
   .item_info_wrapper {
     @include flex(flex-start, center);
     column-gap: 0.5rem;

@@ -31,13 +31,13 @@ export default {
   @include flex(space-between, center);
   margin-bottom: 15px;
   .advertisement_detail_key {
-    @media (max-width: 450px) {
-      font-size: 15px;
+    @media (max-width: 480px) {
+      font-size: 14px;
     }
   }
   .advertisement_detail_value {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 </style>

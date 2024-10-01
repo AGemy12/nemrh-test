@@ -60,8 +60,13 @@ export default {
 
 <style lang="scss">
 .banner_under_page {
-  width: 100vw;
-  margin-top: 2rem;
+  width: 90vw;
+  margin: 0 auto;
+  border-radius: 5px;
+  overflow: hidden;
+  @media (max-width: 480px) {
+    margin: 1rem auto;
+  }
   div {
     @include simpleShadow;
     img {

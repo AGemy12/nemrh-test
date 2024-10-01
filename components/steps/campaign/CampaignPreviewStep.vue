@@ -360,6 +360,7 @@ export default {
 
 <style lang="scss" scoped>
 .advertisements_third_step_container {
+  padding: 1rem 0;
   .global_title {
     background-color: var(--deactive_button_bg);
     color: var(--main_theme_clr);
@@ -367,6 +368,9 @@ export default {
     padding: 0.5rem 1rem;
     border-radius: 5px;
     text-transform: capitalize;
+    @media (max-width: 480px) {
+      margin: 1rem auto;
+    }
   }
 
   h3 {
@@ -417,6 +421,10 @@ export default {
       }
     }
     .advertisements_third_step_preview {
+      @media (max-width: 480px) {
+        max-width: 90%;
+        margin: 0 auto;
+      }
       h6 {
         margin-top: 0;
         width: fit-content;
@@ -435,7 +443,7 @@ export default {
   .advertisements_third_step_checkbox_ok {
     @include flex(center, center, row, 10px);
     width: fit-content;
-    margin: 20px auto;
+    margin: 1.5rem auto;
     label {
       font-size: 14px;
       font-weight: bold;

@@ -135,13 +135,15 @@ export default {
 <style lang="scss">
 .pricing_page_content_wrapper {
   padding-block: $section_block_padding;
-
   background: linear-gradient(
     rgba(177, 162, 204, 0.6),
     rgba(177, 162, 204, 0.4),
     transparent
   );
-
+  @media (max-width: 480px) {
+    padding-top: 0;
+    padding-bottom: 1.5rem;
+  }
   .hero_banner_wrapper {
     .banner_content_wrapper {
       border-radius: 0;

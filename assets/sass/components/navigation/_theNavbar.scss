@@ -156,7 +156,7 @@
         }
         .routes_list {
           @include flex(flex-start, center);
-          column-gap: 35px;
+          column-gap: 35px !important;
           .navbar_route {
             @include flex(center, center);
             & > button,

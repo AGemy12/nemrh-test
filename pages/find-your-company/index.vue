@@ -26,6 +26,7 @@
               @clearServerSideErrorMessage="data.email.error = null"
               v-model.trim="data.email.value"
               required
+              @input="validateForm"
             />
           </div>
         </v-form>
@@ -197,6 +198,23 @@ export default {
       this.addCompanyModalIsOpen = !this.addCompanyModalIsOpen
     },
     // End:: Control Modal Apperance
+
+    validateForm() {
+      this.formIsValid =
+        !!this.data.email.value &&
+        this.validationSchema.emailRules.every(
+          (rule) => rule(this.data.email.value) === true
+        )
+    },
+    handleEnterKey(event) {
+      if (
+        event.key === 'Enter' &&
+        this.formIsValid &&
+        !this.isWaitingApiResponse
+      ) {
+        this.submitForm()
+      }
+    },
   },
 
   mounted() {
@@ -217,6 +235,10 @@ export default {
     rgba(177, 162, 204, 0.4),
     transparent
   );
+  @media (max-width: 480px) {
+    padding-top: 0;
+    padding-bottom: 1.5rem;
+  }
   .packages_container {
     position: relative;
     width: 80%;

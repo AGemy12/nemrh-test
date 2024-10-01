@@ -211,6 +211,9 @@ export default {
       padding: 0.5rem 1rem;
       border-radius: 5px;
       text-transform: capitalize;
+      @media (max-width: 480px) {
+        margin: 1rem auto;
+      }
     }
     .step_title {
       color: var(--white);
