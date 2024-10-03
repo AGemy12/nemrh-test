@@ -223,6 +223,15 @@
 }
 // ========== End:: Main Navbar Styles ========== //
 
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .logo_wrapper {
+    width: 100px;
+  }
+  .navbar_route > a {
+    font-size: 0.8rem !important ;
+  }
+}
+
 // ========== Start:: Animation Keyframes ========== //
 @keyframes fixedAnimation {
   0% {

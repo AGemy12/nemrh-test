@@ -182,12 +182,14 @@
                     <p v-if="subscriptionType == 'campaign_subscription'">
                       {{
                         totalPrice +
-                        (totalPrice * checkoutData.vat_percent) / 100
+                        (totalPrice * checkoutData.vat_percent) / 100 -
+                        (appliedCoupon ? discount : 0)
                       }}
                       {{ $t('APP_CURRENCY') }}
                     </p>
                     <p v-else>
-                      {{ checkoutData.total_price }} {{ $t('APP_CURRENCY') }}
+                      {{ checkoutData.total_price }}
+                      {{ $t('APP_CURRENCY') }}
                     </p>
                   </div>
 

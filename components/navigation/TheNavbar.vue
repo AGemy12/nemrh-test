@@ -144,7 +144,7 @@ export default {
         },
         {
           id: 4,
-          name: this.$t('NAV.subscriptions'),
+          name: this.$t('NAV.adsAndMessages'),
           path: '/subscriptions',
           showWithoutAuth: true,
         },

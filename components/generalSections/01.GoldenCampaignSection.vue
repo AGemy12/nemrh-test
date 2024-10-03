@@ -85,7 +85,7 @@ export default {
     campaignItemsWithPlaceholders() {
       let campaignItemsListWithFixedType = this.companies.map((item) => {
         return {
-          id: item?.id,
+          id: item?.company?.id,
           image: item?.company?.image,
           name: item?.company?.title,
           website: item?.ad_link,
@@ -132,7 +132,7 @@ export default {
         // ********** End:: Implement Request ********** //
         this.isWaitingApiResponse = false
         this.companies = res.data.data
-        console.log(JSON.parse(JSON.stringify(this.companies)))
+        // console.log(JSON.parse(JSON.stringify(this.companies)))
       } catch (err) {
         this.isWaitingApiResponse = false
         console.log(err.response.data.message)
