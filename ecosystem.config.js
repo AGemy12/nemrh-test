@@ -9,14 +9,9 @@ module.exports = {
       max_memory_restart: '100M',
       watch: true,
       env: {
-        NODE_ENV: 'development',
-        API_URL: 'https://api-nemrh-test.cmt-saudi.com/api/',
-        SOCKET_URL: 'https://api-nemrh-test.cmt-saudi.com:3303',
-      },
-      env_production: {
         NODE_ENV: 'production',
-        API_URL: 'https://nova.nemmra.com/api/',
-        SOCKET_URL: 'https://nova.nemmra.com:3304',
+        HOST: '0.0.0.0',
+        PORT: 3014,
       },
     },
   ],

@@ -1,11 +1,6 @@
 import { reactive } from 'vue'
 import { io } from 'socket.io-client'
 
-// الحصول على المتغيرات البيئية مباشرة من process.env
-const URL =
-  process.env.SOCKET_URL || 'https://api-nemrh-test.cmt-saudi.com:3303'
-console.log('Socket URL:', URL)
-
 function getCookie(name) {
   if (typeof document !== 'undefined') {
     let cookieArray = document.cookie.split('; ')
@@ -28,6 +23,8 @@ export const state = reactive({
   readyToSendMessages: false,
 })
 
+const URL = 'https://api-nemrh-test.cmt-saudi.com:3303'
+
 export const socket = io(URL)
 
 socket.on('connect', () => {
@@ -36,21 +33,27 @@ socket.on('connect', () => {
 
 socket.on('disconnect', () => {
   state.connected = false
+  // console.log('test')
   socket.emit('delete_session', userId)
 })
 
 socket.on(`qr_${userId}`, (e) => {
   state.qrCode = e
+  // console.log(state.qrCode)
 })
 
 socket.on(`whatsapp_ready_${userId}`, (e) => {
   state.readyToSendMessages = e
+  // console.log(e)
 })
 
 export function restartSocket() {
   if (socket.connected) {
     socket.disconnect()
     state.qrCode = null
+    // console.log(state.connected)
+    // console.log(state.qrCode)
   }
   socket.connect()
+  // console.log(state.connected)
 }
