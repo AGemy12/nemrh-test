@@ -2,6 +2,10 @@ export default {
   target: 'server',
   ssr: true,
 
+  publicRuntimeConfig: {
+    apiUrl: process.env.API_URL,
+    socketUrl: process.env.SOCKET_URL,
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     meta: [

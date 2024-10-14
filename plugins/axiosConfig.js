@@ -1,7 +1,10 @@
 export default ({ app, $axios, store, redirect, $cookies }, inject) => {
+  const baseURL = app.$config.apiUrl
+
   const axiosRequest = $axios.create({
     // baseURL: ``, //****  LIVE URL ****//
-    baseURL: `https://api-nemrh-test.cmt-saudi.com/api/`, //****  TEST URL ****//
+    // baseURL: `https://api-nemrh-test.cmt-saudi.com/api/`, //****  TEST URL ****//
+    baseURL: baseURL,
     // baseURL: `http://192.168.1.18:8000/api/`, //****  LOCAL URL ****//
     headers: {
       common: {
