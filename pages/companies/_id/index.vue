@@ -32,6 +32,12 @@
             </div>
 
             <div class="company_action_btns">
+              <a
+                class="start_campaign_route report_btn"
+                :href="`mailto:info@nemra.com?subject=إبلاغ عن ${companyProfileData.title}`"
+              >
+                {{ $t('BUTTONS.Report') }}
+              </a>
               <nuxt-link
                 class="start_campaign_route"
                 :to="createCampaignRoute(companyProfileData.id)"
@@ -44,6 +50,7 @@
                 dropdownClass="company_actions"
                 :title="$t('BUTTONS.actions')"
                 :items="dropdownItems"
+                class="dropDown_btn"
               />
 
               <DeleteCompanyModal
@@ -604,6 +611,10 @@ export default {
       .company_action_btns {
         @include flex(flex-start, center);
         column-gap: 1rem;
+        @media (max-width: 480px) {
+          column-gap: 0.5rem;
+          flex: 1 !important;
+        }
         .start_campaign_route {
           @include borderedBtnStyle;
           padding: 6px 20px;
@@ -611,6 +622,12 @@ export default {
           color: var(--white);
           &:hover {
             color: var(--white);
+          }
+          @media (max-width: 480px) {
+            font-size: 12px;
+            padding-left: 10px;
+            padding-right: 10px;
+            min-width: 100px;
           }
         }
       }
@@ -824,5 +841,24 @@ export default {
 
 .company_actions {
   top: 175px !important;
+}
+.report_btn {
+  border: none !important;
+  min-width: 80px !important;
+  background-color: var(--white) !important;
+  color: var(--main_theme_clr) !important;
+  font-weight: bold !important;
+}
+.dropdown_btn {
+  @media (max-width: 480px) {
+    min-width: 100px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 100px;
+    span {
+      font-size: 12px !important;
+    }
+  }
 }
 </style>

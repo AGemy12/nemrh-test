@@ -266,7 +266,8 @@
     "confirmNumber": "Confirm Number",
     "continue": "continue",
     "addAnotherWhatsappNumber": "Add Another Whatsapp Number",
-    "selectCompanies": "Select all companies in the selected categoy"
+    "selectCompanies": "Select all companies in the selected categoy",
+    "Report": "Report"
   },
   "FORMS": {
     "Placeholders": {

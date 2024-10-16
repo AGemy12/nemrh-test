@@ -107,9 +107,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: '/',
-  },
+  // axios: {
+  //   baseURL: 'http://api-nemrh-test.cmt-saudi.com/api/',
+  // },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -149,7 +149,7 @@ export default {
     port: 3014,
   },
 
-  env: {
-    baseUrl: process.env.baseUrl || '',
-  },
+  // env: {
+  //   baseUrl: process.env.API_BASE_URL || '',
+  // },
 }

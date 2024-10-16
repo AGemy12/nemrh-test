@@ -36,7 +36,7 @@
             </li>
             <li>
               <nuxt-link :to="localePath('/subscriptions')" exact>
-                {{ $t('NAV.subscriptions') }}
+                {{ $t('NAV.adsAndMessages') }}
               </nuxt-link>
             </li>
             <li>
