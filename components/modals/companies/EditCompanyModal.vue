@@ -13,14 +13,14 @@
         <v-stepper v-model="currentStep" class="p-0 w-100" flat>
           <v-stepper-items>
             <v-stepper-content step="companyDetailsStep">
-              <CompanyDetailsStep
+              <EditCompanyDetailsStep
                 :companyDetails="companyDetailsData"
                 @fireNavigateToSecondStep="handelSecondStepNavigation"
               />
             </v-stepper-content>
 
             <v-stepper-content step="contactDetailsStep">
-              <CompanyContactInfoStep
+              <EditCompanyContactInfoStep
                 :companyContactInfo="companyDetailsData"
                 @fireNavigateToPreviousStep="currentStep = 'companyDetailsStep'"
                 @fireNavigateToThirdStep="handelThirdStepNavigation"
@@ -29,7 +29,9 @@
 
             <v-stepper-content step="companyIdentityStep">
               <CompanyIdentityStep
+                :companyIdentityInfo="companyDetailsData"
                 :isWaitingApiResponse="isWaitingApiResponse"
+                :isEditCycle="true"
                 @fireNavigateToPreviousStep="currentStep = 'contactDetailsStep'"
                 @submitForm="handelLastStep"
               />
@@ -42,8 +44,10 @@
 </template>
 
 <script>
-import CompanyDetailsStep from '@/components/steps/company/CompanyDetailsStep.vue'
-import CompanyContactInfoStep from '@/components/steps/company/CompanyContactInfoStep.vue'
+// import CompanyDetailsStep from '@/components/steps/company/CompanyDetailsStep.vue'
+// import CompanyContactInfoStep from '@/components/steps/company/CompanyContactInfoStep.vue'
+import EditCompanyContactInfoStep from '@/components/steps/company/EditCompanyContactInfoStep.vue'
+import EditCompanyDetailsStep from '@/components/steps/company/EditCompanyDetailsStep.vue'
 import CompanyIdentityStep from '@/components/steps/company/CompanyIdentityStep.vue'
 
 export default {
@@ -71,8 +75,8 @@ export default {
   },
 
   components: {
-    CompanyDetailsStep,
-    CompanyContactInfoStep,
+    EditCompanyDetailsStep,
+    EditCompanyContactInfoStep,
     CompanyIdentityStep,
   },
 

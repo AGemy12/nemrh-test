@@ -149,7 +149,7 @@
 import isValidEmail from '@/utils/isValidEmail'
 
 export default {
-  name: 'CompanyContactInfoStep',
+  name: 'EditCompanyContactInfoStep',
 
   emits: ['fireNavigateToPreviousStep', 'fireNavigateToThirdStep'],
 
@@ -173,15 +173,15 @@ export default {
       // Start:: Data Collection To Send
       data: {
         phone: {
-          value: this.companyContactInfo?.phone || null,
+          value: this.companyContactInfo?.phone || 'غير موجود',
           error: null,
         },
         email: {
-          value: this.companyContactInfo?.email || null,
+          value: this.companyContactInfo?.email || 'غير موجود',
           error: null,
         },
         website: {
-          value: this.companyContactInfo?.link || null,
+          value: this.companyContactInfo?.link || 'غير موجود',
           error: null,
         },
         socialLinks: [
@@ -198,11 +198,11 @@ export default {
           },
         ],
         addressAr: {
-          value: this.companyContactInfo?.location_ar || null,
+          value: this.companyContactInfo?.location_ar || 'غير موجود',
           error: null,
         },
         addressEn: {
-          value: this.companyContactInfo?.location_en || null,
+          value: this.companyContactInfo?.location_en || 'غير موجود',
           error: null,
         },
       },

@@ -8,22 +8,38 @@
     </div>
 
     <v-form
-      class="w-100 mt-8"
+      class="w-100 mt-6"
       ref="companyIdentityForm"
       v-model="formIsValid"
       lazy-validation
     >
       <!-- Start:: Logo Input -->
-      <base-document-upload-input
-        class="mb-8"
-        identifier="company_logo"
-        :placeholder="$t('FORMS.Placeholders.companyLogo') + '*'"
-        accept=".jpg, .png, .svg, .bmp, .webp, .jpeg"
-        @selectDocument="selectDocument"
-        @clearErrors="data.logo.error = null"
-        :errorMessage="data.logo.error"
-        required
-      />
+      <div>
+        <div class="logo_current" v-if="isEditCycle">
+          <img
+            v-if="companyIdentityInfo.image"
+            class="logo_current_image"
+            :src="data.imgSrc"
+            alt="شعار الشركة"
+          />
+          <img
+            v-else
+            class="logo_current_image"
+            src="https://api-nemrh-test.cmt-saudi.com/assets/images/companies/company.jpg"
+            alt="شعار الشركة"
+          />
+        </div>
+        <base-document-upload-input
+          class="mb-8"
+          identifier="company_logo"
+          :placeholder="$t('FORMS.Placeholders.companyLogo')"
+          accept=".jpg, .png, .svg, .bmp, .webp, .jpeg"
+          @selectDocument="selectDocument"
+          @clearErrors="data.logo.error = null"
+          :errorMessage="data.logo.error"
+          required
+        />
+      </div>
       <!-- End:: Logo Input -->
 
       <!-- Start:: Commercial Register Input -->
@@ -69,12 +85,22 @@ export default {
       required: true,
       default: true,
     },
+    companyIdentityInfo: {
+      type: Object,
+      required: false,
+    },
+    isEditCycle: {
+      type: Boolean,
+      required: true,
+    },
   },
 
   data() {
     return {
       // Start:: Company Details Data
+
       data: {
+        imgSrc: this.companyIdentityInfo?.image,
         logo: {
           value: null,
           error: null,
@@ -135,10 +161,21 @@ export default {
 
 <style lang="scss" scoped>
 .company_identity_form_step_wrapper {
+  .logo_current {
+    width: 120px;
+    margin: 0.5rem auto 1rem auto;
+    background-color: var(--white);
+    box-shadow: 0 0 6px 0 var(--mid_shadow_clr);
+    border-radius: 5px;
+    .logo_current_image {
+      width: 100%;
+    }
+  }
   .step_title_wrapper {
     margin-block: 1rem;
     @include flex(flex-start, center);
     column-gap: 0.8rem;
+
     .step_number {
       @include flex(center, center);
       width: 20px;

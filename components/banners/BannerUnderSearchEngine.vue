@@ -45,20 +45,19 @@ export default {
   width: 90vw;
   max-height: 380px;
   overflow: hidden;
-  position: absolute;
-  left: 5vw;
-  bottom: 0;
   border-radius: 10px;
+  margin-top: 1.5rem;
   box-shadow: var(--box-shadow);
+  z-index: 1000000000000;
   @media (max-width: 480px) {
     position: unset;
-    margin-top: 30px;
+    margin-top: 0.5rem;
     width: 100%;
     a {
       width: 90%;
       margin: 0 auto;
       img {
-        border-radius: 10px;
+        border-radius: 5px;
       }
     }
   }

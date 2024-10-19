@@ -753,14 +753,14 @@ export default {
     padding-block: 0;
     margin-bottom: 40px;
     position: relative;
-    top: 61px;
+    top: 0px;
     .company_details_wrapper {
       padding: 1rem;
       .wrapper {
         justify-content: center;
         flex-wrap: wrap;
         row-gap: 2rem;
-
+        align-items: center;
         .company_info_wrapper {
           order: 2;
           justify-content: center;
@@ -841,6 +841,12 @@ export default {
 
 .company_actions {
   top: 175px !important;
+  @media (max-width: 767px) {
+    top: 135px !important;
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    top: 160px !important;
+  }
 }
 .report_btn {
   border: none !important;

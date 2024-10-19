@@ -91,7 +91,7 @@
                 <h3 class="message_title">{{ $t('TITLES.notSubscribed') }}</h3>
               </div>
 
-              <nuxt-link :to="localePath('/pricing')">
+              <nuxt-link :to="localePath('/subscriptions')">
                 {{ $t('BUTTONS.pricing') }}
               </nuxt-link>
             </div>

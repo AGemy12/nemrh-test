@@ -253,7 +253,7 @@ export default {
   position: fixed;
   z-index: 49;
   bottom: 30px;
-  // z-index: 1;
+  z-index: 1000000000000;
   width: 60px;
   height: 60px;
   background: #03ae03;

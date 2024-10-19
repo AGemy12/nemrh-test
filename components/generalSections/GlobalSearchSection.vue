@@ -51,9 +51,8 @@
           <i class="fa-regular fa-trash-can"></i>
         </button>
       </form>
+      <BannerUnderSearchEngine :searchAdImage="searchAdImage" :path="path" />
     </div>
-
-    <BannerUnderSearchEngine :searchAdImage="searchAdImage" :path="path" />
   </section>
   <!-- <GlobalCaruosel /> -->
 </template>
@@ -161,22 +160,30 @@ export default {
   background-image: url('../../assets/media/images/hero.png');
   background-position: center center;
   background-size: cover;
-  .wrapper {
-    background-color: rgba(94, 23, 235, 0.1);
-  }
 }
 
 .search_section_content_wrapper {
   position: relative;
-  height: 100vh;
-  @media (max-width: 480px) {
-    height: calc((var(--vh, 1vh) * 100) - 61px);
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
   }
+
   .wrapper {
     padding-top: 7rem;
     padding-inline: 4rem;
+    padding-bottom: 1.5rem;
+    position: relative;
     @media (min-width: 1601px) {
       padding-top: 9rem;
+    }
+    @media (max-width: 480px) {
+      padding-bottom: 0.5rem !important;
     }
     @include flex(center, center, column);
     animation: fadeIn 1s linear;
@@ -213,11 +220,17 @@ export default {
         }
       }
     }
-
     .section_desc {
       margin-block: 1rem !important;
-      color: var(--white);
+      padding: 1rem !important;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 2px solid var(--main_theme_clr);
+      color: var(--main_theme_clr);
+      line-height: 2.5;
+
       font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
       text-align: center;
       @media (max-width: 450px) {
         margin-block: 0.5rem !important;
@@ -225,6 +238,7 @@ export default {
       & > span {
         display: block;
         width: fit-content;
+        color: var(--white);
         padding: 8px;
         background-color: var(--main_theme_clr);
         margin: 10px auto;
@@ -279,6 +293,7 @@ export default {
   @include media(md) {
     .wrapper {
       padding-inline: 1.5rem;
+      padding-bottom: 0.5rem;
       flex-wrap: wrap;
       text-align: center;
 
@@ -297,7 +312,10 @@ export default {
       }
 
       .section_desc {
-        max-width: 95%;
+        max-width: 100%;
+        padding: 0.5rem !important;
+        font-size: 0.85rem;
+        line-height: 1.7;
       }
     }
   }
