@@ -488,6 +488,8 @@
     "durationLimit": "Package duration",
     "nemrhCompMess": "Messaging companies on the Nemrh website.",
     "yourCustomerMess": "The ability to upload your customer numbers to write to them",
-    "days": "days"
+    "days": "days",
+    "imageIsFoundedDesc": "The current company logo can be changed.",
+    "imageIsNotFoundedDesc": "There is no current company logo. Please upload a logo to represent your brand identity"
   }
 }

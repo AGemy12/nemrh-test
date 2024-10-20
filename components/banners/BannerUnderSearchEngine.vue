@@ -48,7 +48,7 @@ export default {
   border-radius: 10px;
   margin-top: 1.5rem;
   box-shadow: var(--box-shadow);
-  z-index: 1000000000000;
+  z-index: 100;
   @media (max-width: 480px) {
     position: unset;
     margin-top: 0.5rem;

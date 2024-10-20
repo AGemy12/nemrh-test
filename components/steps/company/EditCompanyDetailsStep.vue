@@ -123,7 +123,7 @@ export default {
           error: null,
         },
         workField: {
-          value: null,
+          value: this.companyDetails?.category,
           error: null,
         },
         aboutCompanyAr: {
@@ -165,8 +165,8 @@ export default {
         // ********** End:: Implement Request ********** //
         this.categories = res.data.data.map((item) => {
           return {
-            id: item.id,
             name: item.title,
+            id: item.id,
           }
         })
       } catch (err) {

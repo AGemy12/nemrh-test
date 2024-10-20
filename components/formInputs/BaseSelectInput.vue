@@ -8,7 +8,7 @@
         :small-chips="multiple"
         :multiple="multiple"
         :items="isStatic ? _staticItems : items"
-        item-value="id"
+        item-value="name"
         item-text="name"
         :rules="validationRules"
         :error-messages="serverSideErrorMessage"
@@ -22,7 +22,7 @@
         :required="required"
         :disabled="disabled"
         flat
-        ></v-autocomplete>
+      ></v-autocomplete>
       <span class="spinnerIcon">
         <i v-if="isStatic && loading" class="fas fa-spinner"></i>
       </span>
@@ -38,7 +38,7 @@
 export default {
   name: 'BaseSelectInput',
 
-  emits: ["clearServerSideErrorMessage"],
+  emits: ['clearServerSideErrorMessage'],
 
   props: {
     loading: {
@@ -129,8 +129,8 @@ export default {
     },
 
     clearServerSideErrorMessage() {
-      if(this.serverSideErrorMessage) {
-        this.$emit("clearServerSideErrorMessage");
+      if (this.serverSideErrorMessage) {
+        this.$emit('clearServerSideErrorMessage')
       }
     },
 

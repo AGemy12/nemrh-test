@@ -28,10 +28,9 @@
             </v-stepper-content>
 
             <v-stepper-content step="companyIdentityStep">
-              <CompanyIdentityStep
+              <EditCompanyIdentityStep
                 :companyIdentityInfo="companyDetailsData"
                 :isWaitingApiResponse="isWaitingApiResponse"
-                :isEditCycle="true"
                 @fireNavigateToPreviousStep="currentStep = 'contactDetailsStep'"
                 @submitForm="handelLastStep"
               />
@@ -48,7 +47,7 @@
 // import CompanyContactInfoStep from '@/components/steps/company/CompanyContactInfoStep.vue'
 import EditCompanyContactInfoStep from '@/components/steps/company/EditCompanyContactInfoStep.vue'
 import EditCompanyDetailsStep from '@/components/steps/company/EditCompanyDetailsStep.vue'
-import CompanyIdentityStep from '@/components/steps/company/CompanyIdentityStep.vue'
+import EditCompanyIdentityStep from '@/components/steps/company/EditCompanyIdentityStep.vue'
 
 export default {
   name: 'EditCompanyModal',
@@ -77,7 +76,7 @@ export default {
   components: {
     EditCompanyDetailsStep,
     EditCompanyContactInfoStep,
-    CompanyIdentityStep,
+    EditCompanyIdentityStep,
   },
 
   data() {
@@ -154,17 +153,19 @@ export default {
         'category_id',
         this.data.workField && this.data.workField.id
           ? this.data.workField.id
-          : null
+          : this.companyDetailsData.category_id
       )
       REQUEST_DATA.append('company_id', this.companyId)
       REQUEST_DATA.append('title[ar]', this.data.nameAr)
       REQUEST_DATA.append('title[en]', this.data.nameEn)
       REQUEST_DATA.append('main_service[ar]', this.data.serviceAr)
       REQUEST_DATA.append('main_service[en]', this.data.serviceEn)
-      REQUEST_DATA.append(
-        'category_id',
-        this.data.workField ? this.data.workField.id : null
-      )
+      // REQUEST_DATA.append(
+      //   'category_id',
+      //   this.data.workField
+      //     ? this.data.workField.id
+      //     : this.companyDetailsData.category_id
+      // )
       REQUEST_DATA.append('desc[ar]', this.data.descAr)
       REQUEST_DATA.append('desc[en]', this.data.descEn)
       REQUEST_DATA.append('phone', this.data.whatsappNumber)
@@ -181,7 +182,9 @@ export default {
       }
       REQUEST_DATA.append('location[ar]', this.data.addressAr)
       REQUEST_DATA.append('location[en]', this.data.addressEn)
-      REQUEST_DATA.append('image', this.data.logo.file)
+      if (this.data.logo && this.data.logo.file) {
+        REQUEST_DATA.append('image', this.data.logo.file)
+      }
       REQUEST_DATA.append('commercial_file', this.data.commercialRegister.file)
       // Start:: Append Request Data
 

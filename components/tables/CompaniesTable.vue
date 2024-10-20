@@ -96,18 +96,21 @@
         :btnText="$t('BUTTONS.startCampaign')"
         styleType="primary_btn"
         :disabled="selectedCompanies.length === 0"
-        @fireClick="
+        @fireClick="startCampaignModalIsOpen = !startCampaignModalIsOpen"
+      />
+    </div>
+
+    <!-- 
+    "
           isUserSubscribed === false
             ? (sureUserUnSubscribed = true)
             : (startCampaignModalIsOpen = true)
         "
-      />
-    </div>
-
-    <NoSubscribedUserModel
+    -->
+    <!-- <NoSubscribedUserModel
       :modalIsOpen="sureUserUnSubscribed"
       @toggleModal="toggleModal"
-    />
+    /> -->
 
     <StartCampaignModal
       v-if="startCampaignModalIsOpen"
@@ -218,10 +221,10 @@ export default {
       type: Object,
       required: true,
     },
-    isUserSubscribed: {
-      type: Boolean,
-      required: true,
-    },
+    // isUserSubscribed: {
+    //   type: Boolean,
+    //   required: true,
+    // },
   },
 
   components: {
@@ -257,7 +260,7 @@ export default {
       // End :: Dialogs Control Data
 
       // Start :: Sure User Unsubscribed
-      sureUserUnSubscribed: false,
+      // sureUserUnSubscribed: false,
       // End :: Sure User Unsubscribed
 
       // Start:: Action Message Modal Content Based On User Status
@@ -409,9 +412,9 @@ export default {
     },
     // End:: Handel Modal Toggling
 
-    toggleModal() {
-      this.sureUserUnSubscribed = !this.sureUserUnSubscribed
-    },
+    // toggleModal() {
+    //   this.sureUserUnSubscribed = !this.sureUserUnSubscribed
+    // },
 
     // Start:: Handel Action Message Modal Toggling
     handelQrCodeModalToggle() {

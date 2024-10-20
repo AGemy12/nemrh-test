@@ -392,7 +392,10 @@ export default {
       $axiosRequest.get(`company/${params.id}/reviews`),
     ])
 
-    console.log('Company Profile Data:', companyProfileRes.data.data.id)
+    console.log(
+      'Company Profile Data:',
+      companyProfileRes.data.data.category_id
+    )
 
     return {
       companyProfileData: companyProfileRes.data.data,
