@@ -19,6 +19,8 @@
         "
         id="messagesOption"
         iconClass="fa-solid fa-rocket"
+        soonStyle="soon"
+        :prventAction.prevent="prventAction"
       />
     </div>
   </section>
@@ -42,6 +44,11 @@ export default {
     return {
       activeIndex: null,
     }
+  },
+  methods: {
+    prventAction(event) {
+      event.preventDefault()
+    },
   },
 }
 </script>

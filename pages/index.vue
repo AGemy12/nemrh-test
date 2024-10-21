@@ -4,6 +4,7 @@
 
     <template v-else>
       <!-- ========== Start:: Search Section ========= -->
+      <Intro />
       <GlobalSearchSection
         :searchAdImage="homePageData?.search_ad_companies?.ad_image || null"
         :path="homePageData?.search_ad_companies?.ad_link || null"
@@ -58,11 +59,11 @@
         />
         <!-- ========= End:: Clients Section ========= -->
 
-        <SpiderModel
+        <!-- <SpiderModel
           v-if="shouldShowSpiderModel"
           :modalIsOpen="spiderModalIsOpen"
           @toggleModal="spiderModalScroll"
-        />
+        /> -->
       </div>
     </template>
   </section>
@@ -76,8 +77,9 @@ import PremiumCampaignSection from '@/components/generalSections/02.PremiumCampa
 import SilverCampaignSection from '@/components/generalSections/03.SilverCampaignSection.vue'
 import AboutSection from '@/components/generalSections/AboutSection.vue'
 import ClientsSection from '@/components/generalSections/ClientsSection.vue'
-import SpiderModel from '@/components/ui/modals/SpiderModel.vue'
+// import SpiderModel from '@/components/ui/modals/SpiderModel.vue'
 import BannerUnderPage from '~/components/banners/BannerUnderPage.vue'
+import Intro from '~/components/modals/general/Intro.vue'
 
 export default {
   name: 'HomePage',
@@ -111,6 +113,7 @@ export default {
   },
 
   components: {
+    Intro,
     MainLoader,
     GlobalSearchSection,
     GoldenCampaignSection,
@@ -118,7 +121,7 @@ export default {
     SilverCampaignSection,
     AboutSection,
     ClientsSection,
-    SpiderModel,
+    // SpiderModel,
     BannerUnderPage,
   },
 
@@ -154,29 +157,28 @@ export default {
       // End:: Loaders Controlling Data
 
       // Start:: Dialogs Control Data
-      spiderModalIsOpen: true,
+      // spiderModalIsOpen: true,
       // End:: Dialogs Control Data
     }
   },
 
   computed: {
-    shouldShowSpiderModel() {
-      return (
-        this.spiderModalIsOpen &&
-        window.location.href.includes('spider-te8.com')
-      )
-    },
+    // shouldShowSpiderModel() {
+    //   return (
+    //     this.spiderModalIsOpen &&
+    //     window.location.href.includes('spider-te8.com')
+    //   )
+    // },
   },
 
   methods: {
-    spiderModalScroll() {
-      let top = window.pageYOffset || document.documentElement.scrollTop
-
-      if (process.client && top >= 50) {
-        this.spiderModalIsOpen = !this.spiderModalIsOpen
-        window.removeEventListener('scroll', this.spiderModalScroll)
-      }
-    },
+    // spiderModalScroll() {
+    //   let top = window.pageYOffset || document.documentElement.scrollTop
+    //   if (process.client && top >= 50) {
+    //     this.spiderModalIsOpen = !this.spiderModalIsOpen
+    //     window.removeEventListener('scroll', this.spiderModalScroll)
+    //   }
+    // },
   },
 
   mounted() {
@@ -186,16 +188,16 @@ export default {
     }
     // End:: Fire Methods
 
-    if (process.client) {
-      window.addEventListener('scroll', this.spiderModalScroll)
-    }
+    // if (process.client) {
+    //   window.addEventListener('scroll', this.spiderModalScroll)
+    // }
   },
 
-  beforeDestroy() {
-    if (process.client) {
-      window.removeEventListener('scroll', this.spiderModalScroll)
-    }
-  },
+  // beforeDestroy() {
+  //   if (process.client) {
+  //     window.removeEventListener('scroll', this.spiderModalScroll)
+  //   }
+  // },
 }
 </script>
 

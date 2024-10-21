@@ -51,10 +51,11 @@ export default {
   z-index: 100;
   @media (max-width: 480px) {
     position: unset;
-    margin-top: 0.5rem;
+    margin-top: 0;
+    margin-top: 0;
     width: 100%;
     a {
-      width: 90%;
+      width: 100%;
       margin: 0 auto;
       img {
         border-radius: 5px;

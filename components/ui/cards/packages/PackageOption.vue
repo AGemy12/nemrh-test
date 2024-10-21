@@ -1,5 +1,9 @@
 <template>
-  <a class="package_option_link" :href="href">
+  <a
+    :class="`package_option_link  ${soonStyle} `"
+    :href="href"
+    @click="prventAction"
+  >
     <div
       class="package_option_wrapper"
       :class="{ active: isActive }"
@@ -38,6 +42,14 @@ export default {
       type: String,
       required: true,
     },
+    soonStyle: {
+      type: String,
+      required: false,
+    },
+    prventAction: {
+      type: Function,
+      required: false,
+    },
   },
   methods: {
     handleClick() {
@@ -50,6 +62,29 @@ export default {
 <style lang="scss" scoped>
 .package_option_link {
   display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  &.soon {
+    &::before {
+      content: 'قريبا';
+    }
+    cursor: default;
+  }
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
 }
 .package_option_wrapper {
   height: 290px;
@@ -58,9 +93,7 @@ export default {
   @include flex(space-evenly, stretch, column);
   row-gap: 0.5rem;
   background-color: var(--theme_main_bg);
-  border-radius: 8px;
   transition: all 0.3s linear;
-  cursor: pointer;
   @media (max-width: 450px) {
     width: 250px;
     height: 250px;

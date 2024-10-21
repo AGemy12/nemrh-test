@@ -2,52 +2,65 @@
   <div v-if="!videoSkipped" class="video_intro">
     <video
       ref="introVideo"
-      :src="videoSrc"
+      :src="srcVideo"
       class="intro_video"
+      @ended="skipVideo"
+      playsinline
       autoplay
       muted
-      playsinline
-      @ended="skipVideo"
     ></video>
     <button class="skip_button" @click="skipVideo">تخطي</button>
+    <button class="play_button" v-if="!soundEnabled" @click="enableSound">
+      تشغيل الصوت
+    </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'VideoIntro',
-
-  props: {
-    videoSrc: {
-      type: String,
-      required: true,
-    },
-  },
-
   data() {
     return {
       videoSkipped: false,
+      soundEnabled: false,
+      srcVideo: '/intro.mp4',
+      videoInterval: 24 * 60 * 60 * 1000,
     }
   },
 
   mounted() {
-    // تحقق مما إذا كان الفيديو قد تم مشاهدته مسبقًا أو كان آخر عرض للفيديو ضمن الفترة المحددة
-    const videoLastShown = localStorage.getItem('videoLastShown')
+    const lastVideoShown = localStorage.getItem('lastVideoShown')
     const now = new Date().getTime()
-    const interval = 24 * 60 * 60 * 1000 // يوم كامل كفاصل زمني (يمكنك تعديله حسب الحاجة)
 
-    if (videoLastShown && now - videoLastShown < interval) {
-      this.videoSkipped = true // لا يتم عرض الفيديو إذا كان ضمن الفترة المحددة
+    if (lastVideoShown && now - lastVideoShown < this.videoInterval) {
+      this.videoSkipped = true
     } else {
-      localStorage.setItem('videoLastShown', now) // احفظ وقت العرض الحالي
+      this.updateVideoSrc()
+      window.addEventListener('resize', this.updateVideoSrc)
     }
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateVideoSrc)
   },
 
   methods: {
     skipVideo() {
-      console.log('Video skipped.')
       this.videoSkipped = true
       this.$emit('videoSkipped')
+      localStorage.setItem('lastVideoShown', new Date().getTime())
+    },
+    enableSound() {
+      const video = this.$refs.introVideo
+      video.muted = false
+      video.play()
+      this.soundEnabled = true
+    },
+    updateVideoSrc() {
+      if (window.innerWidth <= 700) {
+        this.srcVideo = '/intro_mobile.mp4'
+      } else {
+        this.srcVideo = '/intro.mp4'
+      }
     },
   },
 }
@@ -63,8 +76,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  z-index: 10000000000000;
+  z-index: 10000;
 }
 
 .intro_video {
@@ -72,15 +84,30 @@ export default {
   height: 100vh;
   object-fit: cover;
 }
-
 .skip_button {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  border: none;
+  bottom: 30px;
+  padding: 10px 15px;
+  background-color: var(--main_theme_clr);
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
-  color: var(--main_theme_clr);
+}
+.play_button {
+  position: absolute;
+  bottom: 30px;
+  padding: 10px 15px;
+  background-color: var(--main_theme_clr);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.play_button {
+  left: 30px;
+}
+
+.skip_button {
+  right: 30px;
 }
 </style>

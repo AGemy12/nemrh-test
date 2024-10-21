@@ -62,6 +62,9 @@
               loading="lazy"
             />
           </button>
+          <!-- <nuxt-link :to="`https://api.whatsapp.com/send?phone=${item.phone}`">
+            <i class="fa-regular fa-comment"></i>
+          </nuxt-link> -->
           <p dir="ltr">{{ item.phone }}</p>
           <!-- <p dir="ltr"> {{ item.phone.replace(item.phone.slice(-4), '****') }} </p> -->
         </div>

@@ -173,6 +173,11 @@ export default {
     width: 100%;
     height: 100%;
   }
+  @media (max-width: 480px) {
+    min-height: calc(80vh);
+    display: flex;
+    justify-content: center;
+  }
 
   .wrapper {
     padding-top: 7rem;
@@ -183,7 +188,15 @@ export default {
       padding-top: 9rem;
     }
     @media (max-width: 480px) {
-      padding-bottom: 0.5rem !important;
+      padding-bottom: 0rem !important;
+      padding-top: 0rem;
+      @include flex(space-evenly, center, column);
+
+      .section_title,
+      .section_desc,
+      .search_form_wrapper {
+        margin: 0;
+      }
     }
     @include flex(center, center, column);
     animation: fadeIn 1s linear;

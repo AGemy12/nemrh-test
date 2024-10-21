@@ -1,6 +1,6 @@
 require('dotenv').config()
 export default ({ app, $axios, store, redirect, $cookies }, inject) => {
-  console.log('Base URL being used:', process.env.API_BASE_URL)
+  // console.log('Base URL being used:', process.env.API_BASE_URL)
 
   const axiosRequest = $axios.create({
     // baseURL: ``, //****  LIVE URL ****//
